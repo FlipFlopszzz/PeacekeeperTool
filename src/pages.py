@@ -17,6 +17,7 @@ class HomePage(QWidget):
 - 根据音频自动解密摩斯电码
 - 多种密文和谜题的解密器
 # 相关视频及网站
+- [本工具的完整教程]()
 - [维和者彩蛋教程-up:鸽子王歌姬poi](https://www.bilibili.com/video/BV1FK411M7GN)
 - [铜牌点位教程(25个)-up:博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6)，这个视频缺少了两个点位，可以去[彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)找到剩下两个点位的具体位置。
 - [彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)
