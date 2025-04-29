@@ -6,9 +6,9 @@ import resources_rc
 
 
 class HomePage(QWidget):
-    def __init__(self):
-        super().__init__()
-        md_text = '''
+  def __init__(self):
+    super().__init__()
+    md_text = '''
 # 简介
 这是一个战地一维和者菜单解密工具，用于简化维和者获取的过程。本工具不包含关于彩蛋背后故事的内容。
 # 功能
@@ -17,7 +17,7 @@ class HomePage(QWidget):
 - 根据音频自动解密摩斯电码
 - 多种密文和谜题的解密器
 # 相关视频及网站
-- [本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf)
+- [本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf)，这是第一个视频，后边可能还会出相关视频，自己查看作者主页。在v1.3版本更新后会出一个视频。
 - [维和者彩蛋教程-up:鸽子王歌姬poi](https://www.bilibili.com/video/BV1FK411M7GN)
 - [铜牌点位教程(26个)-up:博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6)，这个视频缺少了1个点位，可以去[彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)找到剩下那个点位的具体位置,也可以直接看[本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf)。
 - [彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)
@@ -38,15 +38,15 @@ class HomePage(QWidget):
 - 本人以前做过两次维和者彩蛋，有点经验，这次全程大约花费3个小时。初次上手的话大概4-5小时就能结束。这个软件主要简化的是金银铜牌和逐步升级的获取，具体体现在摩斯电码的自动识别，解密器的集成，金牌的灯开关序列的遍历，银牌点灯解密器以及坐标系的显示。而且考虑到过去的视频教程中提到的彩蛋网站，有的年久失修，有的使用麻烦，有的在大陆不方便访问，从这个意义上讲，这个软件顺便把目前(2025-4-17)能用的资源和网站汇总了，并把一部分功能简化并搬到软件上。
 - 就测试的几十段素材(包括逐步升级、铜牌和金牌)而言，摩斯电码的自动识别准确度在90%以上。有一些片段由于识别错误或把关键片段之外的摩斯电码合并进来等原因，导致转换得到的英文字符中有错误的部分，在解密器解密之后更加难以解读。但是如果通过自己模糊判断或使用“查看图像”功能来排除错误,多余部分，是能够知悉正确的答案的。目前测试样本量还是太小了，而且不知道录音功能在其他电脑上能否正常工作。
 '''
-        layout = QVBoxLayout(self)
-        self.browser = MarkdownTextBrowser(md_text)
-        layout.addWidget(self.browser)
+    layout = QVBoxLayout(self)
+    self.browser = MarkdownTextBrowser(md_text)
+    layout.addWidget(self.browser)
 
 
 class UsagePage(QWidget):
-    def __init__(self):
-        super().__init__()
-        md_text = '''
+  def __init__(self):
+    super().__init__()
+    md_text = '''
 # 使用说明
 ## 彩蛋流程简介
 彩蛋总共有七个部分，包括2个背面狗牌：野兽之源和看见天使，3个正面狗牌：金牌不祥之兆，银牌冲突，铜牌初显身手，1个皮肤：M1917-逐步升级，以及最后的维和者所在的地道。其中比较麻烦的是银牌冲突，铜牌初显身手。不能跳过前面6个任务直接去做维和者任务，没有完成前置的话在地道会被毒气秒杀。本软件的教程只是简单的指示而已，如果需要完整的流程以及任务点位，查看视频[维和者彩蛋教程-up:鸽子王歌姬poi](https://www.bilibili.com/video/BV1FK411M7GN)。
@@ -62,28 +62,28 @@ class UsagePage(QWidget):
 - 在切屏出去解密时，记得隔个一两分钟就要切回来动一下鼠标开几枪，避免挂机太久服务器给你踢了。
 - 解密摩斯电码和显示图像时可能会卡一会并且变成无响应，一般是正常的，因为解密需要花费较长时间，等一下就行了。测试后不影响正常使用。
 '''
-        layout = QVBoxLayout(self)
-        self.browser = MarkdownTextBrowser(md_text)
-        layout.addWidget(self.browser)
+    layout = QVBoxLayout(self)
+    self.browser = MarkdownTextBrowser(md_text)
+    layout.addWidget(self.browser)
 
 
 class BeastPage(QWidget):
-    def __init__(self):
-        super().__init__()
-        md_text = '''
+  def __init__(self):
+    super().__init__()
+    md_text = '''
 # 野兽之源
 1. 按照前面讲的选择服务器的方法，进入卡波雷托，选择奥匈帝国，可以开飞机或者骑马，到达指定地点后，面对三个天使雕像，依次用枪打掉相应的身体部分，不能多也不能少，然后向后面走，能看到一个单独的天使雕像，使用G键对着雕像底座丢出手雷。上述步骤完成后能听到一声尖啸。
 2. 随后面朝三个天使的方向一直向前走，能看到另一个单独的天使雕像，走到它的后边蹲下，底座是可以互动的，互动后播放音效，获得狗牌，退出查看。
 '''
-        layout = QVBoxLayout(self)
-        self.browser = MarkdownTextBrowser(md_text)
-        layout.addWidget(self.browser)
+    layout = QVBoxLayout(self)
+    self.browser = MarkdownTextBrowser(md_text)
+    layout.addWidget(self.browser)
 
 
 class AngelPage(QWidget):
-    def __init__(self):
-        super().__init__()
-        md_text = '''
+  def __init__(self):
+    super().__init__()
+    md_text = '''
 # 看见天使
 1. 进入索姆河，选择英国，支援兵，带弹药箱和磁吸地雷，部署后向前走到A点也就是最近的房区，会刷新一辆鬼火，然后开车到指定地点（E点），能看到两个水罐。尽量把鬼火停在比较靠近的地方，不然会消失。往前走能看到一个井口，用慈溪丢到这个井的正中间，炸开后能看到一个装置，有五个灯以及上边的一个确认按钮。把灯从左到右依次命名为1-5号灯，接下来我会给出灯的序号，你需要根据灯的序号进行互动，然后按确认按钮，比如我说1-4，就是需要把1，2，3，4号灯都各自互动一下，然后按下确认按钮，随后灯会自动全部亮起来。
 ## 第一轮按灯
@@ -105,20 +105,20 @@ class AngelPage(QWidget):
 
 结束后如果灯变红并且听到音效，说明这个任务完成，退出查看狗牌。
 '''
-        layout = QVBoxLayout(self)
-        self.browser = MarkdownTextBrowser(md_text)
-        layout.addWidget(self.browser)
+    layout = QVBoxLayout(self)
+    self.browser = MarkdownTextBrowser(md_text)
+    layout.addWidget(self.browser)
 
 
 class SkinPage(QWidget):
-    def __init__(self):
-        super().__init__()
+  def __init__(self):
+    super().__init__()
 
-        # 创建主布局
-        layout = QVBoxLayout(self)
+    # 创建主布局
+    layout = QVBoxLayout(self)
 
-        # Markdown文本浏览器
-        md_text = '''
+    # Markdown文本浏览器
+    md_text = '''
 # 逐步升级（皮肤）
 1. 在做这个任务之前确保你已经解锁了M1917机枪也就是担架的任意型号，不然拿了皮肤也没用。选择地图阿尔比恩，**绝对不能是下雪天气，因为自动识别无法工作**，德国，飞机，朝前飞找到D点的一个铁塔，地上有很多铁箱子和木箱子，用枪(别用手雷，后边要用)给木箱子打了，总共9个铁箱子，各自互动1次，这次和下次都不需要特定顺序。不能多也不能少，错了直接重开。
 2. 然后走到指定地点，也就是F点的一个房子，里边开门有个木柜子，给它拿手雷炸了，露出一个开关，上边有个骷髅头。跟开关互动1次。
@@ -130,16 +130,16 @@ class SkinPage(QWidget):
 5. 回到地图的A点，也就是有一个灯塔的点，附近有6个房子，把这6个房子的煤油灯打碎之后（无顺序），获得灯塔内部6个开关的互动权。给6个开关编号，从下往上依次为FEDCBA。然后根据刚才得到的那串完整的字母，按顺序对开关进行互动，最后跑到灯塔最顶上，可以看到有一个很大的灯，旁边还有一个小灯，灯的互动顺序没问题的话，小灯是可以进行互动的。互动完后，出现烟雾和音效，重新部署查看皮肤。
 6. 如果互动出现错误，可以直接停下，等30秒，这时互动的进度就会直接重置。也是由于这个机制，互动的相邻两个开关之间不能超过30秒，否则就会直接被重置，因此动作要稍微快点。
 '''
-        self.browser = MarkdownTextBrowser(md_text)
-        layout.addWidget(self.browser)
+    self.browser = MarkdownTextBrowser(md_text)
+    layout.addWidget(self.browser)
 
-        # 创建输入框
-        self.input_box = QLineEdit()
-        self.input_box.setPlaceholderText("输入解密出的5个字母")  # 设置占位符文本
-        self.input_box.setFixedHeight(30)  # 设置输入框高度
+    # 创建输入框
+    self.input_box = QLineEdit()
+    self.input_box.setPlaceholderText("输入解密出的5个字母")  # 设置占位符文本
+    self.input_box.setFixedHeight(30)  # 设置输入框高度
 
-        # 设置输入框样式
-        self.input_box.setStyleSheet("""
+    # 设置输入框样式
+    self.input_box.setStyleSheet("""
             QLineEdit {
                 background-color: white;
                 border: 1px solid #ccc;
@@ -151,13 +151,13 @@ class SkinPage(QWidget):
             }
         """)
 
-        # 创建显示文本区域
-        self.text_display = QLabel("这里将会显示最终的那串字母")
-        self.text_display.setWordWrap(True)  # 允许文本换行
-        self.text_display.setAlignment(Qt.AlignLeft | Qt.AlignTop)  # 左对齐和顶部对齐
+    # 创建显示文本区域
+    self.text_display = QLabel("这里将会显示最终的那串字母")
+    self.text_display.setWordWrap(True)  # 允许文本换行
+    self.text_display.setAlignment(Qt.AlignLeft | Qt.AlignTop)  # 左对齐和顶部对齐
 
-        # 设置显示文本区域样式
-        self.text_display.setStyleSheet("""
+    # 设置显示文本区域样式
+    self.text_display.setStyleSheet("""
             QLabel {
                 background-color: #f5f5f5;
                 border: 1px solid #ddd;
@@ -167,45 +167,45 @@ class SkinPage(QWidget):
             }
         """)
 
-        self.morse_code_com = MorseCodeCom(0)
+    self.morse_code_com = MorseCodeCom(0)
 
-        layout.addWidget(self.morse_code_com)
-        # 添加20px的垂直间距
-        layout.addSpacing(50)
+    layout.addWidget(self.morse_code_com)
+    # 添加20px的垂直间距
+    layout.addSpacing(50)
 
-        # 添加输入框到布局
-        layout.addWidget(self.input_box)
-        # 添加显示文本区域到布局
-        layout.addWidget(self.text_display)
+    # 添加输入框到布局
+    layout.addWidget(self.input_box)
+    # 添加显示文本区域到布局
+    layout.addWidget(self.text_display)
 
-        # 添加弹性空间到底部
-        layout.addStretch()
+    # 添加弹性空间到底部
+    layout.addStretch()
 
-        # 设置布局的边距
-        layout.setContentsMargins(10, 10, 10, 10)
+    # 设置布局的边距
+    layout.setContentsMargins(10, 10, 10, 10)
 
-        # 连接输入框的文本变化信号到更新函数
-        self.input_box.textChanged.connect(self.on_text_changed)
+    # 连接输入框的文本变化信号到更新函数
+    self.input_box.textChanged.connect(self.on_text_changed)
 
-    def on_text_changed(self, text):
-        """
-        当输入框文本改变时更新显示文本区域
-        """
-        self.text_display.setText(
-            'CAEEB '+text.upper()+' FEAADDAD' or "这里将会显示最终的那串字母")  # 如果文本为空则显示默认文本
+  def on_text_changed(self, text):
+    """
+    当输入框文本改变时更新显示文本区域
+    """
+    self.text_display.setText(
+        'CAEEB '+text.upper()+' FEAADDAD' or "这里将会显示最终的那串字母")  # 如果文本为空则显示默认文本
 
 
 class GoldPage(QWidget):
-    def __init__(self):
-        super().__init__()
+  def __init__(self):
+    super().__init__()
 
-        # 创建主布局
-        layout = QVBoxLayout(self)
-        layout.setSpacing(10)  # 设置组件之间的垂直间距
-        layout.setContentsMargins(10, 10, 10, 10)  # 设置边距
+    # 创建主布局
+    layout = QVBoxLayout(self)
+    layout.setSpacing(10)  # 设置组件之间的垂直间距
+    layout.setContentsMargins(10, 10, 10, 10)  # 设置边距
 
-        # Markdown文本浏览器
-        md_text = '''
+    # Markdown文本浏览器
+    md_text = '''
 # 不祥之兆（金牌）
 1.选择泽布吕赫地图，注意服务器必须允许精英兵。尽可能选择不下雨的天气，这样杂音会比较小。选择德国，到达E点拿到入侵者，然后坐船到A点，上岸之后找到一个很高的水塔，爬完第一段梯子之后，切屏打开软件，开始录制，然后爬完第二段梯子，趴下。过一会能听到一个音效，然后开始播放摩斯电码。录制40-50秒那样，停止录制。然后开始解密，总共是22个字母（遇到相同的部分说明是进入下一个循环了）。它们是以下30个字母中的一部分，按顺序找出缺少的8个字母。这里可能解密出多种可能的结果，这种情况需要几种可能性都进行测试，这个彩蛋没有什么试错成本，只需要回去调整灯亮灭顺序即可。
 
@@ -236,25 +236,25 @@ DULCE ET DECORUM EST PRO PATRIA MORI  30个字母
 2. 接下来找到在陆地上往E点的方向跑，找到房间“1”，从这个房间的右边进去，左手边是1号机器，往前往右依次为2，3，4号机器，依次对应的就是1-4组灯。如果我上面解密出来的第一个数字是1，那么第一台机器的5个灯从左到右依次设置为亮灭灭灭灭，其他同理。
 3. 按完四台机器后，继续按原来的方向走，找到房间“3”，从房间右边进去，进门依次为5-8号机器。按完这四个机器，看见烟雾并且听到音效，说明本任务完成，退出查看狗牌。如果没有完成的话可能是摩斯电码解密出错了，可能需要手动查看图像确保解密没有出现错误，解密完可以接着之前的进度接着按灯，不需要重新开始。
 '''
-        self.browser = MarkdownTextBrowser(md_text)
-        layout.addWidget(self.browser)
+    self.browser = MarkdownTextBrowser(md_text)
+    layout.addWidget(self.browser)
 
-        self.morse_code_com = MorseCodeCom(1)
-        layout.addWidget(self.morse_code_com)
-        layout.addSpacing(30)
+    self.morse_code_com = MorseCodeCom(1)
+    layout.addWidget(self.morse_code_com)
+    layout.addSpacing(30)
 
-        # 创建输入框
-        self.input_box = inputbox_single_line("请输入解密摩斯电码得到的22个字母")
-        self.input_box.onTextChanged(self.on_text_changed)
+    # 创建输入框
+    self.input_box = inputbox_single_line("请输入解密摩斯电码得到的22个字母")
+    self.input_box.onTextChanged(self.on_text_changed)
 
-        layout.addWidget(self.input_box)
+    layout.addWidget(self.input_box)
 
-        self.text_display = QTextEdit()
-        self.text_display.setReadOnly(True)  # 设置为只读
-        self.text_display.setFixedHeight(180)  # 设置足够显示8行文本的高度
+    self.text_display = QTextEdit()
+    self.text_display.setReadOnly(True)  # 设置为只读
+    self.text_display.setFixedHeight(180)  # 设置足够显示8行文本的高度
 
-        # 设置第三个显示区域的样式
-        self.text_display.setStyleSheet("""
+    # 设置第三个显示区域的样式
+    self.text_display.setStyleSheet("""
             QTextEdit {
                 background-color: #f5f5f5;
                 border: 1px solid #ddd;
@@ -268,38 +268,38 @@ DULCE ET DECORUM EST PRO PATRIA MORI  30个字母
             }
         """)
 
-        layout.addWidget(self.text_display)
+    layout.addWidget(self.text_display)
 
-        self.text_display.setText("这里将会根据8个字母得到8个数字，对应的灯 状态以及开关序列")  # 显示8行默认文本
-        layout.addSpacing(40)
+    self.text_display.setText("这里将会根据8个字母得到8个数字，对应的灯 状态以及开关序列")  # 显示8行默认文本
+    layout.addSpacing(40)
 
-    def on_text_changed(self, text):
-        letters = find_missing_letters(text)
-        if (len(text) == 0):
-            self.text_display.setText("这里将会显示缺少的8个字母，对应的8个数字以及灯的开关序列")
-        elif (len(letters) == 1):
-            if (letters[0].find('error') != -1):
-                self.text_display.setText(
-                    letters[0]
-                )
-            else:
-                self.text_display.setText(
-                    get_last_gold_text(letters[0])
-                )
-        else:
-            last_str = f'可能存在以下{len(letters)}种情况:'
-            for i, l in enumerate(letters):
-                last_str = last_str + \
-                    (f'\n\n第{i+1}种情况:\n'+get_last_gold_text(letters[i]))
-            self.text_display.setText(
-                last_str
-            )
+  def on_text_changed(self, text):
+    letters = find_missing_letters(text)
+    if (len(text) == 0):
+      self.text_display.setText("这里将会显示缺少的8个字母，对应的8个数字以及灯的开关序列")
+    elif (len(letters) == 1):
+      if (letters[0].find('error') != -1):
+        self.text_display.setText(
+            letters[0]
+        )
+      else:
+        self.text_display.setText(
+            get_last_gold_text(letters[0])
+        )
+    else:
+      last_str = f'可能存在以下{len(letters)}种情况:'
+      for i, l in enumerate(letters):
+        last_str = last_str + \
+            (f'\n\n第{i+1}种情况:\n'+get_last_gold_text(letters[i]))
+      self.text_display.setText(
+          last_str
+      )
 
 
 class SilverPage(QWidget):
-    def __init__(self):
-        super().__init__()
-        md_text = '''
+  def __init__(self):
+    super().__init__()
+    md_text = '''
 # 冲突（银牌）
 1. 地图选择苏瓦松（蘇瓦鬆），尽可能选择雾天，方便后续看地板的灯亮灭，没有也没关系。德国，骑兵，到E点的大房子，进门后，找到所有天花板和位于墙上的灯用枪打掉，落地灯使用医疗包和弹药包扑灭，其中有一个落地灯的底座被很多木箱子挡住了，直接丢手雷给它炸开，后面可能需要和这个灯互动。所有灯被灭掉之后会听到一个很阴间的音效，这一步完成。
 2. 走到1号灯那里，趴下，对着底座互动1次，统计有哪些灯亮起来了，比如2，3，5号灯亮了，就找到软件的点灯解密那里找到“第1次”，输入“2 3 5”。同理再重复这样的步骤6次，注意每次都是和1号灯互动。注意6号灯那里会有阳光，很容易误判，可以靠近点，声音开大点，如果听到有“滋滋”的电流声说明是亮的。输入完7次，点击解密，会显示需要互动的灯列表，比如“2，2，3”，所以找到2号灯底座互动2次，3号灯底座互动1次。听到一个很阴间的音效第2步也完成了。
@@ -308,25 +308,25 @@ class SilverPage(QWidget):
 5. 接下来我们的任务就是让这个坐标系亮起和石头位置对应的瓷砖。但是有个问题，柱子和坐标的对应关系我们是不知道的，因此我们需要手动测试从而获取对应的关系。我们来到1号柱子，蹲下互动一次，然后同样的方法2号互动一次，回到坐标系查看，如果没有地板亮起来，说明这两个柱子都位于同一个坐标轴；如果有地板亮起来，比如说(3,4)，那么我们可以确定这两个柱子有一个在x轴另一个在y轴，接下来我们需要测试它们具体对应的坐标。因此我们先各自和1，2互动一次（注意在测试坐标轴阶段必须把两根柱子都熄灭，确保不会导致后面混乱）熄灭灯，然后再各自和1，3互动一次，如果这时亮了(3,5)，那么我们就可以确定，1号柱子对应x轴的3，2号柱子对应y轴的4，3号柱子对应y轴的5。后续其他所有柱子都可以用类似的方法获取对应坐标。
 6. 绘出完整的坐标系后，就把石头对应的坐标对应的灯画在坐标系上。这时候就可以不熄灭灯了，需要一直亮下去。等到把所有灯都亮起后，会出现烟雾并且听到音效，退出查看狗牌。
 '''
-        layout = QVBoxLayout(self)
-        self.browser = MarkdownTextBrowser(md_text)
-        layout.addWidget(self.browser)
-        layout_tool = QHBoxLayout()
-        self.candleHandler = CandleHandler()
-        layout_tool.addWidget(self.candleHandler)
-        self.coordinateSystem = CoordinateSystem()
-        layout_tool.addWidget(self.coordinateSystem)
-        self.sandbags_img = ImageDisplayer(
-            ":/resources/silver_sandbags.png", 370)
-        layout_tool.addWidget(self.sandbags_img)
-        layout.addLayout(layout_tool)
-        layout.addSpacing(100)
+    layout = QVBoxLayout(self)
+    self.browser = MarkdownTextBrowser(md_text)
+    layout.addWidget(self.browser)
+    layout_tool = QHBoxLayout()
+    self.candleHandler = CandleHandler()
+    layout_tool.addWidget(self.candleHandler)
+    self.coordinateSystem = CoordinateSystem()
+    layout_tool.addWidget(self.coordinateSystem)
+    self.sandbags_img = ImageDisplayer(
+        ":/resources/silver_sandbags.png", 370)
+    layout_tool.addWidget(self.sandbags_img)
+    layout.addLayout(layout_tool)
+    layout.addSpacing(100)
 
 
 class CopperPage(QWidget):
-    def __init__(self):
-        super().__init__()
-        md_text = '''
+  def __init__(self):
+    super().__init__()
+    md_text = '''
 # 初显身手（铜牌）
 - 来到最坐牢的铜牌，听电报的地图选择流血宴厅，下不下雨无所谓，美军，骑兵，依次寻找五个耳机刷新点，找到后返回美军出生点的右边战壕那里，提前下马，走到离收音机很近的拐角，切屏打开软件，录制，走到电报机前，面对电报机（注意查看电报机上的灯的颜色，可以用来确定自己现在处于第几步），视角不要动，不要发出任何噪音。可以用手机计时约30-40秒，停止录音，把音频文件交给软件分析摩斯电码。录完之后暂时别离开电报站，防止录音出现问题还得重新进游戏找耳机。后续的录音和分析流程都是这样。
 - 按照下面的指示得到密文后，和27个地点名对照，找到对应的地图的地点（可以参考视频[铜牌点位教程(25个)-up:博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6)），发现标志后鼠标指着一小段时间，听到声音后马上移开，避免触发两次，触发两次会导致本次任务失败。以下的指示只是告诉你解密的流程，可以不用管，直接复制到解密器里边就行了。比如我正在做任务5(以下面的任务序号为准)，那么在解密器那里选择“任务5:栅栏密码(Rail Fence)”，复制摩斯电码进去即可。其他的也是同理，参数都不需要你填。
@@ -364,25 +364,25 @@ class CopperPage(QWidget):
 7. LUGGAGEBASEMENTVARENNESALLIESCANBECLOTHEDASENEMIESENEMIESCANBECLOTHEDASALLIESALWAYSUSEID（这里是示例，地名为LUGGAGE BASEMENT VARENNES）
 8. HILLBARNADRIATICFINALBELIEVEEVERYTHINGREPORTEVERYTHING（这里是示例，地名为HILL BARN ADRIATIC）
 '''
-        layout = QVBoxLayout(self)
-        self.browser = MarkdownTextBrowser(md_text)
-        layout.addWidget(self.browser)
+    layout = QVBoxLayout(self)
+    self.browser = MarkdownTextBrowser(md_text)
+    layout.addWidget(self.browser)
 
-        self.morse_code_com = MorseCodeCom(2)
-        layout.addWidget(self.morse_code_com)
+    self.morse_code_com = MorseCodeCom(2)
+    layout.addWidget(self.morse_code_com)
 
-        layout.addSpacing(70)
+    layout.addSpacing(70)
 
-        self.decrypter_com = DecrypterCom()
-        layout.addWidget(self.decrypter_com)
+    self.decrypter_com = DecrypterCom()
+    layout.addWidget(self.decrypter_com)
 
-        layout.addSpacing(70)
+    layout.addSpacing(70)
 
 
 class LastPage(QWidget):
-    def __init__(self):
-        super().__init__()
-        md_text = '''
+  def __init__(self):
+    super().__init__()
+    md_text = '''
 # 最终任务
 1. 恭喜你坚持到了最后一个任务！首先打开士兵-狗牌，在正面-进度那里选择金银铜中任意一个进行装备，背面-进度，选择野兽支援和看见天使中任意一个装备。然后退回上一级彩蛋，点击自订士兵-支援兵，主武器选择M1917机枪，皮肤装备逐步升级。确保你已经完成了前置的所有6个任务，不然在地道的某一层会被毒气直接秒杀。
 2. 地图选择帕斯尚尔，尽可能选择延迟低一点的，不然操作不跟手可能会影响跑路。德国，支援兵，装备M1917+逐步升级，其他的无所谓（那个拿着扳手加速的小技能不是必须的）。
@@ -404,7 +404,8 @@ class LastPage(QWidget):
 
 # 恭喜你完成了维和者彩蛋！
 使用完这个工具可以直接卸载，记得把录制的那些音频删掉。
+如果使用中遇到任何问题都可以去本工具的B站视频评论或者私信本人，或者去Github上提issue。
 '''
-        layout = QVBoxLayout(self)
-        self.browser = MarkdownTextBrowser(md_text)
-        layout.addWidget(self.browser)
+    layout = QVBoxLayout(self)
+    self.browser = MarkdownTextBrowser(md_text)
+    layout.addWidget(self.browser)
