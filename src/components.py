@@ -1,6 +1,7 @@
+from threading import Thread
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, QLabel, QApplication, QFileDialog, QCheckBox, QMessageBox, QTextBrowser, QGridLayout, QSizePolicy, QComboBox, QSlider
 from PySide6.QtGui import QFont, QPalette, QPixmap, QColor
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Signal
 from audio import AudioRecorder, AudioAnalyzer
 import sys
 from methods import compute_candles, decode_morse, decrypt_atbash, decrypt_autokey, decrypt_baconian, decrypt_rail_fence, decrypt_reverse, decrypt_rot, decrypt_vigenere, find_closest_string
@@ -383,6 +384,10 @@ class CandleHandler(QWidget):
 
 
 class MorseCodeCom(QWidget):
+  analysis_finished = Signal()
+  analysis_error = Signal()
+  analysis_choice = 0
+
   def __init__(self, mode=0):
     super().__init__()
     self.mode = mode
@@ -420,6 +425,9 @@ class MorseCodeCom(QWidget):
     self.decode_path_btn = QPushButton("选择用于识别的音频文件")
     self.decode_path_btn.setFixedHeight(35)
     self.decode_path_btn.clicked.connect(self.decode_path_btn_handler)
+    # signal
+    self.analysis_finished.connect(self.on_analysis_finished)
+    self.analysis_error.connect(self.on_analysis_error)
 
     decode_layout = QHBoxLayout()
     decode_layout.addWidget(self.decode_btn)
@@ -510,8 +518,8 @@ class MorseCodeCom(QWidget):
       self.record_btn.setDisabled(False)
 
   def decode_path_inputbox_text_handler(self, text):
-    self.morse_text_display.setText("")
-    self.decoded_text_display.setText("")
+    self.morse_text_display.setText("这里将会显示识别出的摩斯电码的点划")
+    self.decoded_text_display.setText("这里将会显示摩斯电码解密结果")
     self.amplitude_threshold_silder.setDisabled(True)
     self.amplitude_threshold_label_right.setText("")
     if not text:
@@ -522,59 +530,39 @@ class MorseCodeCom(QWidget):
       self.show_img_btn.setDisabled(False)
 
   def decode_btn_handler(self):
+    self.analysis_choice = 0
     if self.decode_btn.text() == "开始识别":
-      # 开始
       audio_file_path = self.decode_path_inputbox.text()
       self.decode_btn.setText("识别中...")
       self.decode_btn.setDisabled(True)
-      try:
-        self.analyze_in_mode(audio_file_path, self.mode)
-        audioAnalyzer.analyze_morse_signal()
-        morse_code = audioAnalyzer.get_morse_code()
-        if morse_code:
-          self.morse_text_display.setText(morse_code)
-          decoded = decode_morse(morse_code)
-          self.decoded_text_display.setText(decoded)
-        self.decode_btn.setText("开始识别")
-        self.decode_btn.setDisabled(False)
-        self.amplitude_threshold_silder.setDisabled(False)
-        self.amplitude_threshold_silder.setRange(
-            0, round(audioAnalyzer.mean_max_amplitude*100))
-        self.amplitude_threshold_silder.setValue(
-            audioAnalyzer.init_amplitude_threshold*100)
-        self.amplitude_threshold_label_right.setText(
-            str(audioAnalyzer.mean_max_amplitude))
-      except:
-        self.decode_btn.setText("开始识别")
-        self.decode_btn.setDisabled(False)
-        self.show_img_btn.setDisabled(False)
-        self.amplitude_threshold_silder.setDisabled(True)
-        self.amplitude_threshold_label_right.setText("")
-        self.show_error_message("识别音频时出错，请检查音频文件路径和格式(.wav)是否正确")
+
+      self.analyze_in_new_thread(audio_file_path, self.mode)
 
   def show_img_btn_handler(self):
-    audio_file_path = self.decode_path_inputbox.text()
-    if audio_file_path:
-      try:
-        self.analyze_in_mode(audio_file_path, self.mode)
-        audioAnalyzer.analyze_morse_signal()
-        plot_window = audioAnalyzer.plot()
-      except:
-        self.show_error_message("显示图像时出错，请检查音频文件路径和格式(.wav)是否正确")
+    self.analysis_choice = 1
+    if self.show_img_btn.text() == "显示图像":
+      audio_file_path = self.decode_path_inputbox.text()
+      self.show_img_btn.setText("尝试显示中...")
+      self.show_img_btn.setDisabled(True)
+
+      self.analyze_in_new_thread(audio_file_path, self.mode)
 
   def analyze_in_mode(self, audio_file_path, mode):
     # mode=0:skin,mode=1:gold,mode=2:copper
     # 3.0,9.0,12.0
-    if mode == 0:
-      audioAnalyzer.analyze(audio_file_path)
-    elif mode == 1:
-      audioAnalyzer.analyze(audio_file_path, low_freq=980,
-                            high_freq=1020, amplitude_threshold_coef=0.35)
-    elif mode == 2:
-      audioAnalyzer.analyze(audio_file_path, low_freq=770,
-                            high_freq=825, amplitude_threshold_coef=0.3)
+    try:
+      if mode == 0:
+        audioAnalyzer.analyze(audio_file_path)
+      elif mode == 1:
+        audioAnalyzer.analyze(audio_file_path, low_freq=980,
+                              high_freq=1020, amplitude_threshold_coef=0.35)
+      elif mode == 2:
+        audioAnalyzer.analyze(audio_file_path, low_freq=770,
+                              high_freq=825, amplitude_threshold_coef=0.3)
 
-    # audioAnalyzer.analyze_morse_signal()
+      self.analysis_finished.emit()
+    except:
+      self.analysis_error.emit()
 
   def handy_inputbox_handler(self, text):
     self.handy_text_display.setText(decode_morse(text))
@@ -594,6 +582,52 @@ class MorseCodeCom(QWidget):
       self.morse_text_display.setText(morse_code)
       decoded = decode_morse(morse_code)
       self.decoded_text_display.setText(decoded)
+
+  def analyze_in_new_thread(self, audio_file_path, mode):
+    thread = Thread(target=self.analyze_in_mode,
+                    args=(audio_file_path, mode))
+    thread.start()
+
+  def on_analysis_finished(self):
+    choice = self.analysis_choice
+    try:
+      if choice == 0:
+        audioAnalyzer.analyze_morse_signal()
+        morse_code = audioAnalyzer.get_morse_code()
+        if morse_code:
+          self.morse_text_display.setText(morse_code)
+          decoded = decode_morse(morse_code)
+          self.decoded_text_display.setText(decoded)
+        self.decode_btn.setText("开始识别")
+        self.decode_btn.setDisabled(False)
+      elif choice == 1:
+        audioAnalyzer.analyze_morse_signal()
+        plot_window = audioAnalyzer.plot()
+        self.show_img_btn.setText("显示图像")
+        self.show_img_btn.setDisabled(False)
+
+      self.amplitude_threshold_silder.setDisabled(False)
+      self.amplitude_threshold_silder.setRange(
+          0, round(audioAnalyzer.mean_max_amplitude*100))
+      self.amplitude_threshold_silder.setValue(
+          audioAnalyzer.init_amplitude_threshold*100)
+      self.amplitude_threshold_label_right.setText(
+          str(audioAnalyzer.mean_max_amplitude))
+    except:
+      self.analysis_error.emit()
+
+  def on_analysis_error(self):
+    choice = self.analysis_choice
+    self.decode_btn.setDisabled(False)
+    self.show_img_btn.setDisabled(False)
+    self.amplitude_threshold_silder.setDisabled(True)
+    self.amplitude_threshold_label_right.setText("")
+    if choice == 0:
+      self.decode_btn.setText("开始识别")
+      self.show_error_message("识别音频时出错，请检查音频文件路径和格式(.wav)是否正确")
+    elif choice == 1:
+      self.show_img_btn.setText("显示图像")
+      self.show_error_message("显示图像时出错，请检查音频文件路径和格式(.wav)是否正确")
 
 
 class DecrypterCom(QWidget):
