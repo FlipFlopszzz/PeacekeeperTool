@@ -36,3 +36,4 @@ settings.json
 
 # Visual Studio Code相关文件
 .vscode/
+main.spec

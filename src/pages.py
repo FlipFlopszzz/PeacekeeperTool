@@ -1,7 +1,6 @@
-from components import MarkdownTextBrowser, CandleHandler, CoordinateSystem, MorseCodeCom, inputbox_single_line, DecrypterCom, ImageDisplayer
+from components import MarkdownTextBrowser, CandleDecryptor, CoordinateSystem, AudioMorseDecoder, CipherDecryptor, ImageDisplayer, SingleLineInput, SingleLineTextDisplay
 from methods import find_missing_letters,  get_last_gold_text
-from PySide6.QtWidgets import QVBoxLayout, QWidget, QLineEdit, QLabel, QTextEdit, QHBoxLayout
-from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QVBoxLayout, QWidget, QTextEdit, QHBoxLayout
 import resources_rc
 
 
@@ -17,9 +16,9 @@ class HomePage(QWidget):
 - 根据音频自动解密摩斯电码
 - 多种密文和谜题的解密器
 # 相关视频及网站
-- [本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf)，这是第一个视频，后边可能还会出相关视频，自己查看作者主页。在v1.3版本更新后会出一个视频。
+- [本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf) 和 [对滑动条功能的补充说明](https://www.bilibili.com/video/BV15HGvzuEG2)。
 - [维和者彩蛋教程-up:鸽子王歌姬poi](https://www.bilibili.com/video/BV1FK411M7GN)
-- [铜牌点位教程(26个)-up:博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6)，这个视频缺少了1个点位，可以去[彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)找到剩下那个点位的具体位置,也可以直接看[本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf)。
+- [铜牌点位教程(26个)-up:博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6)，这个视频缺少了1个点位，可以去[彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)找到剩下那个点位的具体位置,也可以直接看[本工具的完整教程最后那P](https://www.bilibili.com/video/BV1MdLRztEEf?p=9)。
 - [彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)
 - [摩斯电码翻译网站](https://morsecode.world/international/translator.html)
 - [另一个彩蛋网站](https://wiki.bfee.co/index.php?title=Battlefield_1/A_Conflict)
@@ -31,7 +30,7 @@ class HomePage(QWidget):
 - 银牌点灯解密参考了网站[银牌点灯解密](https://tools.bfee.co/conflict)
 - 银牌解密使用到的图片来自网站[另一个彩蛋网站](https://wiki.bfee.co/index.php?title=Battlefield_1/A_Conflict)
 # 相关问题
-- 本项目开源免费，Github地址：https://github.com/FlipFlopszzz/PeacekeeperTool
+- 本项目开源免费，Github地址：[https://github.com/FlipFlopszzz/PeacekeeperTool](https://github.com/FlipFlopszzz/PeacekeeperTool)。
 - 开发环境: python 3.13.0,win11 23H2,GUI使用pyside6编写，打包使用pyinstaller，安装包编译使用Inno Setup。
 - 这个软件不读取也不修改战地一的内存，是独立运行的一个外部程序，不会触发反作弊，测试时多次和游戏同时运行也没有被EAAC上市。
 - 这个软件的字比较小看不清的话，就Ctrl+滚轮上下滑动调整。
@@ -40,6 +39,7 @@ class HomePage(QWidget):
 # 更新
 - v1.3版本对很多人反馈的识别不出来，识别出乱码还有只能识别出E,I,T等字母等情况进行了修复。原因目前认为是幅值阈值高于幅值导致的，而本人测试得到的固定阈值并不适合很多用户，因此增加了根据具体波形得到对应阈值的逻辑，并且允许用户自己修改阈值。
 - v1.4版本，将耗时的音频分析逻辑放到了单独的线程中，避免阻塞主线程及其导致的窗口无响应现象。此外增加了开始识别和显示图像两个按钮在加载时的样式，以匹配前面的更改。
+- v1.5版本，新增银牌页面的坐标系4层颜色，方便理解和标记。此外精简了软件大小。
 '''
     layout = QVBoxLayout(self)
     self.browser = MarkdownTextBrowser(md_text)
@@ -136,66 +136,27 @@ class SkinPage(QWidget):
     self.browser = MarkdownTextBrowser(md_text)
     layout.addWidget(self.browser)
 
-    # 创建输入框
-    self.input_box = QLineEdit()
-    self.input_box.setPlaceholderText("输入解密出的5个字母")  # 设置占位符文本
-    self.input_box.setFixedHeight(30)  # 设置输入框高度
+    self.input_box = SingleLineInput("输入解密出的5个字母")
+    self.text_display = SingleLineTextDisplay("这里将会显示最终的那串字母")
+    self.audioMorseDecoder = AudioMorseDecoder(0)
 
-    # 设置输入框样式
-    self.input_box.setStyleSheet("""
-            QLineEdit {
-                background-color: white;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                padding: 2px 8px;
-            }
-            QLineEdit:focus {
-                border: 1px solid #0078d4;
-            }
-        """)
+    layout.addWidget(self.audioMorseDecoder)
+    layout.addSpacing(60)
 
-    # 创建显示文本区域
-    self.text_display = QLabel("这里将会显示最终的那串字母")
-    self.text_display.setWordWrap(True)  # 允许文本换行
-    self.text_display.setAlignment(Qt.AlignLeft | Qt.AlignTop)  # 左对齐和顶部对齐
-
-    # 设置显示文本区域样式
-    self.text_display.setStyleSheet("""
-            QLabel {
-                background-color: #f5f5f5;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                padding: 10px;
-                min-height: 50px;
-            }
-        """)
-
-    self.morse_code_com = MorseCodeCom(0)
-
-    layout.addWidget(self.morse_code_com)
-    # 添加20px的垂直间距
-    layout.addSpacing(50)
-
-    # 添加输入框到布局
     layout.addWidget(self.input_box)
-    # 添加显示文本区域到布局
+    layout.addSpacing(5)
+
     layout.addWidget(self.text_display)
+    layout.addSpacing(170)
 
-    # 添加弹性空间到底部
-    layout.addStretch()
-
-    # 设置布局的边距
-    layout.setContentsMargins(10, 10, 10, 10)
-
-    # 连接输入框的文本变化信号到更新函数
-    self.input_box.textChanged.connect(self.on_text_changed)
+    self.input_box.onTextChanged(self.on_text_changed)
 
   def on_text_changed(self, text):
-    """
-    当输入框文本改变时更新显示文本区域
-    """
-    self.text_display.setText(
-        'CAEEB '+text.upper()+' FEAADDAD' or "这里将会显示最终的那串字母")  # 如果文本为空则显示默认文本
+    if text:
+      self.text_display.setText(
+          'CAEEB '+text.upper()+' FEAADDAD')
+    else:
+      self.text_display.setText("这里将会显示最终的那串字母")
 
 
 class GoldPage(QWidget):
@@ -205,14 +166,13 @@ class GoldPage(QWidget):
     # 创建主布局
     layout = QVBoxLayout(self)
     layout.setSpacing(10)  # 设置组件之间的垂直间距
-    layout.setContentsMargins(10, 10, 10, 10)  # 设置边距
 
     # Markdown文本浏览器
     md_text = '''
 # 不祥之兆（金牌）
 1.选择泽布吕赫地图，注意服务器必须允许精英兵。尽可能选择不下雨的天气，这样杂音会比较小。选择德国，到达E点拿到入侵者，然后坐船到A点，上岸之后找到一个很高的水塔，爬完第一段梯子之后，切屏打开软件，开始录制，然后爬完第二段梯子，趴下。过一会能听到一个音效，然后开始播放摩斯电码。录制40-50秒那样，停止录制。然后开始解密，总共是22个字母（遇到相同的部分说明是进入下一个循环了）。它们是以下30个字母中的一部分，按顺序找出缺少的8个字母。这里可能解密出多种可能的结果，这种情况需要几种可能性都进行测试，这个彩蛋没有什么试错成本，只需要回去调整灯亮灭顺序即可。
 
-DULCE ET DECORUM EST PRO PATRIA MORI  30个字母
+**DULCE ET DECORUM EST PRO PATRIA MORI**  30个字母
 
 然后根据缺少的字母对照下面的这个表格找出对应的数字。比如C对应1，E对应7。总共得到8个数字。
 
@@ -236,18 +196,19 @@ DULCE ET DECORUM EST PRO PATRIA MORI  30个字母
 | 8 | 灭 | 灭 | 灭 | 亮 | 亮 |
 | 9 | 灭 | 灭 | 灭 | 灭 | 亮 |
 
-2. 接下来找到在陆地上往E点的方向跑，找到房间“1”，从这个房间的右边进去，左手边是1号机器，往前往右依次为2，3，4号机器，依次对应的就是1-4组灯。如果我上面解密出来的第一个数字是1，那么第一台机器的5个灯从左到右依次设置为亮灭灭灭灭，其他同理。
-3. 按完四台机器后，继续按原来的方向走，找到房间“3”，从房间右边进去，进门依次为5-8号机器。按完这四个机器，看见烟雾并且听到音效，说明本任务完成，退出查看狗牌。如果没有完成的话可能是摩斯电码解密出错了，可能需要手动查看图像确保解密没有出现错误，解密完可以接着之前的进度接着按灯，不需要重新开始。
+2.接下来找到在陆地上往E点的方向跑，找到房间“1”，从这个房间的右边进去，左手边是1号机器，往前往右依次为2，3，4号机器，依次对应的就是1-4组灯。如果我上面解密出来的第一个数字是1，那么第一台机器的5个灯从左到右依次设置为亮灭灭灭灭，其他同理。
+
+3.按完四台机器后，继续按原来的方向走，找到房间“3”，从房间右边进去，进门依次为5-8号机器。按完这四个机器，看见烟雾并且听到音效，说明本任务完成，退出查看狗牌。如果没有完成的话可能是摩斯电码解密出错了，可能需要手动查看图像确保解密没有出现错误，解密完可以接着之前的进度接着按灯，不需要重新开始。
 '''
     self.browser = MarkdownTextBrowser(md_text)
     layout.addWidget(self.browser)
 
-    self.morse_code_com = MorseCodeCom(1)
-    layout.addWidget(self.morse_code_com)
+    self.audioMorseDecoder = AudioMorseDecoder(1)
+    layout.addWidget(self.audioMorseDecoder)
     layout.addSpacing(30)
 
     # 创建输入框
-    self.input_box = inputbox_single_line("请输入解密摩斯电码得到的22个字母")
+    self.input_box = SingleLineInput("请输入解密摩斯电码得到的22个字母")
     self.input_box.onTextChanged(self.on_text_changed)
 
     layout.addWidget(self.input_box)
@@ -315,8 +276,8 @@ class SilverPage(QWidget):
     self.browser = MarkdownTextBrowser(md_text)
     layout.addWidget(self.browser)
     layout_tool = QHBoxLayout()
-    self.candleHandler = CandleHandler()
-    layout_tool.addWidget(self.candleHandler)
+    self.candleDecryptor = CandleDecryptor()
+    layout_tool.addWidget(self.candleDecryptor)
     self.coordinateSystem = CoordinateSystem()
     layout_tool.addWidget(self.coordinateSystem)
     self.sandbags_img = ImageDisplayer(
@@ -371,13 +332,13 @@ class CopperPage(QWidget):
     self.browser = MarkdownTextBrowser(md_text)
     layout.addWidget(self.browser)
 
-    self.morse_code_com = MorseCodeCom(2)
-    layout.addWidget(self.morse_code_com)
+    self.audioMorseDecoder = AudioMorseDecoder(2)
+    layout.addWidget(self.audioMorseDecoder)
 
-    layout.addSpacing(70)
+    layout.addSpacing(40)
 
-    self.decrypter_com = DecrypterCom()
-    layout.addWidget(self.decrypter_com)
+    self.cipherDecryptor = CipherDecryptor()
+    layout.addWidget(self.cipherDecryptor)
 
     layout.addSpacing(70)
 

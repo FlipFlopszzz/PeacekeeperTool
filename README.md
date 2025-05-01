@@ -6,9 +6,9 @@
 - 根据音频自动解密摩斯电码
 - 多种密文和谜题的解密器
 # 相关视频及网站
-- [本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf)，这是第一个视频，后边可能还会出相关视频，自己查看作者主页。在v1.3版本更新后会出一个视频。
+- [本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf) 和 [对滑动条功能的补充说明](https://www.bilibili.com/video/BV15HGvzuEG2)。
 - [维和者彩蛋教程-up:鸽子王歌姬poi](https://www.bilibili.com/video/BV1FK411M7GN)
-- [铜牌点位教程(26个)-up:博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6)，这个视频缺少了1个点位，可以去[彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)找到剩下那个点位的具体位置,也可以直接看[本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf)。
+- [铜牌点位教程(26个)-up:博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6)，这个视频缺少了1个点位，可以去[彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)找到剩下那个点位的具体位置,也可以直接看[本工具的完整教程最后那P](https://www.bilibili.com/video/BV1MdLRztEEf?p=9)。
 - [彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)
 - [摩斯电码翻译网站](https://morsecode.world/international/translator.html)
 - [另一个彩蛋网站](https://wiki.bfee.co/index.php?title=Battlefield_1/A_Conflict)
@@ -20,7 +20,7 @@
 - 银牌点灯解密参考了网站[银牌点灯解密](https://tools.bfee.co/conflict)
 - 银牌解密使用到的图片来自网站[另一个彩蛋网站](https://wiki.bfee.co/index.php?title=Battlefield_1/A_Conflict)
 # 相关问题
-- 本项目开源免费，Github地址：https://github.com/FlipFlopszzz/PeacekeeperTool
+- 本项目开源免费，Github地址：[https://github.com/FlipFlopszzz/PeacekeeperTool](https://github.com/FlipFlopszzz/PeacekeeperTool)。
 - 开发环境: python 3.13.0,win11 23H2,GUI使用pyside6编写，打包使用pyinstaller，安装包编译使用Inno Setup。
 - 这个软件不读取也不修改战地一的内存，是独立运行的一个外部程序，不会触发反作弊，测试时多次和游戏同时运行也没有被EAAC上市。
 - 这个软件的字比较小看不清的话，就Ctrl+滚轮上下滑动调整。
@@ -29,3 +29,4 @@
 # 更新
 - v1.3版本对很多人反馈的识别不出来，识别出乱码还有只能识别出E,I,T等字母等情况进行了修复。原因目前认为是幅值阈值高于幅值导致的，而本人测试得到的固定阈值并不适合很多用户，因此增加了根据具体波形得到对应阈值的逻辑，并且允许用户自己修改阈值。
 - v1.4版本，将耗时的音频分析逻辑放到了单独的线程中，避免阻塞主线程及其导致的窗口无响应现象。此外增加了开始识别和显示图像两个按钮在加载时的样式，以匹配前面的更改。
+- v1.5版本，新增银牌页面的坐标系4层颜色，方便理解和标记。此外精简了软件大小。

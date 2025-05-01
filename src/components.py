@@ -12,7 +12,7 @@ audioRecorder = AudioRecorder()
 audioAnalyzer = AudioAnalyzer()
 
 
-class inputbox_single_line(QWidget):
+class SingleLineInput(QWidget):
   def __init__(self, placeholderText=""):
     super().__init__()
     layout = QVBoxLayout()
@@ -34,7 +34,7 @@ class inputbox_single_line(QWidget):
     self.input_box.setText(text)
 
 
-class text_diaplay_single_line(QWidget):
+class SingleLineTextDisplay(QWidget):
   def __init__(self, initText):
     super().__init__()
     layout = QVBoxLayout()
@@ -112,13 +112,16 @@ class CoordinateSystem(QWidget):
 
     # 创建网格布局
     self.grid_layout = QGridLayout(self)
-    self.grid_layout.setSpacing(0)  # 设置间距为0
+    self.grid_layout.setSpacing(2)  # 设置按钮间距为2px
     self.grid_layout.setContentsMargins(2, 2, 2, 2)
 
     # 存储组件引用
     self.buttons = []
     self.bottom_inputs = []
     self.left_inputs = []
+
+    # 定义每层的边框颜色
+    self.layer_colors = ["#EC1B23", "#FB7E29", "#EAAE00", "#21B04B"]
 
     # 在左边输入框上方添加 y 标签
     y_label = QLabel("y")
@@ -132,7 +135,6 @@ class CoordinateSystem(QWidget):
       input_box = QLineEdit()
       input_box.setFixedSize(40, 40)
       input_box.setAlignment(Qt.AlignCenter)
-      # 设置输入框不会随窗口调整而改变大小
       input_box.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
       self.grid_layout.addWidget(input_box, row + 1, 0)
       self.left_inputs.append(input_box)
@@ -142,7 +144,6 @@ class CoordinateSystem(QWidget):
       input_box = QLineEdit()
       input_box.setFixedSize(40, 40)
       input_box.setAlignment(Qt.AlignCenter)
-      # 设置输入框不会随窗口调整而改变大小
       input_box.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
       self.grid_layout.addWidget(input_box, 9, col + 1)
       self.bottom_inputs.append(input_box)
@@ -160,24 +161,25 @@ class CoordinateSystem(QWidget):
       for col in range(8):
         button = QPushButton()
         button.setFixedSize(40, 40)
-        # 设置按钮不会随窗口调整而改变大小
         button.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
-        # 设置按钮样式，确保边框紧邻
-        button.setStyleSheet("""
-                    QPushButton {
+        # 根据按钮所在层设置边框颜色
+        layer = min(row, col, 7 - row, 7 - col)
+        border_color = self.layer_colors[layer]
+
+        # 设置按钮样式，为四个边缘都添加边框
+        button.setStyleSheet(f"""
+                    QPushButton {{
                         background-color: #f0f0f0;
-                        border: 1px solid #ccc;
-                        border-radius: 0px;
-                        margin: 0px;
-                        padding: 0px;
-                    }
-                    QPushButton:hover {
+                        border: 2px solid {border_color};
+                        border-radius: 2px;
+                    }}
+                    QPushButton:hover {{
                         background-color: #e0e0e0;
-                    }
-                    QPushButton:pressed {
+                    }}
+                    QPushButton:pressed {{
                         background-color: #d0d0d0;
-                    }
+                    }}
                 """)
 
         self.grid_layout.addWidget(button, row + 1, col + 1)
@@ -186,10 +188,10 @@ class CoordinateSystem(QWidget):
         row_buttons.append(button)
       self.buttons.append(row_buttons)
 
-    # 设置网格布局的拉伸因子，防止布局在窗口调整时产生间距
-    for i in range(10):  # 10行（8个按钮行+1个输入框行 + 1个标签行）
+    # 设置网格布局的拉伸因子
+    for i in range(10):
       self.grid_layout.setRowStretch(i, 0)
-    for i in range(10):  # 10列（8个按钮列+1个输入框列 + 1个标签列）
+    for i in range(10):
       self.grid_layout.setColumnStretch(i, 0)
 
     # 添加一个弹性空间来吸收多余的空间
@@ -207,81 +209,50 @@ class CoordinateSystem(QWidget):
       return self.buttons[row][col]
     return None
 
-  def get_bottom_input(self, col: int) -> QLineEdit:
-    """获取底部指定位置的输入框"""
-    if 0 <= col < 8:
-      return self.bottom_inputs[col]
-    return None
-
-  def get_left_input(self, row: int) -> QLineEdit:
-    """获取左侧指定位置的输入框"""
-    if 0 <= row < 8:
-      return self.left_inputs[row]
-    return None
-
-  def set_button_text(self, row: int, col: int, text: str):
-    """设置指定按钮的文本"""
-    button = self.get_button(row, col)
-    if button:
-      button.setText(text)
-
-  def set_bottom_input_text(self, col: int, text: str):
-    """设置底部输入框的文本"""
-    input_box = self.get_bottom_input(col)
-    if input_box:
-      input_box.setText(text)
-
-  def set_left_input_text(self, row: int, text: str):
-    """设置左侧输入框的文本"""
-    input_box = self.get_left_input(row)
-    if input_box:
-      input_box.setText(text)
-
   def toggle_button_color(self, row: int, col: int):
     button = self.get_button(row, col)
     if button:
       current_color = QColor(button.palette().button().color())
+      layer = min(row, col, 7 - row, 7 - col)
+      border_color = self.layer_colors[layer]
+
       if current_color.name() == "#f0f0f0":
-        button.setStyleSheet("""
-                    QPushButton {
-                        background-color: red;
-                        border: 1px solid #ccc;
-                        border-radius: 0px;
-                        margin: 0px;
-                        padding: 0px;
-                    }
-                    QPushButton:hover {
-                        background-color: #FF6666;
-                    }
-                    QPushButton:pressed {
-                        background-color: #FF3333;
-                    }
+        button.setStyleSheet(f"""
+                    QPushButton {{
+                        background-color: #0078D4;
+                        border: 2px solid {border_color};
+                        border-radius: 2px;
+                    }}
+                    QPushButton:hover {{
+                        background-color: #006CBD;
+                    }}
+                    QPushButton:pressed {{
+                        background-color: #005aaa;
+                    }}
                 """)
       else:
-        button.setStyleSheet("""
-                    QPushButton {
+        button.setStyleSheet(f"""
+                    QPushButton {{
                         background-color: #f0f0f0;
-                        border: 1px solid #ccc;
-                        border-radius: 0px;
-                        margin: 0px;
-                        padding: 0px;
-                    }
-                    QPushButton:hover {
+                        border: 2px solid {border_color};
+                        border-radius: 2px;
+                    }}
+                    QPushButton:hover {{
                         background-color: #e0e0e0;
-                    }
-                    QPushButton:pressed {
+                    }}
+                    QPushButton:pressed {{
                         background-color: #d0d0d0;
-                    }
+                    }}
                 """)
 
 
-class CandleHandler(QWidget):
+class CandleDecryptor(QWidget):
   def __init__(self, parent=None):
     super().__init__(parent)
 
     # 创建主布局
     self.main_layout = QVBoxLayout(self)
-    self.main_layout.setSpacing(15)  # 设置垂直间距
+    self.main_layout.setSpacing(15)
     self.main_layout.addSpacing(50)
 
     # 存储输入框的引用
@@ -300,11 +271,11 @@ class CandleHandler(QWidget):
 
       # 创建输入框
       if i == 0:
-        input_box = inputbox_single_line("示例:2,3,4,5")
+        input_box = SingleLineInput("示例:2,3,4,5")
       elif i == 1:
-        input_box = inputbox_single_line("灯的序号之间用中/英文逗号隔开")
+        input_box = SingleLineInput("灯的序号之间用中/英文逗号隔开")
       else:
-        input_box = inputbox_single_line()
+        input_box = SingleLineInput()
       input_box.input_box.setFixedWidth(240)
       input_box.input_box.setSizePolicy(
           QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -364,14 +335,6 @@ class CandleHandler(QWidget):
       return self.input_boxes[index].text()
     return ""
 
-  def set_input(self, index: int, text: str):
-    if 0 <= index < 7:
-      self.input_boxes[index].setText(text)
-
-  def clear_all(self):
-    for input_box in self.input_boxes:
-      input_box.clear()
-
   def on_btn_clicked(self):
     iterations = []
     for i in range(7):
@@ -383,7 +346,7 @@ class CandleHandler(QWidget):
     self.result_label.setText(result)
 
 
-class MorseCodeCom(QWidget):
+class AudioMorseDecoder(QWidget):
   analysis_finished = Signal()
   analysis_error = Signal()
   analysis_choice = 0
@@ -399,7 +362,7 @@ class MorseCodeCom(QWidget):
     self.record_btn.setDisabled(True)
 
     # 使用自定义输入框组件
-    self.save_path_inputbox = inputbox_single_line("停止录制时，音频会保存到这个目录下")
+    self.save_path_inputbox = SingleLineInput("停止录制时，音频会保存到这个目录下")
     self.save_path_inputbox.onTextChanged(
         self.save_path_inputbox_text_handler)
 
@@ -418,7 +381,7 @@ class MorseCodeCom(QWidget):
     self.decode_btn.clicked.connect(self.decode_btn_handler)
 
     # 使用自定义输入框组件
-    self.decode_path_inputbox = inputbox_single_line("这里是将要用于自动识别的音频文件路径")
+    self.decode_path_inputbox = SingleLineInput("这里是将要用于自动识别的音频文件路径")
     self.decode_path_inputbox.onTextChanged(
         self.decode_path_inputbox_text_handler)
 
@@ -448,8 +411,8 @@ class MorseCodeCom(QWidget):
     amplitude_threshold_layout.addWidget(self.amplitude_threshold_label_right)
 
     # 创建文本显示区域，使用自定义组件
-    self.morse_text_display = text_diaplay_single_line("这里将会显示识别出的摩斯电码的点划")
-    self.decoded_text_display = text_diaplay_single_line("这里将会显示摩斯电码解密结果")
+    self.morse_text_display = SingleLineTextDisplay("这里将会显示识别出的摩斯电码的点划")
+    self.decoded_text_display = SingleLineTextDisplay("这里将会显示摩斯电码解密结果")
 
     # 创建提示文字
     self.hint_label = QLabel("如果需要手动听写摩斯电码，可以利用下面的输入框自动翻译摩斯电码")
@@ -465,11 +428,11 @@ class MorseCodeCom(QWidget):
     show_img_layout.addWidget(self.hint_label)
 
     # 使用自定义输入框组件
-    self.handy_inputbox = inputbox_single_line("")
+    self.handy_inputbox = SingleLineInput("")
     self.handy_inputbox.onTextChanged(self.handy_inputbox_handler)
 
     # 创建另一个文本显示区域，使用自定义组件
-    self.handy_text_display = text_diaplay_single_line("")
+    self.handy_text_display = SingleLineTextDisplay("")
 
     # 创建主布局
     main_layout = QVBoxLayout()
@@ -630,7 +593,7 @@ class MorseCodeCom(QWidget):
       self.show_error_message("显示图像时出错，请检查音频文件路径和格式(.wav)是否正确")
 
 
-class DecrypterCom(QWidget):
+class CipherDecryptor(QWidget):
   def __init__(self):
     super().__init__()
     self.checkbox = None
@@ -673,15 +636,15 @@ class DecrypterCom(QWidget):
     layout.addLayout(top_layout)
 
     # 创建输入框，使用自定义组件
-    self.input_box = inputbox_single_line("请输入摩斯电码解密结果(相关参数帮你填好了)")
+    self.input_box = SingleLineInput("请输入摩斯电码解密结果(相关参数帮你填好了)")
     self.input_box.onTextChanged(self.update_text_display)
     layout.addWidget(self.input_box)
 
     # 创建文本显示区域，使用自定义组件
-    self.text_display = text_diaplay_single_line("这里会显示解密结果")
+    self.text_display = SingleLineTextDisplay("这里会显示解密结果")
     layout.addWidget(self.text_display)
 
-    self.text_display_match = text_diaplay_single_line("这里会显示最匹配的地点")
+    self.text_display_match = SingleLineTextDisplay("这里会显示最匹配的地点")
     layout.addWidget(self.text_display_match)
 
     self.setLayout(layout)
@@ -758,7 +721,7 @@ class DecrypterCom(QWidget):
 
 if __name__ == "__main__":
   app = QApplication(sys.argv)
-  window = MorseCodeCom(1)
-  # window = DecrypterCom()
+  window = AudioMorseDecoder(1)
+  # window = CipherDecryptor()
   window.show()
   sys.exit(app.exec())
