@@ -1,4 +1,5 @@
-from components import MarkdownTextBrowser, CandleDecryptor, CoordinateSystem, AudioMorseDecoder, CipherDecryptor, ImageDisplayer, SingleLineInput, SingleLineTextDisplay
+from components import CandleDecryptor, CoordinateSystem, AudioMorseDecoder, CipherDecryptor, SingleLineInput, SingleLineTextDisplay
+from basic_components import ImageDisplayer, MarkdownTextBrowser
 from methods import find_missing_letters,  get_last_gold_text
 from PySide6.QtWidgets import QVBoxLayout, QWidget, QTextEdit, QHBoxLayout
 import resources_rc
@@ -214,23 +215,9 @@ class GoldPage(QWidget):
     layout.addWidget(self.input_box)
 
     self.text_display = QTextEdit()
-    self.text_display.setReadOnly(True)  # 设置为只读
-    self.text_display.setFixedHeight(180)  # 设置足够显示8行文本的高度
-
-    # 设置第三个显示区域的样式
-    self.text_display.setStyleSheet("""
-            QTextEdit {
-                background-color: #f5f5f5;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                padding: 10px;
-                font-size: 14px;
-                line-height: 1.5;
-            }
-            QTextEdit:focus {
-                border: 1px solid #0078d4;
-            }
-        """)
+    self.text_display.setObjectName("readOnlyTextDisplay")
+    self.text_display.setReadOnly(True)
+    self.text_display.setFixedHeight(180)
 
     layout.addWidget(self.text_display)
 

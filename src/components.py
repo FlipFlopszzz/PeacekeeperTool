@@ -1,109 +1,14 @@
 from threading import Thread
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, QLabel, QApplication, QFileDialog, QCheckBox, QMessageBox, QTextBrowser, QGridLayout, QSizePolicy, QComboBox, QSlider
-from PySide6.QtGui import QFont, QPalette, QPixmap, QColor
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, QLabel, QApplication, QFileDialog, QCheckBox, QMessageBox, QGridLayout, QSizePolicy, QComboBox, QSlider
+from PySide6.QtGui import QFont
 from PySide6.QtCore import Qt, Signal
 from audio import AudioRecorder, AudioAnalyzer
 import sys
 from methods import compute_candles, decode_morse, decrypt_atbash, decrypt_autokey, decrypt_baconian, decrypt_rail_fence, decrypt_reverse, decrypt_rot, decrypt_vigenere, find_closest_string
+from basic_components import SingleLineInput, SingleLineTextDisplay
 
-font = QFont()
-font.setPixelSize(14)  # 设置合适的字体大小以填充输入框
 audioRecorder = AudioRecorder()
 audioAnalyzer = AudioAnalyzer()
-
-
-class SingleLineInput(QWidget):
-  def __init__(self, placeholderText=""):
-    super().__init__()
-    layout = QVBoxLayout()
-    self.input_box = QLineEdit()
-    self.input_box.setFixedHeight(35)
-    self.input_box.setFont(font)
-    self.input_box.setPlaceholderText(placeholderText)
-    layout.setContentsMargins(0, 0, 0, 0)
-    layout.addWidget(self.input_box)
-    self.setLayout(layout)
-
-  def onTextChanged(self, func):
-    self.input_box.textChanged.connect(func)
-
-  def text(self):
-    return self.input_box.text()
-
-  def setText(self, text):
-    self.input_box.setText(text)
-
-
-class SingleLineTextDisplay(QWidget):
-  def __init__(self, initText):
-    super().__init__()
-    layout = QVBoxLayout()
-    layout.setContentsMargins(0, 0, 0, 0)
-    self.tp = QLineEdit(initText)
-    self.tp.setFixedHeight(35)
-    self.tp.setFont(font)
-    self.tp.setReadOnly(True)
-    layout.addWidget(self.tp)
-    self.setLayout(layout)
-
-  def setText(self, text):
-    self.tp.setText(text)
-
-  def text(self):
-    return self.tp.text()
-
-
-class MarkdownTextBrowser(QWidget):
-  def __init__(self, markdown_text=""):
-    super().__init__()
-
-    # 创建布局
-    self.layout = QVBoxLayout()
-
-    # 创建 QTextBrowser
-    self.text_browser = QTextBrowser()
-
-    # 设置传入的 Markdown 内容
-    self.text_browser.setMarkdown(markdown_text)
-
-    # 设置 QTextBrowser 背景透明
-    palette = self.text_browser.palette()
-    palette.setBrush(QPalette.Base, palette.window())
-    self.text_browser.setPalette(palette)
-    self.text_browser.setAutoFillBackground(False)
-    self.text_browser.setOpenExternalLinks(True)
-
-    # 设置样式表去除边框
-    self.text_browser.setStyleSheet("border: none;")
-
-    # 将 QTextBrowser 添加到布局中
-    self.layout.addWidget(self.text_browser)
-
-    # 设置组件的布局
-    self.setLayout(self.layout)
-
-
-class ImageDisplayer(QLabel):
-  def __init__(self, image_path: str, height: int, parent=None):
-    super().__init__(parent)
-    # 加载图片并计算宽度
-    pixmap = QPixmap(image_path)
-    if not pixmap.isNull():
-      # 计算保持宽高比的宽度
-      ratio = pixmap.width() / pixmap.height()
-      width = int(height * ratio)
-
-      # 缩放图片并显示
-      scaled_pixmap = pixmap.scaled(
-          width,
-          height,
-          Qt.KeepAspectRatio,
-          Qt.SmoothTransformation
-      )
-      self.setPixmap(scaled_pixmap)
-
-      # 设置固定大小
-      self.setFixedSize(width, height)
 
 
 class CoordinateSystem(QWidget):
@@ -127,7 +32,6 @@ class CoordinateSystem(QWidget):
     y_label = QLabel("y")
     y_label.setAlignment(Qt.AlignCenter)
     y_label.setFixedSize(40, 40)
-    y_label.setFont(font)
     self.grid_layout.addWidget(y_label, 0, 0)
 
     # 创建左侧输入框
@@ -152,7 +56,6 @@ class CoordinateSystem(QWidget):
     x_label = QLabel("x")
     x_label.setAlignment(Qt.AlignCenter)
     x_label.setFixedSize(40, 40)
-    x_label.setFont(font)
     self.grid_layout.addWidget(x_label, 9, 9)
 
     # 创建按钮网格
@@ -162,29 +65,18 @@ class CoordinateSystem(QWidget):
         button = QPushButton()
         button.setFixedSize(40, 40)
         button.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        button.setCheckable(True)
+
+        # 添加 silver 类以匹配全局样式
+        button.setProperty("class", "silver")
 
         # 根据按钮所在层设置边框颜色
         layer = min(row, col, 7 - row, 7 - col)
-        border_color = self.layer_colors[layer]
-
-        # 设置按钮样式，为四个边缘都添加边框
-        button.setStyleSheet(f"""
-                    QPushButton {{
-                        background-color: #f0f0f0;
-                        border: 2px solid {border_color};
-                        border-radius: 2px;
-                    }}
-                    QPushButton:hover {{
-                        background-color: #e0e0e0;
-                    }}
-                    QPushButton:pressed {{
-                        background-color: #d0d0d0;
-                    }}
-                """)
+        button.setProperty("layer", layer)
 
         self.grid_layout.addWidget(button, row + 1, col + 1)
         button.clicked.connect(
-            lambda _, r=row, c=col: self.toggle_button_color(r, c))
+            lambda checked, r=row, c=col: self.toggle_button_color(r, c, checked))
         row_buttons.append(button)
       self.buttons.append(row_buttons)
 
@@ -209,41 +101,10 @@ class CoordinateSystem(QWidget):
       return self.buttons[row][col]
     return None
 
-  def toggle_button_color(self, row: int, col: int):
+  def toggle_button_color(self, row: int, col: int, checked: bool):
     button = self.get_button(row, col)
     if button:
-      current_color = QColor(button.palette().button().color())
-      layer = min(row, col, 7 - row, 7 - col)
-      border_color = self.layer_colors[layer]
-
-      if current_color.name() == "#f0f0f0":
-        button.setStyleSheet(f"""
-                    QPushButton {{
-                        background-color: #0078D4;
-                        border: 2px solid {border_color};
-                        border-radius: 2px;
-                    }}
-                    QPushButton:hover {{
-                        background-color: #006CBD;
-                    }}
-                    QPushButton:pressed {{
-                        background-color: #005aaa;
-                    }}
-                """)
-      else:
-        button.setStyleSheet(f"""
-                    QPushButton {{
-                        background-color: #f0f0f0;
-                        border: 2px solid {border_color};
-                        border-radius: 2px;
-                    }}
-                    QPushButton:hover {{
-                        background-color: #e0e0e0;
-                    }}
-                    QPushButton:pressed {{
-                        background-color: #d0d0d0;
-                    }}
-                """)
+      button.setChecked(checked)
 
 
 class CandleDecryptor(QWidget):
@@ -400,14 +261,12 @@ class AudioMorseDecoder(QWidget):
     amplitude_threshold_layout = QHBoxLayout()
     self.amplitude_threshold_label_left = QLabel(
         "使用这个滑块来调整摩斯电码幅值阈值    当前: 0.0")
-    self.amplitude_threshold_label_left.setFont(font)
     amplitude_threshold_layout.addWidget(self.amplitude_threshold_label_left)
     self.amplitude_threshold_silder = QSlider(Qt.Horizontal)
     self.amplitude_threshold_silder.setDisabled(True)
     self.amplitude_threshold_silder.valueChanged.connect(self.sliderHandler)
     amplitude_threshold_layout.addWidget(self.amplitude_threshold_silder)
     self.amplitude_threshold_label_right = QLabel()
-    self.amplitude_threshold_label_right.setFont(font)
     amplitude_threshold_layout.addWidget(self.amplitude_threshold_label_right)
 
     # 创建文本显示区域，使用自定义组件
@@ -447,7 +306,7 @@ class AudioMorseDecoder(QWidget):
 
     self.setLayout(main_layout)
 
-    self.setFixedHeight(300)
+    self.setFixedHeight(330)
 
   def toggle_record_text(self):
     if self.record_btn.text() == "开始录制":
@@ -498,6 +357,7 @@ class AudioMorseDecoder(QWidget):
       audio_file_path = self.decode_path_inputbox.text()
       self.decode_btn.setText("识别中...")
       self.decode_btn.setDisabled(True)
+      self.show_img_btn.setDisabled(True)
 
       self.analyze_in_new_thread(audio_file_path, self.mode)
 
@@ -507,6 +367,7 @@ class AudioMorseDecoder(QWidget):
       audio_file_path = self.decode_path_inputbox.text()
       self.show_img_btn.setText("尝试显示中...")
       self.show_img_btn.setDisabled(True)
+      self.decode_btn.setDisabled(True)
 
       self.analyze_in_new_thread(audio_file_path, self.mode)
 
@@ -563,10 +424,12 @@ class AudioMorseDecoder(QWidget):
           self.decoded_text_display.setText(decoded)
         self.decode_btn.setText("开始识别")
         self.decode_btn.setDisabled(False)
+        self.show_img_btn.setDisabled(False)
       elif choice == 1:
         audioAnalyzer.analyze_morse_signal()
         plot_window = audioAnalyzer.plot()
         self.show_img_btn.setText("显示图像")
+        self.decode_btn.setDisabled(False)
         self.show_img_btn.setDisabled(False)
 
       self.amplitude_threshold_silder.setDisabled(False)
@@ -606,7 +469,6 @@ class CipherDecryptor(QWidget):
 
     # 创建标签
     self.label = QLabel("解密器")
-    self.label.setFont(font)
     top_layout.addWidget(self.label)
 
     # 创建复选框
@@ -619,7 +481,7 @@ class CipherDecryptor(QWidget):
 
     # 创建 QComboBox 组件
     self.combobox = QComboBox()
-    self.combobox.setFixedWidth(200)
+    self.combobox.setFixedWidth(240)
     self.combobox.setFixedHeight(40)
     self.combobox.addItem("任务1:原文")
     self.combobox.addItem("任务2:倒置(Reverse)")
@@ -648,7 +510,7 @@ class CipherDecryptor(QWidget):
     layout.addWidget(self.text_display_match)
 
     self.setLayout(layout)
-    self.setFixedHeight(170)
+    self.setFixedHeight(180)
 
   def update_text_display(self, text):
     result = ''

@@ -143,7 +143,8 @@ class AudioAnalyzer:
     self.times, self.amplitudes = self.sample_audio(
         self.amplitude_envelope)
     self.mean_max_amplitude = self.get_init_amplitude_threshold()
-    self.init_amplitude_threshold = self.mean_max_amplitude*amplitude_threshold_coef
+    self.init_amplitude_threshold = round(
+        float(self.mean_max_amplitude*amplitude_threshold_coef), 2)
 
   def load_audio(self):
     """加载音频文件"""
@@ -329,7 +330,7 @@ class PlotWindow(QMainWindow):
   def __init__(self, analyzer: AudioAnalyzer, parent=None):
     super().__init__(parent)
     self.analyzer = analyzer
-    self.setWindowTitle("音频信号幅值-时间图")  # 暂时使用英文标题避免字体问题
+    self.setWindowTitle("音频信号幅值-时间图")
     self.initUI()
     self.plot()
 

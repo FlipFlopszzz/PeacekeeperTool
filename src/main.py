@@ -1,5 +1,7 @@
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QWidget, QHBoxLayout, QVBoxLayout, QStackedWidget
+from PySide6.QtWidgets import (QApplication, QMainWindow, QPushButton, QWidget,
+                               QHBoxLayout, QVBoxLayout, QStackedWidget)
+from theme_manager import ThemeManager
 from pages import GoldPage, HomePage, LastPage, SkinPage, AngelPage, BeastPage, UsagePage, CopperPage, SilverPage
 
 
@@ -10,56 +12,28 @@ class MainWindow(QMainWindow):
     self.setMinimumSize(1280, 800)
     self.showMaximized()
 
-    # Create main widget and layout
+    # 初始化主题管理器
+    self.theme_manager = ThemeManager()
+    self.theme_manager.theme_changed.connect(self.update_theme)
+
+    # 创建主部件和布局
     main_widget = QWidget()
     self.setCentralWidget(main_widget)
     main_layout = QHBoxLayout(main_widget)
     main_layout.setContentsMargins(0, 0, 0, 0)
 
-    # Create sidebar
+    # 创建侧边栏
     sidebar = QWidget()
     sidebar.setFixedWidth(240)
+    sidebar.setObjectName("sidebar")
     sidebar_layout = QVBoxLayout(sidebar)
     sidebar_layout.setContentsMargins(10, 20, 10, 20)
-    sidebar_layout.setSpacing(2)
+    sidebar_layout.setSpacing(2)  # 保持原始间距
 
-    # Windows 11 style sidebar
-    # 侧边栏样式
-    sidebar.setStyleSheet("""
-            QWidget {
-                background-color: #f3f3f3;
-                border-right: 1px solid #e0e0e0;
-            }
-        """)
-
-    # Windows 11 风格按钮样式
-    button_style = """
-            QPushButton {
-                background-color: transparent;
-                border: none;
-                border-radius: 4px;
-                padding: 12px 16px;
-                text-align: left;
-                font-size: 14px;
-                font-family: 'Microsoft YaHei', sans-serif;  /* 改为微软雅黑 */
-                color: #202020;
-                height: 40px;
-            }
-            QPushButton:hover {
-                background-color: #eaeaea;
-            }
-            QPushButton:pressed {
-                background-color: #e1e1e1;
-            }
-            QPushButton:checked {
-                background-color: #dadada;
-                font-weight: 600;  /* 选中状态下更粗一些 */
-            }
-        """
-    # Create stacked widget for pages
+    # 创建页面堆栈
     self.stack = QStackedWidget()
 
-    # Define pages configuration
+    # 定义页面配置
     self.pages = [
         {"name": "首页", "page_class": HomePage},
         {"name": "使用说明", "page_class": UsagePage},
@@ -72,38 +46,58 @@ class MainWindow(QMainWindow):
         {"name": "维和者", "page_class": LastPage}
     ]
 
-    # Create buttons and load UI files
+    # 创建导航按钮（保持原始间距）
     self.buttons = []
-
     for i, page in enumerate(self.pages):
-      # Create and setup button
       btn = QPushButton(page["name"])
       btn.setCheckable(True)
-      btn.setStyleSheet(button_style)
       btn.clicked.connect(lambda checked, idx=i: self.switch_page(idx))
-
-      # Add button to sidebar
       sidebar_layout.addWidget(btn)
       self.buttons.append(btn)
 
-      # Add page to stack
+      # 添加页面到堆栈
       self.stack.addWidget(page["page_class"]())
 
-    # Add stretch to sidebar
-    sidebar_layout.addStretch()
+    # 添加间隔（关键修改点：在导航按钮和主题按钮之间添加间隔）
+    sidebar_layout.addStretch(1)
 
-    # Add sidebar and stack to main layout
+    # 添加主题切换按钮到侧边栏底部（单独一组）
+    self.theme_button = QPushButton("切换暗色模式")
+    self.theme_button.setObjectName("themeButton")
+    self.theme_button.clicked.connect(self.toggle_theme)
+    sidebar_layout.addWidget(self.theme_button)
+
+    # 添加侧边栏和页面堆栈到主布局
     main_layout.addWidget(sidebar)
     main_layout.addWidget(self.stack)
 
-    # Set initial page
+    # 设置初始页面
     self.switch_page(0)
 
+    # 应用初始主题
+    self.update_theme()
+
   def switch_page(self, index):
+    """切换当前显示的页面"""
     self.stack.setCurrentIndex(index)
-    # Update button states
+    # 更新按钮状态
     for i, btn in enumerate(self.buttons):
       btn.setChecked(i == index)
+
+  def toggle_theme(self):
+    """切换明暗主题"""
+    self.theme_manager.toggle_theme()
+
+  def update_theme(self):
+    """更新应用主题"""
+    theme_name = self.theme_manager.current_theme["name"]
+    self.theme_button.setText(
+        "切换暗色模式" if theme_name == "light" else "切换亮色模式")
+
+    # 应用全局样式
+    app = QApplication.instance()
+    if app:
+      app.setStyleSheet(self.theme_manager.style_sheet)
 
 
 if __name__ == "__main__":
