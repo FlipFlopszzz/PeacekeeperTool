@@ -127,6 +127,7 @@ class ThemeManager(QObject):
         self.current_theme["window_bg"]))
     palette.setColor(QPalette.WindowText, QColor(
         self.current_theme["text"]))
+    palette.setColor(QPalette.Link, QColor("#1A73E8"))
     app.setPalette(palette)
 
   def _build_style_sheet(self):
@@ -152,19 +153,20 @@ class ThemeManager(QObject):
             }}
 
             /* 普通按钮样式 */
-            QPushButton {{
-                border: none;
+            QPushButton#morseDecoder {{
+                border: 1px solid {sidebar_border};
                 border-radius: 4px;
                 padding: 8px 12px;
-                height: 40px;
                 {self.styles["button"]["normal"].format(**btn["normal"])}
             }}
-            QPushButton:hover {{ {self.styles["button"]["hovered"].format(**btn["hovered"])} }}
-            QPushButton:pressed {{ {self.styles["button"]["pressed"].format(**btn["pressed"])} }}
-            QPushButton:disabled {{ {self.styles["button"]["disabled"].format(**btn["disabled"])} }}
+            QPushButton#morseDecoder:hover {{ {self.styles["button"]["hovered"].format(**btn["hovered"])} }}
+            QPushButton#morseDecoder:pressed {{ {self.styles["button"]["pressed"].format(**btn["pressed"])} }}
+            QPushButton#morseDecoder:disabled {{ {self.styles["button"]["disabled"].format(**btn["disabled"])} }}
 
             /* 侧边栏按钮样式 */
             QWidget#sidebar QPushButton {{
+                border: none;
+                border-radius: 4px;
                 padding: 12px 16px;
                 text-align: left;
                 height: 40px;
@@ -182,45 +184,45 @@ class ThemeManager(QObject):
             }}
 
             /* 银色按钮样式（无文本，双状态） */
-            QPushButton.silver {{
+            QPushButton#silver {{
                 background-color: {btn_silver["normal"]["unchecked"]};
                 border-radius: 4px;
                 border-width: 2px;
                 border-style: solid;
             }}
             
-            QPushButton.silver:hover {{
+            QPushButton#silver:hover {{
                 background-color: {btn_silver["hovered"]["unchecked"]};
             }}
             
-            QPushButton.silver:pressed {{
+            QPushButton#silver:pressed {{
                 background-color: {btn_silver["pressed"]["unchecked"]};
             }}
             
             /* 选中状态样式 */
-            QPushButton.silver:checked {{
+            QPushButton#silver:checked {{
                 background-color: {btn_silver["normal"]["checked"]};
             }}
             
-            QPushButton.silver:checked:hover {{
+            QPushButton#silver:checked:hover {{
                 background-color: {btn_silver["hovered"]["checked"]};
             }}
             
-            QPushButton.silver:checked:pressed {{
+            QPushButton#silver:checked:pressed {{
                 background-color: {btn_silver["pressed"]["checked"]};
             }}
             
             /* 根据 layer 属性设置不同的边框颜色 */
-            QPushButton.silver[layer="0"] {{ border-color: {btn_silver["border"][0]}; }}
-            QPushButton.silver[layer="1"] {{ border-color: {btn_silver["border"][1]}; }}
-            QPushButton.silver[layer="2"] {{ border-color: {btn_silver["border"][2]}; }}
-            QPushButton.silver[layer="3"] {{ border-color: {btn_silver["border"][3]}; }}
+            QPushButton#silver[layer="0"] {{ border-color: {btn_silver["border"][0]}; }}
+            QPushButton#silver[layer="1"] {{ border-color: {btn_silver["border"][1]}; }}
+            QPushButton#silver[layer="2"] {{ border-color: {btn_silver["border"][2]}; }}
+            QPushButton#silver[layer="3"] {{ border-color: {btn_silver["border"][3]}; }}
             
             /* 选中状态下保持边框颜色不变 */
-            QPushButton.silver:checked[layer="0"] {{ border-color: {btn_silver["border"][0]}; }}
-            QPushButton.silver:checked[layer="1"] {{ border-color: {btn_silver["border"][1]}; }}
-            QPushButton.silver:checked[layer="2"] {{ border-color: {btn_silver["border"][2]}; }}
-            QPushButton.silver:checked[layer="3"] {{ border-color: {btn_silver["border"][3]}; }}
+            QPushButton#silver:checked[layer="0"] {{ border-color: {btn_silver["border"][0]}; }}
+            QPushButton#silver:checked[layer="1"] {{ border-color: {btn_silver["border"][1]}; }}
+            QPushButton#silver:checked[layer="2"] {{ border-color: {btn_silver["border"][2]}; }}
+            QPushButton#silver:checked[layer="3"] {{ border-color: {btn_silver["border"][3]}; }}
 
             /* 主题切换按钮样式 */
             QPushButton#themeButton {{
@@ -240,29 +242,7 @@ class ThemeManager(QObject):
                 padding: 6px;
             }}
             QLineEdit:focus {{
-                border-bottom: 2px solid {input_display["focus_border_color"]};
-            }}
-
-            /* 滑块样式 */
-            QSlider::groove:horizontal {{
-                border: 1px solid {self.current_theme["sidebar_border"]};
-                height: 8px;
-                background: {slider["inactive"]};
-                margin: 2px 0;
-                border-radius: 4px;
-            }}
-            QSlider::handle:horizontal {{
-                background: {slider["active"]};
-                border: 1px solid {self.current_theme["sidebar_border"]};
-                width: 18px;
-                margin: -2px 0;
-                border-radius: 4px;
-            }}
-            QSlider::groove:horizontal:disabled {{
-                background: {slider["disabled"]};
-            }}
-            QSlider::handle:horizontal:disabled {{
-                background: {slider["disabled"]};
+                border-bottom: 1px solid {input_display["focus_border_color"]};
             }}
 
             /* markdown区域样式 */

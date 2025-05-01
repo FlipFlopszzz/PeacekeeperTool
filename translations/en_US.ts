@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="en_US">
+<context>
+    <name>AngelPage</name>
+    <message>
+        <location filename="../src/pages.py" line="133"/>
+        <source>
+# 看见天使
+1. 进入索姆河，选择英国，支援兵，带弹药箱和磁吸地雷，部署后向前走到A点也就是最近的房区，会刷新一辆鬼火，然后开车到指定地点（E点），能看到两个水罐。尽量把鬼火停在比较靠近的地方，不然会消失。往前走能看到一个井口，用慈溪丢到这个井的正中间，炸开后能看到一个装置，有五个灯以及上边的一个确认按钮。把灯从左到右依次命名为1-5号灯，接下来我会给出灯的序号，你需要根据灯的序号进行互动，然后按确认按钮，比如我说1-4，就是需要把1，2，3，4号灯都各自互动一下，然后按下确认按钮，随后灯会自动全部亮起来。
+## 第一轮按灯
+- 1-5
+- 1
+- 3-5
+- 1-2
+2. 按完后如果播放音效，并且灯开始闪烁，说明第一轮按灯成功。骑上鬼火回到A点房区（或者重新部署应该也行），找到有烟囱的房子，在烟囱的旁边有个小棚子，用慈溪贴到棚子下这面墙的中央炸开墙，然后爬上房子找到烟囱断掉的地方，爬上去（这个地方可能有点难爬），趴下，会发现里边的左边有一个小小的圆形装置，互动一次，听到音效说明这一步完成。
+3. 骑上鬼火回到刚刚的井口，发现灯变成绿色的了。按照上面的方法继续进行互动。
+## 第二轮按灯
+- 1-5
+- 4-5
+- 3-5
+- 3-5
+- 3-5
+- 2-5
+- 2-5
+- 1-5
+
+结束后如果灯变红并且听到音效，说明这个任务完成，退出查看狗牌。
+</source>
+        <translation>
+# Angel Sighting
+1. Enter the Somme map, choose the UK, Support Class, bring an ammo box and magnetic AT mines. After deploying, move forward to Point A (the nearest houses) where a Ghost Car will spawn. Drive it to the designated location (Point E); you will see two water tanks. Try to park the car close, otherwise it may disappear. Move forward to find a well; throw a sticky charge into the center of the well. After blasting, you&apos;ll see a device with five lights and a confirm button. Name the lights from left to right as 1-5. I will give you the sequence of lights; you need to interact with the corresponding lights and then press the confirm button. For example, if I say 1-4, then interact with lights 1, 2, 3, 4, and press the confirm button. The lights will then all turn on automatically.
+## First round of pressing lights
+- 1-5
+- 1
+- 3-5
+- 1-2
+2. After finishing, if you hear a sound effect and the lights start flashing, the first round is successful. Ride the Ghost Car back to the houses at Point A (or redeploy), find the house with a chimney, and next to the chimney is a small shed. Place a sticky charge at the center of the wall under the shed and blast it open. Climb onto the house, find the broken part of the chimney, climb up (it may be a bit tricky), and go prone. Inside, on the left, is a small round device. Interact once and listen for a sound effect to complete this step.
+3. Ride the Ghost Car back to the well—the lights will now be green. Continue interacting as above.
+## Second round of pressing lights
+- 1-5
+- 4-5
+- 3-5
+- 3-5
+- 3-5
+- 2-5
+- 2-5
+- 1-5
+
+After finishing, if the lights turn red and you hear a sound effect, the task is complete. Exit to check your dog tag.
+</translation>
+    </message>
+</context>
+<context>
+    <name>AudioMorseDecoder</name>
+    <message>
+        <location filename="../src/components.py" line="235"/>
+        <location filename="../src/components.py" line="344"/>
+        <location filename="../src/components.py" line="347"/>
+        <source>开始录制</source>
+        <translation>Start Recording</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="241"/>
+        <location filename="../src/components.py" line="528"/>
+        <source>停止录制时，音频会保存到这个目录下</source>
+        <translation>When recording stops, audio will be saved to this directory</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="245"/>
+        <location filename="../src/components.py" line="529"/>
+        <source>选择保存目录</source>
+        <translation>Choose Save Directory</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="256"/>
+        <location filename="../src/components.py" line="355"/>
+        <location filename="../src/components.py" line="358"/>
+        <source>开始识别</source>
+        <translation>Start Recognition</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="263"/>
+        <location filename="../src/components.py" line="532"/>
+        <source>这里是将要用于自动识别的音频文件路径</source>
+        <translation>This is the path to the audio file to be used for auto recognition</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="267"/>
+        <location filename="../src/components.py" line="533"/>
+        <source>选择用于识别的音频文件</source>
+        <translation>Select audio file for recognition</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="280"/>
+        <source>使用这个滑块来调整摩斯电码幅值阈值    当前: 0.0</source>
+        <translation>Use this slider to adjust the Morse code amplitude threshold    Current: 0.0</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="294"/>
+        <location filename="../src/components.py" line="410"/>
+        <location filename="../src/components.py" line="538"/>
+        <source>这里将会显示识别出的摩斯电码的点划</source>
+        <translation>Detected Morse code dots and dashes will be displayed here</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="296"/>
+        <location filename="../src/components.py" line="411"/>
+        <location filename="../src/components.py" line="539"/>
+        <source>这里将会显示摩斯电码解密结果</source>
+        <translation>Morse code decryption result will be displayed here</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="299"/>
+        <location filename="../src/components.py" line="540"/>
+        <source>如果需要手动听写摩斯电码，可以利用下面的输入框自动翻译摩斯电码</source>
+        <translation>If you need to manually transcribe Morse code, you can use the input box below to translate it automatically</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="304"/>
+        <location filename="../src/components.py" line="366"/>
+        <location filename="../src/components.py" line="369"/>
+        <source>显示图像</source>
+        <translation>Show Image</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="350"/>
+        <source>停止录制</source>
+        <translation>Stop Recording</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="361"/>
+        <source>识别中...</source>
+        <translation>Recognizing...</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="372"/>
+        <source>尝试显示中...</source>
+        <translation>Attempting to display...</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="392"/>
+        <source>WAV Files (*.wav);;All Files (*)</source>
+        <translation>WAV Files (*.wav);;All Files (*)</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="393"/>
+        <source>选择文件</source>
+        <translation>Select File</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="398"/>
+        <source>选择文件夹</source>
+        <translation>Select Folder</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="461"/>
+        <source>错误</source>
+        <translation>Error</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="469"/>
+        <location filename="../src/components.py" line="536"/>
+        <source>使用这个滑块来调整摩斯电码幅值阈值    当前: </source>
+        <translation>Use this slider to adjust the Morse code amplitude threshold    Current: </translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="521"/>
+        <source>识别音频时出错，请检查音频文件路径和格式(.wav)是否正确</source>
+        <translation>Error recognizing audio. Please check the audio file path and format (.wav)</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="523"/>
+        <source>显示图像时出错，请检查音频文件路径和格式(.wav)是否正确</source>
+        <translation>Error displaying image. Please check the audio file path and format (.wav)</translation>
+    </message>
+</context>
+<context>
+    <name>BeastPage</name>
+    <message>
+        <location filename="../src/pages.py" line="98"/>
+        <source>
+# 野兽之源
+1. 按照前面讲的选择服务器的方法，进入卡波雷托，选择奥匈帝国，可以开飞机或者骑马，到达指定地点后，面对三个天使雕像，依次用枪打掉相应的身体部分，不能多也不能少，然后向后面走，能看到一个单独的天使雕像，使用G键对着雕像底座丢出手雷。上述步骤完成后能听到一声尖啸。
+2. 随后面朝三个天使的方向一直向前走，能看到另一个单独的天使雕像，走到它的后边蹲下，底座是可以互动的，互动后播放音效，获得狗牌，退出查看。
+</source>
+        <translation>
+# Belly of the Beast
+1. Following the previous server selection method, enter Caporetto, choose Austro-Hungarian Empire, you can fly a plane or ride a horse. After reaching the designated location, face the three angel statues and shoot the specified body parts in turn (no more, no less). Then walk backward to find a lone angel statue—throw a grenade at its base (press G). After these steps, you will hear a shriek.
+2. Then face the direction of the three angels and walk straight ahead; you’ll find another lone angel statue. Crouch behind it and interact with the base; after a sound effect, you will receive a dog tag. Exit to check.
+</translation>
+    </message>
+</context>
+<context>
+    <name>BronzePage</name>
+    <message>
+        <location filename="../src/pages.py" line="377"/>
+        <source>
+# 初显身手（铜牌）
+- 来到最坐牢的铜牌，听电报的地图选择流血宴厅，下不下雨无所谓，美军，骑兵，依次寻找五个耳机刷新点，找到后返回美军出生点的右边战壕那里，提前下马，走到离收音机很近的拐角，切屏打开软件，录制，走到电报机前，面对电报机（注意查看电报机上的灯的颜色，可以用来确定自己现在处于第几步），视角不要动，不要发出任何噪音。可以用手机计时约30-40秒，停止录音，把音频文件交给软件分析摩斯电码。录完之后暂时别离开电报站，防止录音出现问题还得重新进游戏找耳机。后续的录音和分析流程都是这样。
+- 按照下面的指示得到密文后，和27个地点名对照，找到对应的地图的地点（可以参考视频[铜牌点位教程(26个)-up:博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6)和视频[本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf)的最后一P，补充了最后一个地点HILL BARN ADRIATIC），发现标志后鼠标指着一小段时间，听到声音后马上移开，避免触发两次，触发两次会导致本次任务失败。以下的指示只是告诉你解密的流程，可以不用管，直接复制到解密器里边就行了。比如我正在做任务5(以下面的任务序号为准)，那么在解密器那里选择“任务5:栅栏密码(Rail Fence)”，复制摩斯电码进去即可。其他的也是同理，参数都不需要你填。
+1. 电报机灯为白色，密文就是原始的摩斯电码。
+2. 黄色，摩斯电码需要进行反转。小技巧，比如我解密出正序的摩斯密码为SNEIMAEUTA，发现刚好就是LONGUEVILLE STATUE AMIENS这个地点的后面几个字母，并且其他地点没有完全相同的尾巴，因此可以确定这个地点。
+3. 紫色，替换密码（Atbash），摩斯密码复制到Atbash解密器即可得到解密后的密文。
+4. 绿色，凯撒密码（ROT），同样复制到解密器里边就行。
+5. 透明，先倒置再栅栏密码（Rail Fence）。由于栅栏密码输入密文字数不对会导致解密结果和正确结果天差地别，因此这里解密不出来的话，可以试试增/删字数。这里解密器默认是开启倒置的，如果在倒置状态下删减内容，就在输入框的最右边开始删，反之就从最左边开始一个一个删。还有一种方法，就是这条信息完整解密后的结果的一部分为“&lt;地名&gt; FOURTH RULE.”，也就是说，你可以寻找解密摩斯电码得到的结果中的FOURTH这个单词，它的前面那部分就是地名了。
+6. 橙色，解密后的摩斯电码只有E和T，然后E用A替换，T用B替换，使用培根密码（Baconian）解密再使用替换密码解密。这里解密器会自动替换E和T。
+7. 粉色，维吉尼亚密码（Vigenère），key=Edward。
+8. 黄绿色，自动密钥密码（Autokey），key=George，alphabet key=z。这是最后一个需要解密的任务，当你看到London这个标志后就结束了。
+9. 青色，听电报就行了不需要录音也不需要解密，听多长时间随便，然后走开让电报机爆炸。
+10. 打开地图庞然暗影，德国，开飞机，飞到指定的风车塔那里（显著特征是左边有棵树），上到顶层的瞭望台那块，等大概2分钟，就会有一只白色的鸽子从左手边飞过来，拿着枪右键瞄准准星一直跟着它，大概几秒后就会听到音效，退出查看狗牌。
+- 以下为27个地点(总共9个地图，每个地图3个地点)及其对应的密文：
+
+|地图|密文1|密文2|密文3|
+|--|--|--|--|
+|亚眠(亚眠)|AMIENS NEUF FURNITURE|CHURCH RUINS AMIENS|LONGUEVILLE STATUE AMIENS|
+|流血宴厅(流血宴廳)|BALLROOM MAP VARENNES|STATUES GARDEN VARENNES|VARENNES SERVANT BED|
+|法欧堡(法歐堡)|BUCKET MARSHLANDS FAW|OUTPOST BARREL FAW|TREE FORTRESS FAW|
+|苏伊士(蘇伊士)|CANAL KANTARA VASES|CRATE TRENCH CANAL|HILL TOWER CANAL|
+|帝国边境(帝國邊境)|CASTELLO ISLE ADRIATIC|COASTAL FORTRESS ADRIATIC|HILL BARN ADRIATIC|
+|西奈沙漠(西奈沙漠)|CRATE JABAL JIFAR|PILLAR OUTSKIRTS JIFAR|PILLOW MAZAR JIFAR|
+|格拉巴山(格拉巴山)|CRATE SEREN VENETIAN|FERRO FIRE VENETIAN|STOVE TURRET VENETIAN|
+|圣康坦的伤痕(聖康坦的傷痕)|HOTEL CHECK PERONNE|RUIN VENTURE PERONNE|TRAVECY ATTIC PERONNE|
+|阿尔贡森林(阿爾貢森林)|LUGGAGE BASEMENT APREMONT|PANEL WATER APREMONT|TREE TRAIN APREMONT|
+
+- 以下为从任务1到任务8完整的摩斯电码解密出来的原文。
+1. GO STRAIGHT TO &lt;location_name&gt;. OLD METHODS COMPROMISED. MUST ACQUIRE NEW KEY. WILL MISS DROPOFF IF DELAY OR INCORRECT LOCATION.
+2. &lt;reversed_location_name&gt; REMEMBER FIRST RULE. IF COMPROMISED L PILL.
+3. &lt;atbash_cipher&gt; SECOND RULE. ON SIGHTING. REPORT AND WAIT. INVESTIGATING ALONE COULD LEAD TO DEATH
+4. &lt;rot_cipher&gt; THIRD RULE. IF TAKEN BY THE OTHERS DISCOVER MEANS TO COMMUNICATE TO HOUSE
+5. &lt;rail_fence&gt; FOURTH RULE. KILL ALL ON SAME TRAIL. REMOVE DOG TAGS AND REPORT TO HOUSE
+6. &lt;double_cipher&gt; MORSE MESSAGES BEING INTERCEPTED. BEGINNING FULL ENCRYPTION SOON
+7. LUGGAGEBASEMENTVARENNESALLIESCANBECLOTHEDASENEMIESENEMIESCANBECLOTHEDASALLIESALWAYSUSEID（这里是示例，地名为LUGGAGE BASEMENT VARENNES）
+8. HILLBARNADRIATICFINALBELIEVEEVERYTHINGREPORTEVERYTHING（这里是示例，地名为HILL BARN ADRIATIC）
+</source>
+        <translation>
+# A Beginning (Bronze)
+- For the hardest bronze task, select Ballroom Blitz as the map for listening to telegraphs. Rain or shine does not matter. US Army, Cavalry class. Find the five headset spawn points in order. After locating them, return to the right trench near the US spawn, dismount early, go to the corner close to the radio, alt-tab to open the software, start recording, approach the telegraph, face the telegraph (note the light color, which indicates which step you’re on), keep your view steady and don’t make any noise. Use your phone to time about 30-40 seconds, stop the recording, and let the software analyze the Morse code. Don’t leave the radio area immediately after, in case the recording fails and you need to redo it. All subsequent recording and analysis is the same process.
+- After obtaining the ciphertext as described below, compare it with the 27 location names to find the corresponding map location (see the video [Bronze Location Guide (26 points) - up: 博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6) and [full guide for this tool](https://www.bilibili.com/video/BV1MdLRztEEf), which includes the last location HILL BARN ADRIATIC). Hold your mouse briefly over the marker after discovering it, move away after hearing the sound to avoid triggering it twice (which will fail the task). The following instructions are just for the decryption process—you can ignore them and copy directly into the decryptor. For example, if you are doing task 5 (by the following task numbers), select &quot;Task 5: Rail Fence Cipher&quot; in the decryptor and paste the Morse code. For others, it’s the same—no need to fill in any parameters.
+1. Telegraph light is white; the ciphertext is just the original Morse code.
+2. Yellow, Morse code needs to be reversed. Tip: If the decoded Morse string is SNEIMAEUTA, you’ll notice it matches the last few letters of LONGUEVILLE STATUE AMIENS and no other location has the same ending—so that’s the answer.
+3. Purple, Atbash cipher. Paste the Morse code into the Atbash decryptor for the result.
+4. Green, Caesar cipher (ROT). Paste into the decryptor.
+5. Transparent, reverse first, then Rail Fence. If the ciphertext length is wrong for the rail fence, try adding or removing letters. The decryptor defaults to reversing; if you edit while reversed, remove from the right; otherwise, from the left, one at a time. Another method: the full decrypted message will contain “(location) FOURTH RULE.”—so look for FOURTH in the result, and what’s before it is the location.
+6. Orange, Morse code only contains E and T; replace E with A, T with B, use Baconian, then Atbash to decrypt. The tool will auto-replace E and T.
+7. Pink, Vigenère cipher with key Edward.
+8. Yellow-green, Autokey cipher with key George, alphabet key z. This is the last decryption task—when you see London, you’re done.
+9. Cyan, just listen to the telegraph, no recording or decryption needed. Listen as long as you like, then walk away and let it explode.
+10. Open the Giant’s Shadow map, Germany, fly a plane to the designated windmill (noticeable by a tree to the left), go to the top lookout, wait about 2 minutes, a white pigeon will fly by from the left, aim and keep your sights on it for a few seconds, you’ll hear a sound, exit to check your dog tag.
+- Below are the 27 locations (9 maps, 3 per map) and their ciphertexts:
+
+|Map|Ciphertext 1|Ciphertext 2|Ciphertext 3|
+|--|--|--|--|
+|Amiens|AMIENS NEUF FURNITURE|CHURCH RUINS AMIENS|LONGUEVILLE STATUE AMIENS|
+|Ballroom Blitz|BALLROOM MAP VARENNES|STATUES GARDEN VARENNES|VARENNES SERVANT BED|
+|Fort de Vaux|BUCKET MARSHLANDS FAW|OUTPOST BARREL FAW|TREE FORTRESS FAW|
+|Suez|CANAL KANTARA VASES|CRATE TRENCH CANAL|HILL TOWER CANAL|
+|Empire’s Edge|CASTELLO ISLE ADRIATIC|COASTAL FORTRESS ADRIATIC|HILL BARN ADRIATIC|
+|Sinai Desert|CRATE JABAL JIFAR|PILLAR OUTSKIRTS JIFAR|PILLOW MAZAR JIFAR|
+|Monte Grappa|CRATE SEREN VENETIAN|FERRO FIRE VENETIAN|STOVE TURRET VENETIAN|
+|Saint-Quentin Scar|HOTEL CHECK PERONNE|RUIN VENTURE PERONNE|TRAVECY ATTIC PERONNE|
+|Argonne Forest|LUGGAGE BASEMENT APREMONT|PANEL WATER APREMONT|TREE TRAIN APREMONT|
+
+- Below are the full original English messages decrypted from Morse code for Tasks 1–8.
+1. GO STRAIGHT TO &lt;location_name&gt;. OLD METHODS COMPROMISED. MUST ACQUIRE NEW KEY. WILL MISS DROPOFF IF DELAY OR INCORRECT LOCATION.
+2. &lt;reversed_location_name&gt; REMEMBER FIRST RULE. IF COMPROMISED L PILL.
+3. &lt;atbash_cipher&gt; SECOND RULE. ON SIGHTING. REPORT AND WAIT. INVESTIGATING ALONE COULD LEAD TO DEATH
+4. &lt;rot_cipher&gt; THIRD RULE. IF TAKEN BY THE OTHERS DISCOVER MEANS TO COMMUNICATE TO HOUSE
+5. &lt;rail_fence&gt; FOURTH RULE. KILL ALL ON SAME TRAIL. REMOVE DOG TAGS AND REPORT TO HOUSE
+6. &lt;double_cipher&gt; MORSE MESSAGES BEING INTERCEPTED. BEGINNING FULL ENCRYPTION SOON
+7. LUGGAGEBASEMENTVARENNESALLIESCANBECLOTHEDASENEMIESENEMIESCANBECLOTHEDASALLIESALWAYSUSEID (example, location is LUGGAGE BASEMENT VARENNES)
+8. HILLBARNADRIATICFINALBELIEVEEVERYTHINGREPORTEVERYTHING (example, location is HILL BARN ADRIATIC)
+</translation>
+    </message>
+</context>
+<context>
+    <name>CandleDecryptor</name>
+    <message>
+        <location filename="../src/components.py" line="133"/>
+        <location filename="../src/components.py" line="209"/>
+        <source>示例:2,3,4,5</source>
+        <translation>Example: 2,3,4,5</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="135"/>
+        <location filename="../src/components.py" line="210"/>
+        <source>灯的序号之间用中/英文逗号隔开</source>
+        <translation>Separate lamp numbers with Chinese/English commas</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="157"/>
+        <location filename="../src/components.py" line="214"/>
+        <source>解密</source>
+        <translation>Decrypt</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="205"/>
+        <source>无结果</source>
+        <translation>No result</translation>
+    </message>
+</context>
+<context>
+    <name>CipherDecryptor</name>
+    <message>
+        <location filename="../src/components.py" line="556"/>
+        <location filename="../src/components.py" line="673"/>
+        <source>解密器</source>
+        <translation>Decryptor</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="560"/>
+        <location filename="../src/components.py" line="661"/>
+        <location filename="../src/components.py" line="676"/>
+        <source>解密栅栏密码前是否自动倒置</source>
+        <translation>Automatically reverse text before decrypting Rail Fence Cipher</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="571"/>
+        <location filename="../src/components.py" line="683"/>
+        <source>任务1:原文</source>
+        <translation>Task 1: Original Text</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="572"/>
+        <location filename="../src/components.py" line="684"/>
+        <source>任务2:倒置(Reverse)</source>
+        <translation>Task 2: Reverse</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="573"/>
+        <location filename="../src/components.py" line="685"/>
+        <source>任务3:替换密码(Atbash)</source>
+        <translation>Task 3: Atbash Cipher</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="574"/>
+        <location filename="../src/components.py" line="686"/>
+        <source>任务4:凯撒密码(Rot)</source>
+        <translation>Task 4: Caesar Cipher (Rot)</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="575"/>
+        <location filename="../src/components.py" line="687"/>
+        <source>任务5:栅栏密码(Rail Fence)</source>
+        <translation>Task 5: Rail Fence Cipher</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="576"/>
+        <location filename="../src/components.py" line="688"/>
+        <source>任务6:培根密码(Baconian)</source>
+        <translation>Task 6: Baconian Cipher</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="577"/>
+        <location filename="../src/components.py" line="689"/>
+        <source>任务7:维吉尼亚密码(Vigenere)</source>
+        <translation>Task 7: Vigenère Cipher</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="578"/>
+        <location filename="../src/components.py" line="690"/>
+        <source>任务8:自动密钥密码(Autokey)</source>
+        <translation>Task 8: Autokey Cipher</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="586"/>
+        <location filename="../src/components.py" line="693"/>
+        <source>请输入摩斯电码解密结果(相关参数帮你填好了)</source>
+        <translation>Please enter the Morse code decryption result (related parameters have been pre-filled for you)</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="591"/>
+        <location filename="../src/components.py" line="627"/>
+        <location filename="../src/components.py" line="696"/>
+        <source>这里会显示解密结果</source>
+        <translation>The decryption result will be displayed here</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="594"/>
+        <location filename="../src/components.py" line="650"/>
+        <location filename="../src/components.py" line="697"/>
+        <source>这里会显示最匹配的地点</source>
+        <translation>The most matching location will be shown here</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="644"/>
+        <location filename="../src/components.py" line="645"/>
+        <source>无结果</source>
+        <translation>No result</translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="647"/>
+        <source>目标地点可能为: </source>
+        <translation>Possible target location: </translation>
+    </message>
+    <message>
+        <location filename="../src/components.py" line="663"/>
+        <location filename="../src/components.py" line="678"/>
+        <source>解密培根密码后是否自动用替换密码解密</source>
+        <translation>Automatically use Atbash Cipher after decrypting Baconian Cipher</translation>
+    </message>
+</context>
+<context>
+    <name>GoldPage</name>
+    <message>
+        <location filename="../src/pages.py" line="279"/>
+        <source>
+# 不祥之兆（金牌）
+1.选择泽布吕赫地图，注意服务器必须允许精英兵。尽可能选择不下雨的天气，这样杂音会比较小。选择德国，到达E点拿到入侵者，然后坐船到A点，上岸之后找到一个很高的水塔，爬完第一段梯子之后，切屏打开软件，开始录制，然后爬完第二段梯子，趴下。过一会能听到一个音效，然后开始播放摩斯电码。录制40-50秒那样，停止录制。然后开始解密，总共是22个字母（遇到相同的部分说明是进入下一个循环了）。它们是以下30个字母中的一部分，按顺序找出缺少的8个字母。这里可能解密出多种可能的结果，这种情况需要几种可能性都进行测试，这个彩蛋没有什么试错成本，只需要回去调整灯亮灭顺序即可。
+
+**DULCE ET DECORUM EST PRO PATRIA MORI**  30个字母
+
+然后根据缺少的字母对照下面的这个表格找出对应的数字。比如C对应1，E对应7。总共得到8个数字。
+
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| C | D | A | R | B | N | E | G | M | P |
+| F | O | U | Z | I | X | L | K | S | T |
+
+这8个数字对应的是8组灯的亮灭序列。比如数字0对应的那组灯，从左到右就是5个都是灭。
+
+|数字|灯1|灯2|灯3|灯4|灯5|
+| --- | --- | --- | --- | --- | --- |
+| 0 | 灭 | 灭 | 灭 | 灭 | 灭 |
+| 1 | 亮 | 灭 | 灭 | 灭 | 灭 |
+| 2 | 亮 | 亮 | 灭 | 灭 | 灭 |
+| 3 | 亮 | 亮 | 亮 | 灭 | 灭 |
+| 4 | 亮 | 亮 | 亮 | 亮 | 灭 |
+| 5 | 亮 | 亮 | 亮 | 亮 | 亮 |
+| 6 | 灭 | 亮 | 亮 | 亮 | 亮 |
+| 7 | 灭 | 灭 | 亮 | 亮 | 亮 |
+| 8 | 灭 | 灭 | 灭 | 亮 | 亮 |
+| 9 | 灭 | 灭 | 灭 | 灭 | 亮 |
+
+2.接下来找到在陆地上往E点的方向跑，找到房间“1”，从这个房间的右边进去，左手边是1号机器，往前往右依次为2，3，4号机器，依次对应的就是1-4组灯。如果我上面解密出来的第一个数字是1，那么第一台机器的5个灯从左到右依次设置为亮灭灭灭灭，其他同理。
+
+3.按完四台机器后，继续按原来的方向走，找到房间“3”，从房间右边进去，进门依次为5-8号机器。按完这四个机器，看见烟雾并且听到音效，说明本任务完成，退出查看狗牌。如果没有完成的话可能是摩斯电码解密出错了，可能需要手动查看图像确保解密没有出现错误，解密完可以接着之前的进度接着按灯，不需要重新开始。
+</source>
+        <translation>
+# An Omen (Gold)
+1.Choose the Zeebrugge map, and make sure the server allows Elite classes. Try to pick a non-rainy weather for less background noise. Choose Germany, go to point E to get the Infiltrator, then take a boat to point A. After landing, find a tall water tower. After climbing the first ladder, alt-tab to start recording in the software, then climb the second ladder and go prone. After a while, you&apos;ll hear a sound effect, and then Morse code starts. Record for about 40–50 seconds, then stop. Begin decoding; there should be 22 letters (if you see repeats, it means you&apos;ve entered the next cycle). These are part of the following 30 letters. In order, find the 8 missing letters. There may be multiple possible solutions, so try each. There&apos;s no penalty for trial and error—just adjust the light sequence as needed.
+
+**DULCE ET DECORUM EST PRO PATRIA MORI**  (30 letters)
+
+Then, find the corresponding numbers for the missing letters from the table below. For example, C = 1, E = 7. You will get 8 numbers in total.
+
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| C | D | A | R | B | N | E | G | M | P |
+| F | O | U | Z | I | X | L | K | S | T |
+
+These 8 numbers correspond to 8 light sequences. For example, number 0 means all 5 lights are off from left to right.
+
+|Number|L1|L2|L3|L4|L5|
+| --- | --- | --- | --- | --- | --- |
+| 0 | Off | Off | Off | Off | Off |
+| 1 | On  | Off | Off | Off | Off |
+| 2 | On  | On  | Off | Off | Off |
+| 3 | On  | On  | On  | Off | Off |
+| 4 | On  | On  | On  | On  | Off |
+| 5 | On  | On  | On  | On  | On  |
+| 6 | Off | On  | On  | On  | On  |
+| 7 | Off | Off | On  | On  | On  |
+| 8 | Off | Off | Off | On  | On  |
+| 9 | Off | Off | Off | Off | On  |
+
+2.Next, run inland toward point E. Find room “1”, enter from the right; to the left is machine 1, then forward and right are machines 2, 3, and 4—these are lights 1–4. If the first decoded number is 1, then set the 5 lights on machine 1 as On Off Off Off Off. Do the same for the rest.
+
+3.After finishing the first four machines, keep going in the same direction to room “3”. Enter from the right; inside are machines 5–8 in order. Finish those. If you see smoke and hear a sound effect, the task is complete. Exit and check your dog tag. If not, you may have decoded Morse code incorrectly. You may need to check the waveform image manually to ensure decoding is correct. You can continue from where you left off—no need to start over.
+</translation>
+    </message>
+    <message>
+        <location filename="../src/pages.py" line="209"/>
+        <location filename="../src/pages.py" line="283"/>
+        <source>请输入解密摩斯电码得到的22个字母</source>
+        <translation>Please enter the 22 letters decoded from Morse code</translation>
+    </message>
+    <message>
+        <location filename="../src/pages.py" line="222"/>
+        <location filename="../src/pages.py" line="228"/>
+        <location filename="../src/pages.py" line="284"/>
+        <source>这里将会根据8个字母得到8个数字，对应的灯 状态以及开关序列</source>
+        <translation>This will derive 8 numbers and their corresponding light states and switch sequences from the 8 letters</translation>
+    </message>
+    <message>
+        <location filename="../src/pages.py" line="239"/>
+        <source>可能存在以下</source>
+        <translation type="finished">There may be the following </translation>
+    </message>
+    <message>
+        <location filename="../src/pages.py" line="240"/>
+        <source>种情况:</source>
+        <translation type="finished"> possibilities:</translation>
+    </message>
+</context>
+<context>
+    <name>HomePage</name>
+    <message>
+        <location filename="../src/pages.py" line="51"/>
+        <source>
+# 简介
+这是一个战地一维和者菜单解密工具，用于简化维和者获取的过程。本工具不包含关于彩蛋背后故事的内容。
+# 功能
+- 彩蛋过程指引
+- 音频录制
+- 根据音频自动解密摩斯电码
+- 多种密文和谜题的解密器
+# 相关视频及网站
+- [本工具的完整教程](https://www.bilibili.com/video/BV1MdLRztEEf) 和 [对滑动条功能的补充说明](https://www.bilibili.com/video/BV15HGvzuEG2)。
+- [维和者彩蛋教程-up:鸽子王歌姬poi](https://www.bilibili.com/video/BV1FK411M7GN)
+- [铜牌点位教程(26个)-up:博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6)，这个视频缺少了1个点位，可以去[彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)找到剩下那个点位的具体位置,也可以直接看[本工具的完整教程最后那P](https://www.bilibili.com/video/BV1MdLRztEEf?p=9)。
+- [彩蛋网站](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)
+- [摩斯电码翻译网站](https://morsecode.world/international/translator.html)
+- [另一个彩蛋网站](https://wiki.bfee.co/index.php?title=Battlefield_1/A_Conflict)
+- [银牌点灯解密](https://tools.bfee.co/conflict)
+- [解密器](https://rumkin.com/tools/cipher)
+- [录制软件Bandicam](https://www.bandicam.cn)
+- [音频软件Audacity](https://www.audacityteam.org/download/windows)
+# 引用声明
+- 银牌点灯解密参考了网站[银牌点灯解密](https://tools.bfee.co/conflict)
+- 银牌解密使用到的图片来自网站[另一个彩蛋网站](https://wiki.bfee.co/index.php?title=Battlefield_1/A_Conflict)
+# 相关问题
+- 本项目开源免费，Github地址：[https://github.com/FlipFlopszzz/PeacekeeperTool](https://github.com/FlipFlopszzz/PeacekeeperTool)。
+- 开发环境: python 3.13.0,win11 23H2,GUI使用pyside6编写，打包使用pyinstaller，安装包编译使用Inno Setup。
+- 这个软件不读取也不修改战地一的内存，是独立运行的一个外部程序，不会触发反作弊，测试时多次和游戏同时运行也没有被EAAC上市。
+- 这个软件的字比较小看不清的话，就Ctrl+滚轮上下滑动调整。
+- 本人以前做过两次维和者彩蛋，有点经验，这次全程大约花费3个小时。初次上手的话大概4-5小时就能结束。这个软件主要简化的是金银铜牌和逐步升级的获取，具体体现在摩斯电码的自动识别，解密器的集成，金牌的灯开关序列的遍历，银牌点灯解密器以及坐标系的显示。而且考虑到过去的视频教程中提到的彩蛋网站，有的年久失修，有的使用麻烦，有的在大陆不方便访问，从这个意义上讲，这个软件顺便把目前(2025-4-17)能用的资源和网站汇总了，并把一部分功能简化并搬到软件上。
+- 就测试的几十段素材(包括逐步升级、铜牌和金牌)而言，摩斯电码的自动识别准确度在90%以上。有一些片段由于识别错误或把关键片段之外的摩斯电码合并进来等原因，导致转换得到的英文字符中有错误的部分，在解密器解密之后更加难以解读。但是如果通过自己模糊判断或使用“查看图像”功能来排除错误,多余部分，是能够知悉正确的答案的。目前测试样本量还是太小了，而且不知道录音功能在其他电脑上能否正常工作。
+# 更新
+- v1.3版本对很多人反馈的识别不出来，识别出乱码还有只能识别出E,I,T等字母等情况进行了修复。原因目前认为是幅值阈值高于幅值导致的，而本人测试得到的固定阈值并不适合很多用户，因此增加了根据具体波形得到对应阈值的逻辑，并且允许用户自己修改阈值。
+- v1.4版本，将耗时的音频分析逻辑放到了单独的线程中，避免阻塞主线程及其导致的窗口无响应现象。此外增加了开始识别和显示图像两个按钮在加载时的样式，以匹配前面的更改。
+- v1.5版本，新增银牌页面的坐标系4层颜色，方便理解和标记，精简了软件大小，增加深浅色模式，增加多语言支持(目前支持简中，繁中，英语)，另外改善了一些控件的交互逻辑。
+</source>
+        <translation>
+# Introduction
+This is a Battlefield 1 Peacekeeper menu decryption tool, designed to simplify the Peacekeeper acquisition process. This tool does not include any story background.
+# Features
+- Easter egg step-by-step guide
+- Audio recording
+- Automatic Morse code decryption from audio
+- Multiple ciphers and puzzle decryptors
+# Related Videos and Websites
+- [Full tool tutorial](https://www.bilibili.com/video/BV1MdLRztEEf) and [Slider function supplement](https://www.bilibili.com/video/BV15HGvzuEG2)
+- [Peacekeeper easter egg guide - up: 鸽子王歌姬poi](https://www.bilibili.com/video/BV1FK411M7GN)
+- [Bronze location guide (26 points) - up: 博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6); this video is missing one location, which can be found on the [easter egg wiki](https://wiki.gamedetectives.net/index.php?title=Battlefield_1), or see the last part of the [full tutorial](https://www.bilibili.com/video/BV1MdLRztEEf?p=9)
+- [Easter egg wiki](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)
+- [Morse code translation site](https://morsecode.world/international/translator.html)
+- [Another easter egg wiki](https://wiki.bfee.co/index.php?title=Battlefield_1/A_Conflict)
+- [Silver light puzzle decryption](https://tools.bfee.co/conflict)
+- [Cipher tool](https://rumkin.com/tools/cipher)
+- [Bandicam recording software](https://www.bandicam.cn)
+- [Audacity audio software](https://www.audacityteam.org/download/windows)
+# References
+- Silver light puzzle decryption referenced [this site](https://tools.bfee.co/conflict)
+- Silver decryption images are from [another wiki](https://wiki.bfee.co/index.php?title=Battlefield_1/A_Conflict)
+# FAQ
+- This project is open source and free. Github: [https://github.com/FlipFlopszzz/PeacekeeperTool](https://github.com/FlipFlopszzz/PeacekeeperTool)
+- Development environment: python 3.13.0, win11 23H2, GUI with pyside6, packaged with pyinstaller, installer built with Inno Setup
+- This tool does not read or modify Battlefield 1 memory, runs independently, and does not trigger anti-cheat. During testing, running simultaneously with the game did not cause EAAC bans.
+- If the font is too small, use Ctrl+scroll to adjust.
+- I have completed the Peacekeeper easter egg twice before, so I have some experience; it took me about 3 hours this time. First time users can finish in 4–5 hours. This tool mainly simplifies the gold, silver, bronze, and An Escalation unlocks, specifically: automatic Morse code recognition, integrated decryptors, gold light sequence enumeration, silver light puzzle, and coordinate display. Also, since some old video guides reference websites that are now broken, inconvenient, or blocked in China, this tool summarizes all usable resources as of (2025-4-17), and moves some features directly into the tool.
+- For dozens of test samples (including An Escalation, bronze, and gold), Morse code auto recognition was over 90% accurate. Some clips may have errors due to misrecognition or extraneous Morse merged in, making the final English result harder to read. But with judgment or using the &quot;Show Image&quot; feature to exclude errors, you can still find the correct answer. The sample size is still too small, and recording may not work on every computer.
+# Updates
+- v1.3: Fixed issues with recognition failure, garbled output, or only recognizing E/I/T. The cause was amplitude threshold being higher than signal. Now the tool auto-detects threshold and allows manual adjustment.
+- v1.4: Moved audio analysis to a separate thread to avoid blocking UI. &quot;Start Recognition&quot; and &quot;Show Image&quot; buttons now also show loading styles.
+- v1.5: Added 4-color coordinate map to the silver page for clarity, reduced software size, added light/dark mode, added multi-language support (currently Simplified Chinese, Traditional Chinese, English), and improved some UI interactions.
+</translation>
+    </message>
+</context>
+<context>
+    <name>LastPage</name>
+    <message>
+        <location filename="../src/pages.py" line="416"/>
+        <source>
+# 最终任务
+1. 恭喜你坚持到了最后一个任务！首先打开士兵-狗牌，在正面-进度那里选择金银铜中任意一个进行装备，背面-进度，选择野兽支援和看见天使中任意一个装备。然后退回上一级彩蛋，点击自订士兵-支援兵，主武器选择M1917机枪，皮肤装备逐步升级。确保你已经完成了前置的所有6个任务，不然在地道的某一层会被毒气直接秒杀。
+2. 地图选择帕斯尚尔，尽可能选择延迟低一点的，不然操作不跟手可能会影响跑路。德国，支援兵，装备M1917+逐步升级，其他的无所谓（那个拿着扳手加速的小技能不是必须的）。
+3. 在进地道之前，先了解以下知识。地道总共15层，每层都有毒气追你，越到后边伤害越高。里边啥都不能干只能走路（注意不是奔跑），防毒面具也带不了。有节奏地走+跳会比走快一点，不过就算一直走也死不了。走到每一层的尽头后，你会看到一片木排，前面还有一个阀门，互动就会让你过大概1秒后进入下一层，但是如果不按的话就不会掉下去并且毒气也不会追你，因此在这段时间可以用来回血和查看下一层的路线。尽可能回到80血以上最好是满血，这样即使摔掉了一些血也不至于被毒死。准备下去时，人站在这个阀门所在的区域，尽量不要直接站在木排上，面对下一层前进的方向，并且直到掉下去之前全程按着蹲键不松手，这样能够尽可能减少摔掉很多血的风险。
+4. 向前边走能看到一个木桥，下去以后有一个洞口，上边有个木牌，拿枪给它打烂，露出骷髅头。蹲下，可以发现左右各有一个阀门，接下来需要按照顺序和阀门进行互动。L：左，R：右。注意不要狂按，按完一下确认听到声音证明这次生效后再按下一次。
+- LLRR
+- LRLR
+- RL
+- RRR
+- LRR
+- LRR
+- LLLL
+- R
+- LLL
+5. 等一小会洞口会被炸开，里边有个阀门，互动之后就会进到地道里边。按M键放大小地图，可以发现小地图上标记了4个方向NSWE，同时你可以看到你自己的视角是一个白色的扇形，比如本层的方向是W，那么就用你的人物这个扇形对着小地图上的W，朝这个方向走就是正确的。以下为15层的方向。
+- **WESWE WWNSW NWSWS**
+
+到达最后一层的尽头后，有一个铁箱子，上边的就是维和者左轮(Peacekeeper)，长按R捡起来它就是你的了。这时候直接退出游戏或者重新部署都可以，自订士兵可以直接装备了。后续使用维和者左轮击杀100个敌人即可获得狗牌“觉醒”。
+
+# 恭喜你完成了维和者彩蛋！
+使用完这个工具可以直接卸载，记得把录制的那些音频删掉。
+如果使用中遇到任何问题都可以去本工具的B站视频评论或者私信本人，或者去Github上提issue。
+</source>
+        <translation>
+# Final Mission
+1. Congratulations on reaching the final task! First, open Soldiers – Dog Tags, and equip any of the gold, silver, or bronze tags in the Front – Progress section. For Back – Progress, equip either Beast Support or Angel Sighting. Then return to the previous Easter egg menu, click Customize Soldier – Support, choose the M1917 MG as your primary weapon, and equip the An Escalation skin. Make sure you have completed all 6 prerequisite tasks; otherwise, you will be instantly killed by poison gas in one of the tunnel layers.
+2. Select the Passchendaele map, preferably with low latency, otherwise unresponsive controls may affect your run. Germany, Support class, equip M1917 + An Escalation skin, the rest does not matter (the speed-boosting wrench skill is not required).
+3. Before entering the tunnel, note the following. The tunnel has 15 levels; each level has poison gas chasing you, and the damage increases on later levels. Inside, you can only walk (not run), and you cannot use a gas mask. Walking + jumping rhythmically is slightly faster, but even just walking will not get you killed. At the end of each level, you will see some wooden planks and a valve; interact with the valve to drop down to the next level after about 1 second. If you do not interact, you will not drop and the gas will not follow, so use this time to heal and preview the next level&apos;s route. Try to heal above 80 HP, preferably full HP, so even if you take fall damage, you will not be killed by gas. When preparing to drop, stand in the valve area (not directly on the planks), face the next level&apos;s direction, and hold the crouch key until you drop to reduce the risk of losing a lot of HP.
+4. Move forward to find a wooden bridge; go down to a hole with a wooden sign above, shoot the sign to reveal a skull. Crouch; you will see a valve on both left and right. Now interact with the valves in the following sequence. L: left, R: right. Do not press rapidly; after each, listen for a sound to confirm, then press the next.
+- LLRR
+- LRLR
+- RL
+- RRR
+- LRR
+- LRR
+- LLLL
+- R
+- LLL
+5. After a short wait, the hole will be blown open. Inside is a valve—interact to enter the tunnel. Press M to enlarge the minimap; you&apos;ll see 4 directions labeled NSWE. You can see your viewpoint as a white sector. For example, if this level is W, aim your character toward W on the minimap and walk in that direction. The directions for all 15 levels are:
+- **WESWE WWNSW NWSWS**
+
+At the end of the last level, there is a metal box—the Peacekeeper revolver is on top. Hold R to pick it up—it&apos;s yours! You can exit the game or redeploy; you can equip it via Customize Soldier. Then, get 100 kills with the Peacekeeper to unlock the &quot;Awakening&quot; dog tag.
+
+# Congratulations—you have completed the Peacekeeper Easter egg!
+You can uninstall this tool after use. Remember to delete any audio recordings.
+If you have any issues, leave a comment or DM on the Bilibili video, or open an issue on Github.
+</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../src/main.py" line="13"/>
+        <location filename="../src/main.py" line="136"/>
+        <source>维和者工具</source>
+        <translation>Peacekeeper Tool</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="44"/>
+        <source>首页</source>
+        <translation>Home</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="45"/>
+        <source>使用说明</source>
+        <translation>Instructions</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="46"/>
+        <source>野兽之源</source>
+        <translation>Belly of the Beast</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="47"/>
+        <source>看见天使</source>
+        <translation>Angel Sighting</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="48"/>
+        <source>逐步升级</source>
+        <translation>An Escalation (Skin)</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="49"/>
+        <source>不祥之兆（金牌）</source>
+        <translation>An Omen (Gold)</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="50"/>
+        <source>冲突（银牌）</source>
+        <translation>A Conflict (Silver)</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="51"/>
+        <source>初显身手（铜牌）</source>
+        <translation>A Beginning (Bronze)</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="52"/>
+        <source>维和者</source>
+        <translation>Peacekeeper</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="89"/>
+        <location filename="../src/main.py" line="143"/>
+        <source>浅色模式</source>
+        <translation>Light Mode</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="90"/>
+        <location filename="../src/main.py" line="144"/>
+        <source>深色模式</source>
+        <translation>Dark Mode</translation>
+    </message>
+</context>
+<context>
+    <name>PlotWindow</name>
+    <message>
+        <location filename="../src/audio.py" line="337"/>
+        <source>音频信号幅值-时间图</source>
+        <translation>Audio Signal Amplitude-Time Chart</translation>
+    </message>
+    <message>
+        <location filename="../src/audio.py" line="370"/>
+        <source>信号</source>
+        <translation>Signal</translation>
+    </message>
+    <message>
+        <location filename="../src/audio.py" line="373"/>
+        <source>幅值阈值 ({0})</source>
+        <translation>Amplitude Threshold ({0})</translation>
+    </message>
+    <message>
+        <location filename="../src/audio.py" line="381"/>
+        <source>单词间隔(&quot;   &quot;)</source>
+        <translation>Word Gap (&quot;   &quot;)</translation>
+    </message>
+    <message>
+        <location filename="../src/audio.py" line="389"/>
+        <source>字符间隔(&quot; &quot;)</source>
+        <translation>Character Gap (&quot; &quot;)</translation>
+    </message>
+    <message>
+        <location filename="../src/audio.py" line="397"/>
+        <source>点(&quot;.&quot;)</source>
+        <translation>Dot (&quot;.&quot;)</translation>
+    </message>
+    <message>
+        <location filename="../src/audio.py" line="398"/>
+        <source>划(&quot;_&quot;)</source>
+        <translation>Dash (&quot;_&quot;)</translation>
+    </message>
+    <message>
+        <location filename="../src/audio.py" line="416"/>
+        <source>{0}-{1}Hz 信号分析</source>
+        <translation>{0}-{1}Hz Signal Analysis</translation>
+    </message>
+    <message>
+        <location filename="../src/audio.py" line="418"/>
+        <source>时间</source>
+        <translation>Time</translation>
+    </message>
+    <message>
+        <location filename="../src/audio.py" line="419"/>
+        <source>幅值</source>
+        <translation>Amplitude</translation>
+    </message>
+</context>
+<context>
+    <name>SilverPage</name>
+    <message>
+        <location filename="../src/pages.py" line="315"/>
+        <source>
+# 冲突（银牌）
+1. 地图选择苏瓦松（蘇瓦鬆），尽可能选择雾天，方便后续看地板的灯亮灭，没有也没关系。德国，骑兵，到E点的大房子，进门后，找到所有天花板和位于墙上的灯用枪打掉，落地灯使用医疗包和弹药包扑灭，其中有一个落地灯的底座被很多木箱子挡住了，直接丢手雷给它炸开，后面可能需要和这个灯互动。所有灯被灭掉之后会听到一个很阴间的音效，这一步完成。
+2. 走到1号灯那里，趴下，对着底座互动1次，统计有哪些灯亮起来了，比如2，3，5号灯亮了，就找到软件的点灯解密那里找到“第1次”，输入“2 3 5”。同理再重复这样的步骤6次，注意每次都是和1号灯互动。注意6号灯那里会有阳光，很容易误判，可以靠近点，声音开大点，如果听到有“滋滋”的电流声说明是亮的。输入完7次，点击解密，会显示需要互动的灯列表，比如“2，2，3”，所以找到2号灯底座互动2次，3号灯底座互动1次。听到一个很阴间的音效第2步也完成了。
+3. 走到雕像那里，可以看到池子里边有一些石头。池子底部是“地上”，地上的两层台阶为“下”，再往上2层台阶为“中”，再往上为“上”。注意，站在房子和雕像中间，背对房子面对雕像为正面。根据给出的图标记出石头所在的位置。总共12个。从仰视图看，中间是雕像，玩家面对雕像，那么左下角就是坐标原点，向上为y轴，右边x轴。
+4. 回头面向房子，从左到右依次有8根柱子（除掉最左边和最右边两根），设为1-8号柱。跑到房子的另一面，面对房子，同样有8个柱子，定为9-16号。回到房子里边，正中间有一块区域面对着窗户，这就是灯亮起来的地点，在太阳比较大的时候比较难分清地板是否亮起，所以这就是推荐雾天做这个的原因。面对阳光照进来的那个窗户，左边柱子最近的那个黑色瓷砖的左边那个角向上2格作为坐标原点，朝着两条边延长各自8个瓷砖，其中朝向自己的方向为x轴，朝向窗户的是y轴，得到一个8×8的坐标系。为了方便后续对照坐标，可以重新部署（不会清空前面的进度），选择侦察兵，带上拌雷和狙击手诱饵，放置在坐标系的边角位置，这样可以快速辨认出坐标系的坐标。
+5. 接下来我们的任务就是让这个坐标系亮起和石头位置对应的瓷砖。但是有个问题，柱子和坐标的对应关系我们是不知道的，因此我们需要手动测试从而获取对应的关系。我们来到1号柱子，蹲下互动一次，然后同样的方法2号互动一次，回到坐标系查看，如果没有地板亮起来，说明这两个柱子都位于同一个坐标轴；如果有地板亮起来，比如说(3,4)，那么我们可以确定这两个柱子有一个在x轴另一个在y轴，接下来我们需要测试它们具体对应的坐标。因此我们先各自和1，2互动一次（注意在测试坐标轴阶段必须把两根柱子都熄灭，确保不会导致后面混乱）熄灭灯，然后再各自和1，3互动一次，如果这时亮了(3,5)，那么我们就可以确定，1号柱子对应x轴的3，2号柱子对应y轴的4，3号柱子对应y轴的5。后续其他所有柱子都可以用类似的方法获取对应坐标。
+6. 绘出完整的坐标系后，就把石头对应的坐标对应的灯画在坐标系上。这时候就可以不熄灭灯了，需要一直亮下去。等到把所有灯都亮起后，会出现烟雾并且听到音效，退出查看狗牌。
+</source>
+        <translation>
+# A Conflict (Silver)
+1. Select the Soissons map, ideally with foggy weather to make it easier to see the lights on the floor (not required). Germany, Cavalry, go to the big house at point E. Inside, shoot out all ceiling and wall lights, and use med/ammo bags to extinguish floor lamps (one floor lamp base is blocked by crates—grenade it open; you&apos;ll need it later). After all lights are out, you&apos;ll hear a creepy sound effect—step complete.
+2. Go to light #1, go prone, interact with its base once, and note which lights turn on. For example, if 2, 3, and 5 light up, go to the Light Puzzle Decryption section of the tool, find &quot;First time&quot;, and input &quot;2 3 5&quot;. Repeat this step 6 more times (always interact with light #1). For light #6, sunlight may make it hard to tell—get closer and listen for a buzzing sound. After 7 rounds, click decrypt; it will show which lamps to interact with, e.g., &quot;2, 2, 3&quot; means interact with lamp 2 twice and lamp 3 once. You’ll hear a creepy sound effect—step 2 complete.
+3. Head to the statue. The pool inside has stones: bottom = &quot;ground&quot;, 2 steps up = &quot;lower&quot;, 2 more = &quot;middle&quot;, top = &quot;upper&quot;. Facing the statue, mark the stones’ locations—12 in total. In top-down view, statue center, face the statue (back to house): lower left = origin, up is y-axis, right is x-axis.
+4. Turn around to face the house. There are 8 columns left-to-right (excluding the far left/right), label them 1–8. On the other side, facing the house, 8 more columns, label 9–16. Back inside, the middle area by the windows is where the floor lights up. On sunny days, it’s hard to tell—fog helps! Facing the sunlit window, the tile at the left column’s left corner, 2 up, is (0,0). Stretch both edges to 8 tiles: toward you is x, toward window is y, forming an 8×8 grid. For easier reference, redeploy as Recon, bring trip mines and decoy, and place them at grid corners.
+5. The goal is to light up floor tiles that match the stones’ coordinates. But you don’t know which column matches which axis/tile—you must test. Go to column 1, interact once, then column 2, then check the grid. If no tile lights up, both are on the same axis; if (3,4) lights up, one is x, the other y. Test further: after turning off both, interact with 1 and 3. If now (3,5) lights up, column 1 is x=3, 2 is y=4, 3 is y=5. Use this logic for all columns.
+6. Once the full grid is mapped, turn on all lamps matching the stone tile coordinates (do not turn them off). When all are lit, you’ll see smoke and hear a sound—exit and check your dog tag.
+</translation>
+    </message>
+</context>
+<context>
+    <name>SkinPage</name>
+    <message>
+        <location filename="../src/pages.py" line="177"/>
+        <source>
+# 逐步升级（皮肤）
+1. 在做这个任务之前确保你已经解锁了M1917机枪也就是担架的任意型号，不然拿了皮肤也没用。选择地图阿尔比恩，**绝对不能是下雪天气，因为自动识别无法工作**，德国，飞机，朝前飞找到D点的一个铁塔，地上有很多铁箱子和木箱子，用枪(别用手雷，后边要用)给木箱子打了，总共9个铁箱子，各自互动1次，这次和下次都不需要特定顺序。不能多也不能少，错了直接重开。
+2. 然后走到指定地点，也就是F点的一个房子，里边开门有个木柜子，给它拿手雷炸了，露出一个开关，上边有个骷髅头。跟开关互动1次。
+3. 回到刚才的铁塔那里，依然是各自互动一次。然后回到房子里边那个开关那，互动4次。
+4. 回到铁塔那里，已经在播放摩斯电码了，直接趴到地上，右耳朵紧贴着这个铁塔，切屏并开始录制，解密得到一串字母。可以录制稍微长一点时间，比如40-50s，可以相互对照提高正确率。不出意外的话，应该是5个字母不断循环。至于判断这五个字母的顺序的方法，需要点击“显示图像”，找到其中的间隔比较大的部分，它的前面/后面就是那5个字母。用5个字母替代下面那串字母中的 XXXXX ，得到完整的一串字母。
+
+- **CAEEB XXXXX FEAADDAD**
+
+5. 回到地图的A点，也就是有一个灯塔的点，附近有6个房子，把这6个房子的煤油灯打碎之后（无顺序），获得灯塔内部6个开关的互动权。给6个开关编号，从下往上依次为FEDCBA。然后根据刚才得到的那串完整的字母，按顺序对开关进行互动，最后跑到灯塔最顶上，可以看到有一个很大的灯，旁边还有一个小灯，灯的互动顺序没问题的话，小灯是可以进行互动的。互动完后，出现烟雾和音效，重新部署查看皮肤。
+6. 如果互动出现错误，可以直接停下，等30秒，这时互动的进度就会直接重置。也是由于这个机制，互动的相邻两个开关之间不能超过30秒，否则就会直接被重置，因此动作要稍微快点。
+</source>
+        <translation>
+# An Escalation (Skin)
+1. Before doing this task, make sure you have unlocked any M1917 MG variant; otherwise, the skin is useless. Select the Albion map, **absolutely do NOT choose snowy weather, as auto recognition will not work**. Germany, plane, fly straight to the D point where there is a metal tower. On the ground are many iron and wooden crates. Shoot the wooden ones (not grenades—you’ll need them later) until you have 9 iron crates left. Interact with each once, in any order. Not more, not less; if you make a mistake, restart.
+2. Go to the designated location (house at F point), open the door, and grenade the wooden cupboard to reveal a switch with a skull. Interact with the switch once.
+3. Return to the tower and interact with each crate once again. Then go back to the house switch and interact 4 times.
+4. Return to the tower. You will hear Morse code. Go prone, put your right ear close to the tower, alt-tab and start recording. Decode the letters. You can record a bit longer (40–50s) for accuracy. Usually, it’s a sequence of 5 repeating letters. To determine the exact order, click &quot;Show Image&quot; and look for the largest gap; the letters before/after are your 5. Replace &quot;XXXXX&quot; below with them for the full sequence:
+
+- **CAEEB XXXXX FEAADDAD**
+
+5. Go to map point A (the lighthouse) where there are 6 houses. Break all the kerosene lamps (order does not matter), then you’ll be able to interact with 6 switches inside the lighthouse. Number them FEDCBA from bottom to top. According to the full letter string above, interact with the switches in order. Finally, go to the top of the lighthouse, where there’s a big lamp and a small one. If you did it right, the small lamp will be interactable. Smoke and a sound effect means you’re done—redeploy and check the skin.
+6. If you make a mistake, stop and wait 30 seconds for the switches to reset. Because of this, don’t let more than 30 seconds pass between two switch interactions, or it will reset—so act quickly.
+</translation>
+    </message>
+    <message>
+        <location filename="../src/pages.py" line="148"/>
+        <location filename="../src/pages.py" line="181"/>
+        <source>输入解密出的5个字母</source>
+        <translation>Enter the 5 letters decoded</translation>
+    </message>
+    <message>
+        <location filename="../src/pages.py" line="149"/>
+        <location filename="../src/pages.py" line="182"/>
+        <location filename="../src/pages.py" line="189"/>
+        <source>这里将会显示最终的那串字母</source>
+        <translation>The final letter string will be displayed here</translation>
+    </message>
+</context>
+<context>
+    <name>UsagePage</name>
+    <message>
+        <location filename="../src/pages.py" line="80"/>
+        <source>
+# 使用说明
+## 彩蛋流程简介
+彩蛋总共有七个部分，包括2个背面狗牌：野兽之源和看见天使，3个正面狗牌：金牌不祥之兆，银牌冲突，铜牌初显身手，1个皮肤：M1917-逐步升级，以及最后的维和者所在的地道。其中比较麻烦的是银牌冲突，铜牌初显身手。不能跳过前面6个任务直接去做维和者任务，没有完成前置的话在地道会被毒气秒杀。本软件的教程只是简单的指示而已，如果需要完整的流程以及任务点位，查看视频[维和者彩蛋教程-up:鸽子王歌姬poi](https://www.bilibili.com/video/BV1FK411M7GN)。
+## 服务器选择
+到伺服器浏览界面，按顺序点击：重设筛选条件-模式选择征服-地图选择某个彩蛋对应的地图-人数不作限制-游戏规模不作限制，在服务器列表中选择没人的服务器，延迟大无所谓没有影响，官服（Official）也无所谓，做彩蛋不怕碰到挂。注意尽量不要选择硬核服（Hardcore）和其他的一些带限制的服（比如B2BCQ,Snipers Paradise），这些服务器的限制（比如硬核服没有小地图，狙服不给用某些武器配备等）会拖慢或影响某些任务的完成。有些服务器进去之后会显示“需要更多玩家才能开始回合”，这个不会影响彩蛋的完成。此外，如果正在做金牌的彩蛋，进去前先点击伺服器资讯，看一下有没有禁用精英兵，如果禁用了就不会刷新精英兵了。关于**天气**对自动识别的影响，铜牌宴厅下雨经过测试是没有问题的，金牌泽布吕赫下雨也没有影响，但是**逐步升级阿尔比恩是有严重影响的，因此做这个任务时不能是下雪天气**。
+## 狗牌查看
+回到主页，点开士兵，有一栏最顶上是自订士兵，向下滑动，能看到狗牌界面。进去后，分为正面和反面的狗牌，各自有一栏叫进度，里面就放着你获取的前置任务的狗牌。你可能通过近战击杀从敌人身上获取了上述的几个狗牌，但是那是无效的，需要自己做彩蛋才能完成维和者的前置。
+## 武器皮肤
+回到主页，点开士兵，自订士兵，下面可以选择兵种。选择支援兵，主武器选择M1917机枪（担架），型号无所谓。有一栏是皮肤，后续需要在这里更换为逐步升级。
+## 相关设置和说明
+- 选项-影像-全萤幕模式，改成无边界，避免后面使用alt+tab切屏时出现问题。然后选项-音效-主音量和音乐音量都拉到100%，避免录制的音频强度过低导致摩斯电码识别出错，也方便听到获取狗牌的音效，系统音量开多少都无所谓，没有影响。
+- 听摩斯电码前，把电脑桌面除了战地一外所有声音（比如音乐软件，QQ，开黑软件）关闭，避免干扰摩斯电码的自动识别。麦克风声音理论上不会被捕获，不过还是尽量关掉。地图最好选择流血宴厅，因为摩斯电码的识别测试用的音频都是在这个图录制的，其他图由于背景音不同可能出现错误。听之前，确保拿到耳机，靠近电报机所在的那个壕沟的拐角，alt+tab切屏出去打开软件，开始录制，然后切屏回来，慢慢走到电报机旁边，面对电报机蹲下，比对灯的颜色是不是和软件上提示的相同，同时避免视角转动，这时可以使用手机进行计时，大概录制个30-40秒就行(软件会在60s时自动停止录制)，切屏出去关闭录制，自动保存。
+- 在切屏出去解密时，记得隔个一两分钟就要切回来动一下鼠标开几枪，避免挂机太久服务器给你踢了。
+- 解密摩斯电码和显示图像时可能会卡一会并且变成无响应，一般是正常的，因为解密需要花费较长时间，等一下就行了。测试后不影响正常使用。
+</source>
+        <translation>
+# Instructions
+## Easter Egg Flow Overview
+There are 7 parts: 2 back dog tags (Belly of the Beast, Angel Sighting), 3 front dog tags (Gold: An Omen, Silver: A Conflict, Bronze: A Beginning), 1 skin (M1917 – An Escalation), and finally the Peacekeeper tunnel. The most complex are Silver: A Conflict and Bronze: A Beginning. You cannot skip the first 6 tasks; if you haven&apos;t completed them, you&apos;ll be killed by gas in the tunnel. This software&apos;s guide is just a brief pointer; for full walkthroughs and task locations, see [Peacekeeper Easter Egg Tutorial - up: 鸽子王歌姬poi](https://www.bilibili.com/video/BV1FK411M7GN).
+## Server Selection
+On the server browser: Reset filters → select Conquest mode → select the corresponding map → no limit on player count or size. Pick an empty server; high ping doesn’t matter; Official servers are fine; doing the Easter egg, you don’t have to worry about cheaters. Avoid Hardcore and restricted servers (e.g., B2BCQ, Snipers Paradise), as their restrictions (no minimap, no certain loadouts, etc.) make some tasks harder. Some servers may say &quot;need more players to start,&quot; but that doesn&apos;t affect the Easter egg. If doing the gold Easter egg, check server info before starting—if Elite classes are disabled, they won’t spawn. About **weather**: rainy Ballroom Blitz and Zeebrugge are fine for auto-recognition, but **snowy Albion will break An Escalation—do NOT use snowy weather**.
+## Viewing Dog Tags
+Go to Home, click Soldiers, scroll down to the Dog Tags section. Inside, tags are split into Front and Back, each with a Progress page showing prerequisite tags. You may have gotten some tags from melee kills, but those don&apos;t count—you must do the Easter egg yourself to unlock Peacekeeper.
+## Weapon Skin
+On the Soldiers page, under Customize Soldier, select Support, then M1917 MG (any variant). There is a skin section, where you will later equip An Escalation.
+## Other Settings and Tips
+- Options → Video → Fullscreen Mode: set to Borderless to avoid alt-tab issues. Options → Audio: set master/music volume to 100% to ensure strong audio for Morse recognition and to hear the dog tag sound. System volume is irrelevant.
+- Before listening to Morse code, mute all other computer sounds besides BF1 to avoid interfering with auto-recognition. Microphone input usually isn’t captured, but best to mute it too. The best map for recording Morse is Ballroom Blitz, as test samples were recorded there; other maps’ background noise may cause errors. Before recording, use headphones, get close to the telegraph’s trench corner, alt-tab to start the tool, begin recording, then alt-tab back, slowly approach the telegraph, crouch facing it, check the light color matches the tool, and avoid moving your view. Use your phone for timing—record 30–40 seconds (the tool auto-stops at 60s), then alt-tab out to stop and save.
+- While decoding, tab back every minute or two and move the mouse/fire a shot to avoid being kicked for AFK.
+- Decoding Morse or displaying the waveform may freeze the UI for a while; this is normal. Just wait; it does not affect use.
+</translation>
+    </message>
+</context>
+<context>
+    <name>compute_candles</name>
+    <message>
+        <location filename="../src/methods.py" line="12"/>
+        <source>无结果</source>
+        <translation>No result</translation>
+    </message>
+    <message>
+        <location filename="../src/methods.py" line="74"/>
+        <source>结果为：</source>
+        <translation>Result:</translation>
+    </message>
+</context>
+<context>
+    <name>find_closest_string</name>
+    <message>
+        <location filename="../src/methods.py" line="428"/>
+        <source>无结果</source>
+        <translation>No result</translation>
+    </message>
+</context>
+<context>
+    <name>find_missing_letters</name>
+    <message>
+        <location filename="../src/methods.py" line="98"/>
+        <source>error:输入字符数不是22个</source>
+        <translation>error: Number of entered characters is not 22</translation>
+    </message>
+    <message>
+        <location filename="../src/methods.py" line="101"/>
+        <source>error:输入的字符中含有不是字母的字符</source>
+        <translation>error: The entered characters contain non-letter characters</translation>
+    </message>
+</context>
+<context>
+    <name>get_last_gold_text</name>
+    <message>
+        <location filename="../src/methods.py" line="192"/>
+        <source>缺少的字母为:</source>
+        <translation>Missing letters are:</translation>
+    </message>
+    <message>
+        <location filename="../src/methods.py" line="193"/>
+        <source>对应数字为:</source>
+        <translation>Corresponding numbers are:</translation>
+    </message>
+    <message>
+        <location filename="../src/methods.py" line="195"/>
+        <source>1-8号灯的开关序列(1:亮,0:灭):
+</source>
+        <translation type="finished">1-8 Light switch sequence(1:On,0:Off):
+</translation>
+    </message>
+</context>
+</TS>

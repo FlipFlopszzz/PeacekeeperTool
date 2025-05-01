@@ -1,6 +1,8 @@
+from PySide6.QtWidgets import QMainWindow
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
 from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget
+from PySide6.QtGui import QPalette, QColor
 from scipy import signal
 import librosa
 import numpy as np
@@ -330,7 +332,13 @@ class PlotWindow(QMainWindow):
   def __init__(self, analyzer: AudioAnalyzer, parent=None):
     super().__init__(parent)
     self.analyzer = analyzer
-    self.setWindowTitle("音频信号幅值-时间图")
+
+    # 使用 tr() 包裹窗口标题
+    self.setWindowTitle(self.tr("音频信号幅值-时间图"))
+
+    palette = QPalette()
+    palette.setColor(QPalette.Window, QColor("#F3F3F3"))
+    self.setPalette(palette)
     self.initUI()
     self.plot()
 
@@ -349,52 +357,66 @@ class PlotWindow(QMainWindow):
   def plot(self):
     self.fig.clear()
 
-    amplitude_threshold = None
-    if self.analyzer.amplitude_threshold:
-      amplitude_threshold = self.analyzer.amplitude_threshold
-    else:
-      amplitude_threshold = self.analyzer.init_amplitude_threshold
-
+    amplitude_threshold = self.analyzer.amplitude_threshold or self.analyzer.init_amplitude_threshold
     high_freq = self.analyzer.high_freq
     low_freq = self.analyzer.low_freq
 
     ax = self.fig.add_subplot(111)
 
-    # 绘制基本信号
-    ax.plot(self.analyzer.times, self.analyzer.amplitudes,
-            'b-', linewidth=1, label='信号')
+    # 绘制基本信号（标签用 tr() 包裹）
+    ax.plot(
+        self.analyzer.times, self.analyzer.amplitudes,
+        'b-', linewidth=1, label=self.tr('信号')
+    )
 
-    # 绘制阈值线
-    ax.axhline(y=amplitude_threshold, color='r', linestyle='--',
-               label=f'幅值阈值 ({amplitude_threshold})')
+    # 绘制阈值线（动态文本用 format 包裹，静态文本用 tr()）
+    threshold_label = self.tr('幅值阈值 ({0})').format(amplitude_threshold)
+    ax.axhline(
+        y=amplitude_threshold, color='r', linestyle='--',
+        label=threshold_label
+    )
 
-    # 绘制单词间隔
-    for gap_start, gap_end in self.analyzer.word_gaps:
-      ax.axvspan(gap_start, gap_end, color='red', alpha=0.1,
-                 label='单词间隔("   ")' if gap_start == self.analyzer.word_gaps[0][0] else "")
+    # 单词间隔标签（静态文本用 tr()）
+    word_gap_label = self.tr('单词间隔("   ")')
+    for i, (gap_start, gap_end) in enumerate(self.analyzer.word_gaps):
+      ax.axvspan(
+          gap_start, gap_end, color='red', alpha=0.1,
+          label=word_gap_label if i == 0 else ""
+      )
 
-    # 绘制字符间隔
-    for gap_start, gap_end in self.analyzer.char_gaps:
-      ax.axvspan(gap_start, gap_end, color='blue', alpha=0.1,
-                 label='字符间隔(" ")' if gap_start == self.analyzer.char_gaps[0][0] else "")
+    # 字符间隔标签（静态文本用 tr()）
+    char_gap_label = self.tr('字符间隔(" ")')
+    for i, (gap_start, gap_end) in enumerate(self.analyzer.char_gaps):
+      ax.axvspan(
+          gap_start, gap_end, color='blue', alpha=0.1,
+          label=char_gap_label if i == 0 else ""
+      )
 
-    # 绘制点划信号
+    # 点/划标签（静态文本用 tr()）
+    dot_label = self.tr('点(".")')
+    dash_label = self.tr('划("_")')
     dot_label_set = False
     dash_label_set = False
     for start, duration, signal_type in self.analyzer.morse_signals:
-      if signal_type == 1:  # 点
-        ax.axvspan(start, start + duration, color='g', alpha=0.3,
-                   label='点(".")' if not dot_label_set else "")
+      if signal_type == 1 and not dot_label_set:
+        ax.axvspan(
+            start, start + duration, color='g', alpha=0.3,
+            label=dot_label
+        )
         dot_label_set = True
-      elif signal_type == 2:  # 划
-        ax.axvspan(start, start + duration, color='y', alpha=0.3,
-                   label='划("_")' if not dash_label_set else "")
+      elif signal_type == 2 and not dash_label_set:
+        ax.axvspan(
+            start, start + duration, color='y', alpha=0.3,
+            label=dash_label
+        )
         dash_label_set = True
 
-    # 设置图表属性
-    ax.set_title(f'{low_freq}-{high_freq}Hz 信号分析')
-    ax.set_xlabel('时间')
-    ax.set_ylabel('幅值')
+    # 图表属性（动态文本用 format，静态文本用 tr()）
+    ax.set_title(
+        self.tr('{0}-{1}Hz 信号分析').format(low_freq, high_freq)
+    )
+    ax.set_xlabel(self.tr('时间'))
+    ax.set_ylabel(self.tr('幅值'))
     ax.grid(True)
     ax.legend()
 
@@ -402,6 +424,5 @@ class PlotWindow(QMainWindow):
     self.canvas.draw()
 
   def closeEvent(self, event):
-    # 确保在关闭窗口时正确清理资源
     plt.close(self.fig)
     super().closeEvent(event)

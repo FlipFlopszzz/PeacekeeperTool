@@ -66,9 +66,7 @@ class CoordinateSystem(QWidget):
         button.setFixedSize(40, 40)
         button.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         button.setCheckable(True)
-
-        # 添加 silver 类以匹配全局样式
-        button.setProperty("class", "silver")
+        button.setObjectName('silver')
 
         # 根据按钮所在层设置边框颜色
         layer = min(row, col, 7 - row, 7 - col)
@@ -132,9 +130,9 @@ class CandleDecryptor(QWidget):
 
       # 创建输入框
       if i == 0:
-        input_box = SingleLineInput("示例:2,3,4,5")
+        input_box = SingleLineInput(self.tr("示例:2,3,4,5"))
       elif i == 1:
-        input_box = SingleLineInput("灯的序号之间用中/英文逗号隔开")
+        input_box = SingleLineInput(self.tr("灯的序号之间用中/英文逗号隔开"))
       else:
         input_box = SingleLineInput()
       input_box.input_box.setFixedWidth(240)
@@ -156,7 +154,7 @@ class CandleDecryptor(QWidget):
     self.result_label.setStyleSheet("font-size: 14px; margin-right: 10px;")
 
     # 创建解密按钮
-    self.decrypt_button = QPushButton("解密")
+    self.decrypt_button = QPushButton(self.tr("解密"))
     self.decrypt_button.setFixedSize(100, 35)  # 设置按钮大小
     self.decrypt_button.clicked.connect(self.on_btn_clicked)
 
@@ -203,8 +201,19 @@ class CandleDecryptor(QWidget):
     try:
       result = compute_candles(iterations)
     except Exception:
-      result = "无结果"
+      result = self.tr("无结果")
     self.result_label.setText(result)
+
+  def retranslate_ui(self):
+      # 输入框的提示文本
+    self.input_boxes[0].setPlaceholderText(self.tr("示例:2,3,4,5"))
+    self.input_boxes[1].setPlaceholderText(self.tr("灯的序号之间用中/英文逗号隔开"))
+    # 其余输入框如原来没有placeholder可忽略
+
+    # 解密按钮
+    self.decrypt_button.setText(self.tr("解密"))
+    # 如果结果区显示的是"无结果"，需要用tr刷新
+    self.result_label.setText("")
 
 
 class AudioMorseDecoder(QWidget):
@@ -215,19 +224,26 @@ class AudioMorseDecoder(QWidget):
   def __init__(self, mode=0):
     super().__init__()
     self.mode = mode
-    # mode=0:skin,mode=1:gold,mode=2:copper
-    # 创建按钮
-    self.record_btn = QPushButton("开始录制")
-    self.record_btn.clicked.connect(self.toggle_record_text)
+    # 三态：0=不可录制 1=可录制 2=录制中(停止录制)
+    self.rec_status = 0
+    # decode_btn三态：0=不可识别 1=可识别 2=识别中
+    self.decode_status = 0
+    # show_img_btn三态：0=不可显示 1=可显示 2=显示中
+    self.show_img_status = 0
+
+    # 录制相关
+    self.record_btn = QPushButton(self.tr("开始录制"))
+    self.record_btn.setObjectName("morseDecoder")
+    self.record_btn.clicked.connect(self.record_btn_handler)
     self.record_btn.setFixedHeight(35)
     self.record_btn.setDisabled(True)
 
-    # 使用自定义输入框组件
-    self.save_path_inputbox = SingleLineInput("停止录制时，音频会保存到这个目录下")
+    self.save_path_inputbox = SingleLineInput(self.tr("停止录制时，音频会保存到这个目录下"))
     self.save_path_inputbox.onTextChanged(
         self.save_path_inputbox_text_handler)
 
-    self.save_path_btn = QPushButton("选择保存目录")
+    self.save_path_btn = QPushButton(self.tr("选择保存目录"))
+    self.save_path_btn.setObjectName("morseDecoder")
     self.save_path_btn.setFixedHeight(35)
     self.save_path_btn.clicked.connect(self.save_path_btn_handler)
 
@@ -236,48 +252,57 @@ class AudioMorseDecoder(QWidget):
     save_layout.addWidget(self.save_path_inputbox)
     save_layout.addWidget(self.save_path_btn)
 
-    self.decode_btn = QPushButton("开始识别")
+    # 识别相关
+    self.decode_btn = QPushButton(self.tr("开始识别"))
+    self.decode_btn.setObjectName("morseDecoder")
     self.decode_btn.setFixedHeight(35)
     self.decode_btn.setDisabled(True)
     self.decode_btn.clicked.connect(self.decode_btn_handler)
 
-    # 使用自定义输入框组件
-    self.decode_path_inputbox = SingleLineInput("这里是将要用于自动识别的音频文件路径")
+    self.decode_path_inputbox = SingleLineInput(
+        self.tr("这里是将要用于自动识别的音频文件路径"))
     self.decode_path_inputbox.onTextChanged(
         self.decode_path_inputbox_text_handler)
 
-    self.decode_path_btn = QPushButton("选择用于识别的音频文件")
+    self.decode_path_btn = QPushButton(self.tr("选择用于识别的音频文件"))
+    self.decode_path_btn.setObjectName("morseDecoder")
     self.decode_path_btn.setFixedHeight(35)
     self.decode_path_btn.clicked.connect(self.decode_path_btn_handler)
-    # signal
-    self.analysis_finished.connect(self.on_analysis_finished)
-    self.analysis_error.connect(self.on_analysis_error)
 
     decode_layout = QHBoxLayout()
     decode_layout.addWidget(self.decode_btn)
     decode_layout.addWidget(self.decode_path_inputbox)
     decode_layout.addWidget(self.decode_path_btn)
 
+    # 幅值阈值
     amplitude_threshold_layout = QHBoxLayout()
     self.amplitude_threshold_label_left = QLabel(
-        "使用这个滑块来调整摩斯电码幅值阈值    当前: 0.0")
-    amplitude_threshold_layout.addWidget(self.amplitude_threshold_label_left)
+        self.tr("使用这个滑块来调整摩斯电码幅值阈值    当前: 0.0"))
+    amplitude_threshold_layout.addWidget(
+        self.amplitude_threshold_label_left)
     self.amplitude_threshold_silder = QSlider(Qt.Horizontal)
     self.amplitude_threshold_silder.setDisabled(True)
-    self.amplitude_threshold_silder.valueChanged.connect(self.sliderHandler)
+    self.amplitude_threshold_silder.valueChanged.connect(
+        self.sliderHandler)
     amplitude_threshold_layout.addWidget(self.amplitude_threshold_silder)
     self.amplitude_threshold_label_right = QLabel()
-    amplitude_threshold_layout.addWidget(self.amplitude_threshold_label_right)
+    amplitude_threshold_layout.addWidget(
+        self.amplitude_threshold_label_right)
 
-    # 创建文本显示区域，使用自定义组件
-    self.morse_text_display = SingleLineTextDisplay("这里将会显示识别出的摩斯电码的点划")
-    self.decoded_text_display = SingleLineTextDisplay("这里将会显示摩斯电码解密结果")
+    # 文本显示区
+    self.morse_text_display = SingleLineTextDisplay(
+        self.tr("这里将会显示识别出的摩斯电码的点划"))
+    self.decoded_text_display = SingleLineTextDisplay(
+        self.tr("这里将会显示摩斯电码解密结果"))
 
-    # 创建提示文字
-    self.hint_label = QLabel("如果需要手动听写摩斯电码，可以利用下面的输入框自动翻译摩斯电码")
+    # 提示
+    self.hint_label = QLabel(self.tr("如果需要手动听写摩斯电码，可以利用下面的输入框自动翻译摩斯电码"))
     self.hint_label.setFixedHeight(35)
     self.hint_label.setFont(QFont())
-    self.show_img_btn = QPushButton("显示图像")
+
+    # 显示图像
+    self.show_img_btn = QPushButton(self.tr("显示图像"))
+    self.show_img_btn.setObjectName("morseDecoder")
     self.show_img_btn.setFixedHeight(35)
     self.show_img_btn.setDisabled(True)
     self.show_img_btn.clicked.connect(self.show_img_btn_handler)
@@ -286,14 +311,12 @@ class AudioMorseDecoder(QWidget):
     show_img_layout.addWidget(self.show_img_btn)
     show_img_layout.addWidget(self.hint_label)
 
-    # 使用自定义输入框组件
+    # 手动输入/显示
     self.handy_inputbox = SingleLineInput("")
     self.handy_inputbox.onTextChanged(self.handy_inputbox_handler)
-
-    # 创建另一个文本显示区域，使用自定义组件
     self.handy_text_display = SingleLineTextDisplay("")
 
-    # 创建主布局
+    # 主布局
     main_layout = QVBoxLayout()
     main_layout.addLayout(save_layout)
     main_layout.addLayout(decode_layout)
@@ -303,87 +326,130 @@ class AudioMorseDecoder(QWidget):
     main_layout.addLayout(show_img_layout)
     main_layout.addWidget(self.handy_inputbox)
     main_layout.addWidget(self.handy_text_display)
-
     self.setLayout(main_layout)
-
     self.setFixedHeight(330)
 
-  def toggle_record_text(self):
-    if self.record_btn.text() == "开始录制":
+    # 信号
+    self.analysis_finished.connect(self.on_analysis_finished)
+    self.analysis_error.connect(self.on_analysis_error)
+
+    # 初始化按钮状态
+    self.update_record_btn_status()
+    self.update_decode_btn_status()
+    self.update_show_img_btn_status()
+
+  # ====== 按钮与状态管理 ======
+  def update_record_btn_status(self):
+    if self.rec_status == 0:
+      self.record_btn.setText(self.tr("开始录制"))
+      self.record_btn.setDisabled(True)
+    elif self.rec_status == 1:
+      self.record_btn.setText(self.tr("开始录制"))
+      self.record_btn.setEnabled(True)
+    elif self.rec_status == 2:
+      self.record_btn.setText(self.tr("停止录制"))
+      self.record_btn.setEnabled(True)
+
+  def update_decode_btn_status(self):
+    if self.decode_status == 0:
+      self.decode_btn.setText(self.tr("开始识别"))
+      self.decode_btn.setDisabled(True)
+    elif self.decode_status == 1:
+      self.decode_btn.setText(self.tr("开始识别"))
+      self.decode_btn.setEnabled(True)
+    elif self.decode_status == 2:
+      self.decode_btn.setText(self.tr("识别中..."))
+      self.decode_btn.setDisabled(True)
+
+  def update_show_img_btn_status(self):
+    if self.show_img_status == 0:
+      self.show_img_btn.setText(self.tr("显示图像"))
+      self.show_img_btn.setDisabled(True)
+    elif self.show_img_status == 1:
+      self.show_img_btn.setText(self.tr("显示图像"))
+      self.show_img_btn.setEnabled(True)
+    elif self.show_img_status == 2:
+      self.show_img_btn.setText(self.tr("尝试显示中..."))
+      self.show_img_btn.setDisabled(True)
+
+  # ====== 业务逻辑 ======
+  def record_btn_handler(self):
+    if self.rec_status == 1:
       # 开始
       audioRecorder.setDirectory(self.save_path_inputbox.text())
       audioRecorder.start()
-      self.record_btn.setText("停止录制")
-    else:
+      self.rec_status = 2
+    elif self.rec_status == 2:
       # 停止
       fileName = audioRecorder.stop()
-      self.record_btn.setText("开始录制")
+      self.rec_status = 1
       self.decode_path_inputbox.setText(fileName)
+    self.update_record_btn_status()
 
   def decode_path_btn_handler(self):
     file_dialog = QFileDialog()
-    filter_str = "WAV Files (*.wav);;All Files (*)"
+    filter_str = self.tr("WAV Files (*.wav);;All Files (*)")
     file_path, _ = file_dialog.getOpenFileName(
-        self, '选择文件', filter=filter_str)
+        self, self.tr('选择文件'), filter=filter_str)
     if file_path:
       self.decode_path_inputbox.setText(file_path)
 
   def save_path_btn_handler(self):
-    folder_path = QFileDialog.getExistingDirectory(self, '选择文件夹')
+    folder_path = QFileDialog.getExistingDirectory(self, self.tr('选择文件夹'))
     if folder_path:
       self.save_path_inputbox.setText(folder_path)
 
   def save_path_inputbox_text_handler(self, text):
     if not text:
-      self.record_btn.setDisabled(True)
+      self.rec_status = 0
     else:
-      self.record_btn.setDisabled(False)
+      self.rec_status = 1
+    self.update_record_btn_status()
 
   def decode_path_inputbox_text_handler(self, text):
-    self.morse_text_display.setText("这里将会显示识别出的摩斯电码的点划")
-    self.decoded_text_display.setText("这里将会显示摩斯电码解密结果")
+    self.morse_text_display.setText(self.tr("这里将会显示识别出的摩斯电码的点划"))
+    self.decoded_text_display.setText(self.tr("这里将会显示摩斯电码解密结果"))
     self.amplitude_threshold_silder.setDisabled(True)
     self.amplitude_threshold_label_right.setText("")
     if not text:
-      self.decode_btn.setDisabled(True)
-      self.show_img_btn.setDisabled(True)
+      self.decode_status = 0
+      self.show_img_status = 0
     else:
-      self.decode_btn.setDisabled(False)
-      self.show_img_btn.setDisabled(False)
+      self.decode_status = 1
+      self.show_img_status = 1
+    self.update_decode_btn_status()
+    self.update_show_img_btn_status()
 
   def decode_btn_handler(self):
     self.analysis_choice = 0
-    if self.decode_btn.text() == "开始识别":
+    if self.decode_status == 1:
       audio_file_path = self.decode_path_inputbox.text()
-      self.decode_btn.setText("识别中...")
-      self.decode_btn.setDisabled(True)
-      self.show_img_btn.setDisabled(True)
-
+      self.decode_status = 2
+      self.show_img_status = 0
+      self.update_decode_btn_status()
+      self.update_show_img_btn_status()
       self.analyze_in_new_thread(audio_file_path, self.mode)
 
   def show_img_btn_handler(self):
     self.analysis_choice = 1
-    if self.show_img_btn.text() == "显示图像":
+    if self.show_img_status == 1:
       audio_file_path = self.decode_path_inputbox.text()
-      self.show_img_btn.setText("尝试显示中...")
-      self.show_img_btn.setDisabled(True)
-      self.decode_btn.setDisabled(True)
-
+      self.show_img_status = 2
+      self.decode_status = 0
+      self.update_show_img_btn_status()
+      self.update_decode_btn_status()
       self.analyze_in_new_thread(audio_file_path, self.mode)
 
   def analyze_in_mode(self, audio_file_path, mode):
-    # mode=0:skin,mode=1:gold,mode=2:copper
-    # 3.0,9.0,12.0
     try:
       if mode == 0:
         audioAnalyzer.analyze(audio_file_path)
       elif mode == 1:
-        audioAnalyzer.analyze(audio_file_path, low_freq=980,
-                              high_freq=1020, amplitude_threshold_coef=0.35)
+        audioAnalyzer.analyze(
+            audio_file_path, low_freq=980, high_freq=1020, amplitude_threshold_coef=0.35)
       elif mode == 2:
-        audioAnalyzer.analyze(audio_file_path, low_freq=770,
-                              high_freq=825, amplitude_threshold_coef=0.3)
-
+        audioAnalyzer.analyze(
+            audio_file_path, low_freq=770, high_freq=825, amplitude_threshold_coef=0.3)
       self.analysis_finished.emit()
     except:
       self.analysis_error.emit()
@@ -392,16 +458,15 @@ class AudioMorseDecoder(QWidget):
     self.handy_text_display.setText(decode_morse(text))
 
   def show_error_message(self, error_text):
-    # 创建错误消息框
-    QMessageBox.critical(self, '错误', error_text)
+    QMessageBox.critical(self, self.tr('错误'), self.tr(error_text))
 
   def sliderHandler(self, value):
-    fmt_value = value/100
+    fmt_value = value / 100
     audioAnalyzer.amplitude_threshold = fmt_value
     audioAnalyzer.analyze_morse_signal()
     morse_code = audioAnalyzer.get_morse_code()
     self.amplitude_threshold_label_left.setText(
-        "使用这个滑块来调整摩斯电码幅值阈值    当前: "+str(fmt_value))
+        self.tr("使用这个滑块来调整摩斯电码幅值阈值    当前: ") + str(fmt_value))
     if morse_code:
       self.morse_text_display.setText(morse_code)
       decoded = decode_morse(morse_code)
@@ -422,21 +487,23 @@ class AudioMorseDecoder(QWidget):
           self.morse_text_display.setText(morse_code)
           decoded = decode_morse(morse_code)
           self.decoded_text_display.setText(decoded)
-        self.decode_btn.setText("开始识别")
-        self.decode_btn.setDisabled(False)
-        self.show_img_btn.setDisabled(False)
+        self.decode_status = 1
+        self.show_img_status = 1
+        self.update_decode_btn_status()
+        self.update_show_img_btn_status()
       elif choice == 1:
         audioAnalyzer.analyze_morse_signal()
         plot_window = audioAnalyzer.plot()
-        self.show_img_btn.setText("显示图像")
-        self.decode_btn.setDisabled(False)
-        self.show_img_btn.setDisabled(False)
+        self.show_img_status = 1
+        self.decode_status = 1
+        self.update_show_img_btn_status()
+        self.update_decode_btn_status()
 
       self.amplitude_threshold_silder.setDisabled(False)
       self.amplitude_threshold_silder.setRange(
-          0, round(audioAnalyzer.mean_max_amplitude*100))
+          0, round(audioAnalyzer.mean_max_amplitude * 100))
       self.amplitude_threshold_silder.setValue(
-          audioAnalyzer.init_amplitude_threshold*100)
+          audioAnalyzer.init_amplitude_threshold * 100)
       self.amplitude_threshold_label_right.setText(
           str(audioAnalyzer.mean_max_amplitude))
     except:
@@ -444,16 +511,34 @@ class AudioMorseDecoder(QWidget):
 
   def on_analysis_error(self):
     choice = self.analysis_choice
-    self.decode_btn.setDisabled(False)
-    self.show_img_btn.setDisabled(False)
+    self.decode_status = 1
+    self.show_img_status = 1
     self.amplitude_threshold_silder.setDisabled(True)
     self.amplitude_threshold_label_right.setText("")
+    self.update_decode_btn_status()
+    self.update_show_img_btn_status()
     if choice == 0:
-      self.decode_btn.setText("开始识别")
-      self.show_error_message("识别音频时出错，请检查音频文件路径和格式(.wav)是否正确")
+      self.show_error_message(self.tr("识别音频时出错，请检查音频文件路径和格式(.wav)是否正确"))
     elif choice == 1:
-      self.show_img_btn.setText("显示图像")
-      self.show_error_message("显示图像时出错，请检查音频文件路径和格式(.wav)是否正确")
+      self.show_error_message(self.tr("显示图像时出错，请检查音频文件路径和格式(.wav)是否正确"))
+
+  def retranslate_ui(self):
+    self.update_record_btn_status()
+    self.save_path_inputbox.setPlaceholderText(
+        self.tr("停止录制时，音频会保存到这个目录下"))
+    self.save_path_btn.setText(self.tr("选择保存目录"))
+    self.update_decode_btn_status()
+    self.decode_path_inputbox.setPlaceholderText(
+        self.tr("这里是将要用于自动识别的音频文件路径"))
+    self.decode_path_btn.setText(self.tr("选择用于识别的音频文件"))
+    self.amplitude_threshold_label_left.setText(
+        self.tr("使用这个滑块来调整摩斯电码幅值阈值    当前: ") +
+        str(self.amplitude_threshold_silder.value() / 100)
+    )
+    self.morse_text_display.setText(self.tr("这里将会显示识别出的摩斯电码的点划"))
+    self.decoded_text_display.setText(self.tr("这里将会显示摩斯电码解密结果"))
+    self.hint_label.setText(self.tr("如果需要手动听写摩斯电码，可以利用下面的输入框自动翻译摩斯电码"))
+    self.update_show_img_btn_status()
 
 
 class CipherDecryptor(QWidget):
@@ -468,11 +553,11 @@ class CipherDecryptor(QWidget):
     top_layout = QHBoxLayout()
 
     # 创建标签
-    self.label = QLabel("解密器")
+    self.label = QLabel(self.tr("解密器"))
     top_layout.addWidget(self.label)
 
     # 创建复选框
-    self.checkbox = QCheckBox("解密栅栏密码前是否自动倒置")
+    self.checkbox = QCheckBox(self.tr("解密栅栏密码前是否自动倒置"))
     self.checkbox.setChecked(True)
     self.checkbox.setVisible(False)
     self.checkbox.stateChanged.connect(
@@ -483,14 +568,14 @@ class CipherDecryptor(QWidget):
     self.combobox = QComboBox()
     self.combobox.setFixedWidth(240)
     self.combobox.setFixedHeight(40)
-    self.combobox.addItem("任务1:原文")
-    self.combobox.addItem("任务2:倒置(Reverse)")
-    self.combobox.addItem("任务3:替换密码(Atbash)")
-    self.combobox.addItem("任务4:凯撒密码(Rot)")
-    self.combobox.addItem("任务5:栅栏密码(Rail Fence)")
-    self.combobox.addItem("任务6:培根密码(Baconian)")
-    self.combobox.addItem("任务7:维吉尼亚密码(Vigenere)")
-    self.combobox.addItem("任务8:自动密钥密码(Autokey)")
+    self.combobox.addItem(self.tr("任务1:原文"))
+    self.combobox.addItem(self.tr("任务2:倒置(Reverse)"))
+    self.combobox.addItem(self.tr("任务3:替换密码(Atbash)"))
+    self.combobox.addItem(self.tr("任务4:凯撒密码(Rot)"))
+    self.combobox.addItem(self.tr("任务5:栅栏密码(Rail Fence)"))
+    self.combobox.addItem(self.tr("任务6:培根密码(Baconian)"))
+    self.combobox.addItem(self.tr("任务7:维吉尼亚密码(Vigenere)"))
+    self.combobox.addItem(self.tr("任务8:自动密钥密码(Autokey)"))
     self.combobox.currentIndexChanged.connect(
         self.update_mode_on_combobox_change)
     top_layout.addWidget(self.combobox)
@@ -498,15 +583,15 @@ class CipherDecryptor(QWidget):
     layout.addLayout(top_layout)
 
     # 创建输入框，使用自定义组件
-    self.input_box = SingleLineInput("请输入摩斯电码解密结果(相关参数帮你填好了)")
+    self.input_box = SingleLineInput(self.tr("请输入摩斯电码解密结果(相关参数帮你填好了)"))
     self.input_box.onTextChanged(self.update_text_display)
     layout.addWidget(self.input_box)
 
     # 创建文本显示区域，使用自定义组件
-    self.text_display = SingleLineTextDisplay("这里会显示解密结果")
+    self.text_display = SingleLineTextDisplay(self.tr("这里会显示解密结果"))
     layout.addWidget(self.text_display)
 
-    self.text_display_match = SingleLineTextDisplay("这里会显示最匹配的地点")
+    self.text_display_match = SingleLineTextDisplay(self.tr("这里会显示最匹配的地点"))
     layout.addWidget(self.text_display_match)
 
     self.setLayout(layout)
@@ -539,7 +624,7 @@ class CipherDecryptor(QWidget):
     elif mode == 7:
       result = decrypt_autokey(text)
 
-    self.text_display.setText(result or "这里会显示解密结果")
+    self.text_display.setText(result or self.tr("这里会显示解密结果"))
 
     self.update_text_display_match(mode)
 
@@ -556,10 +641,13 @@ class CipherDecryptor(QWidget):
       else:
         processed_text = processed_text[:25]
     result = find_closest_string(processed_text)
-    if (result == "无结果"):
-      self.text_display_match.setText("无结果")
+    if (result == self.tr("无结果")):
+      self.text_display_match.setText(self.tr("无结果"))
     else:
-      self.text_display_match.setText("目标地点可能为: "+result)
+      self.text_display_match.setText(self.tr("目标地点可能为: ")+result)
+
+    if not self.input_box.text():
+      self.text_display_match.setText(self.tr("这里会显示最匹配的地点"))
 
   def update_text_display_on_checkbox_change(self):
     self.update_text_display(
@@ -568,17 +656,45 @@ class CipherDecryptor(QWidget):
 
   def update_mode_on_combobox_change(self, mode):
     self.mode = mode
-    self.checkbox.setVisible(self.mode == 3 or self.mode == 4)
+    self.checkbox.setVisible(self.mode == 4 or self.mode == 5)
     if mode == 4:
-      self.checkbox.setText("解密栅栏密码前是否自动倒置")
+      self.checkbox.setText(self.tr("解密栅栏密码前是否自动倒置"))
     elif mode == 5:
-      self.checkbox.setText("解密培根密码后是否自动用替换密码解密")
+      self.checkbox.setText(self.tr("解密培根密码后是否自动用替换密码解密"))
     self.update_text_display(self.input_box.text())
 
   def replace_e_t(self, s):
     new_s = s.replace('E', 'a').replace(
         'e', 'a').replace('T', 'b').replace('t', 'b')
     return new_s
+
+  def retranslate_ui(self):
+    # 标签
+    self.label.setText(self.tr("解密器"))
+    # 复选框文本，取决于当前模式
+    if self.mode == 4:
+      self.checkbox.setText(self.tr("解密栅栏密码前是否自动倒置"))
+    elif self.mode == 5:
+      self.checkbox.setText(self.tr("解密培根密码后是否自动用替换密码解密"))
+    else:
+      self.checkbox.setText("")
+
+    # combobox 各项文本重设
+    self.combobox.setItemText(0, self.tr("任务1:原文"))
+    self.combobox.setItemText(1, self.tr("任务2:倒置(Reverse)"))
+    self.combobox.setItemText(2, self.tr("任务3:替换密码(Atbash)"))
+    self.combobox.setItemText(3, self.tr("任务4:凯撒密码(Rot)"))
+    self.combobox.setItemText(4, self.tr("任务5:栅栏密码(Rail Fence)"))
+    self.combobox.setItemText(5, self.tr("任务6:培根密码(Baconian)"))
+    self.combobox.setItemText(6, self.tr("任务7:维吉尼亚密码(Vigenere)"))
+    self.combobox.setItemText(7, self.tr("任务8:自动密钥密码(Autokey)"))
+
+    # 输入框 placeholder
+    self.input_box.setPlaceholderText(self.tr("请输入摩斯电码解密结果(相关参数帮你填好了)"))
+
+    self.input_box.setText("")
+    self.text_display.setText(self.tr("这里会显示解密结果"))
+    self.text_display_match.setText(self.tr("这里会显示最匹配的地点"))
 
 
 if __name__ == "__main__":

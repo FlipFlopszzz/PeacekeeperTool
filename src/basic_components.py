@@ -23,6 +23,9 @@ class SingleLineInput(QWidget):
   def setText(self, text):
     self.input_box.setText(text)
 
+  def setPlaceholderText(self, text):
+    self.input_box.setPlaceholderText(text)
+
 
 class SingleLineTextDisplay(QWidget):
   def __init__(self, initText):

@@ -1,12 +1,13 @@
 # 银牌点灯
 import difflib
+from PySide6.QtCore import QCoreApplication
 
 
 def compute_candles(iterations):
   r = [0] * 7
   a = [[0] * 7 for _ in range(7)]
   e = [[0] * 7 for _ in range(7)]
-  n = "无结果"
+  n = QCoreApplication.translate("compute_candles", "无结果")
 
   for t in range(7):
     r[t] = iterations[t].replace(" ", "").replace("，", ",")
@@ -70,7 +71,7 @@ def compute_candles(iterations):
         v[o] = 0 if u == 2 else u
       c = sum(v)
       if c == 7:
-        n = "结果为：" + str(w)
+        n = QCoreApplication.translate("compute_candles", "结果为：") + str(w)
         l = -1
         break
       if l == -1:
@@ -91,11 +92,11 @@ def find_missing_letters(input_str: str):
 
   # 验证输入长度
   if len(processed_input) != 22:
-    return ['error:输入字符数不是22个']
+    return [QCoreApplication.translate("find_missing_letters", 'error:输入字符数不是22个')]
 
   # 验证输入是否都是字母
   if not processed_input.isalpha():
-    return ['error:输入的字符中含有不是字母的字符']
+    return [QCoreApplication.translate("find_missing_letters", 'error:输入的字符中含有不是字母的字符')]
 
   results = []
   input_len = len(processed_input)
@@ -113,7 +114,6 @@ def find_missing_letters(input_str: str):
 
   backtrack(0, 0, [])
   return results
-
 
 # # 测试代码
 # if __name__ == "__main__":
@@ -159,16 +159,16 @@ def find_missing_numbers(letters: str) -> str:
 def find_missing_lights(numbers: str) -> list[str]:
   # 数字到灯光状态的映射表
   num_to_lights = {
-      '0': '灭灭灭灭灭',
-      '1': '亮灭灭灭灭',
-      '2': '亮亮灭灭灭',
-      '3': '亮亮亮灭灭',
-      '4': '亮亮亮亮灭',
-      '5': '亮亮亮亮亮',
-      '6': '灭亮亮亮亮',
-      '7': '灭灭亮亮亮',
-      '8': '灭灭灭亮亮',
-      '9': '灭灭灭灭亮'
+      '0': '00000',
+      '1': '10000',
+      '2': '11000',
+      '3': '11100',
+      '4': '11110',
+      '5': '11111',
+      '6': '01111',
+      '7': '00111',
+      '8': '00011',
+      '9': '00001'
   }
 
   # 验证输入长度
@@ -189,32 +189,10 @@ def get_last_gold_text(letters: str):
   nums = find_missing_numbers(letters)
   lights = find_missing_lights(nums)
   light_str = "\n".join(lights)
-  return "缺少的字母为:"+letters+"\n对应数字为:"+nums+"\n灯的开关序列(1-8号):\n"+light_str
-
-
-def format_with_letters(letters: str) -> str:
-  """
-  将5个字母插入到指定格式的字符串中
-
-  Args:
-      letters (str): 5个字母组成的字符串
-
-  Returns:
-      str: 格式化后的字符串 'CAEEB XXXXX FEAADDAD' 其中 XXXXX 被替换为输入的字母
-  """
-  # 验证输入长度
-  if len(letters) != 5:
-    raise ValueError(
-        f"Input must be exactly 5 letters, got {len(letters)}")
-
-  # 验证输入是否都是字母
-  if not letters.isalpha():
-    raise ValueError("Input must contain only letters")
-
-  # 转换为大写并格式化字符串
-  return f"CAEEB {letters.upper()} FEAADDAD"
-
-# 以下为解密器
+  return QCoreApplication.translate("get_last_gold_text", "缺少的字母为:") + letters + "\n" + \
+      QCoreApplication.translate("get_last_gold_text", "对应数字为:") + nums + "\n" + \
+      QCoreApplication.translate(
+      "get_last_gold_text", "1-8号灯的开关序列(1:亮,0:灭):\n") + light_str
 
 
 def decode_morse(morse_code):
@@ -446,4 +424,4 @@ candidate_strings = [
 def find_closest_string(target, candidates=candidate_strings, threshold=0.6):
   best_match = difflib.get_close_matches(
       target, candidates, n=1, cutoff=threshold)
-  return best_match[0] if best_match else "无结果"
+  return best_match[0] if best_match else QCoreApplication.translate("find_closest_string", "无结果")
