@@ -275,19 +275,23 @@ class AudioMorseDecoder(QWidget):
 
     # 幅值阈值
     amplitude_threshold_layout = QHBoxLayout()
-    self.amplitude_threshold_label_left = QLabel(
-        self.tr("使用这个滑块来调整摩斯电码幅值阈值    当前: 0.00"))
-    self.amplitude_threshold_label_left.setFixedWidth(275)
-    amplitude_threshold_layout.addWidget(
-        self.amplitude_threshold_label_left)
+    self.amplitude_threshold_hint_label = QLabel(
+        self.tr("使用这个滑块来调整摩斯电码幅值阈值    当前: "))
+
+    slider_layout = QHBoxLayout()
+    self.slider_left_label = QLabel("0.0")
+    self.slider_left_label.setFixedWidth(30)
     self.amplitude_threshold_silder = QSlider(Qt.Horizontal)
     self.amplitude_threshold_silder.setDisabled(True)
     self.amplitude_threshold_silder.valueChanged.connect(
         self.sliderHandler)
-    amplitude_threshold_layout.addWidget(self.amplitude_threshold_silder)
-    self.amplitude_threshold_label_right = QLabel()
-    amplitude_threshold_layout.addWidget(
-        self.amplitude_threshold_label_right)
+    self.slider_right_label = QLabel()
+    slider_layout.addWidget(self.slider_left_label)
+    slider_layout.addWidget(self.amplitude_threshold_silder)
+    slider_layout.addWidget(self.slider_right_label)
+
+    amplitude_threshold_layout.addWidget(self.amplitude_threshold_hint_label)
+    amplitude_threshold_layout.addLayout(slider_layout)
 
     # 文本显示区
     self.morse_text_display = SingleLineTextDisplay(
@@ -411,7 +415,7 @@ class AudioMorseDecoder(QWidget):
     self.morse_text_display.setText(self.tr("这里将会显示识别出的摩斯电码的点划"))
     self.decoded_text_display.setText(self.tr("这里将会显示摩斯电码解密结果"))
     self.amplitude_threshold_silder.setDisabled(True)
-    self.amplitude_threshold_label_right.setText("")
+    self.slider_right_label.setText("")
     if not text:
       self.decode_status = 0
       self.show_img_status = 0
@@ -466,8 +470,7 @@ class AudioMorseDecoder(QWidget):
     audioAnalyzer.amplitude_threshold = fmt_value
     audioAnalyzer.analyze_morse_signal()
     morse_code = audioAnalyzer.get_morse_code()
-    self.amplitude_threshold_label_left.setText(
-        self.tr("使用这个滑块来调整摩斯电码幅值阈值    当前: ") + str(fmt_value))
+    self.slider_left_label.setText(str(fmt_value))
     if morse_code:
       self.morse_text_display.setText(morse_code)
       decoded = decode_morse(morse_code)
@@ -505,7 +508,7 @@ class AudioMorseDecoder(QWidget):
           0, round(audioAnalyzer.mean_max_amplitude * 100))
       self.amplitude_threshold_silder.setValue(
           audioAnalyzer.init_amplitude_threshold * 100)
-      self.amplitude_threshold_label_right.setText(
+      self.slider_right_label.setText(
           str(audioAnalyzer.mean_max_amplitude))
     except:
       self.analysis_error.emit()
@@ -515,7 +518,7 @@ class AudioMorseDecoder(QWidget):
     self.decode_status = 1
     self.show_img_status = 1
     self.amplitude_threshold_silder.setDisabled(True)
-    self.amplitude_threshold_label_right.setText("")
+    self.slider_right_label.setText("")
     self.update_decode_btn_status()
     self.update_show_img_btn_status()
     if choice == 0:
@@ -532,10 +535,10 @@ class AudioMorseDecoder(QWidget):
     self.decode_path_inputbox.setPlaceholderText(
         self.tr("这里是将要用于自动识别的音频文件路径"))
     self.decode_path_btn.setText(self.tr("选择用于识别的音频文件"))
-    self.amplitude_threshold_label_left.setText(
-        self.tr("使用这个滑块来调整摩斯电码幅值阈值    当前: ") +
-        str(self.amplitude_threshold_silder.value() / 100)
-    )
+    self.amplitude_threshold_hint_label.setText(
+        self.tr("使用这个滑块来调整摩斯电码幅值阈值    当前: "))
+    self.slider_left_label.setText(
+        str(self.amplitude_threshold_silder.value() / 100))
     self.morse_text_display.setText(self.tr("这里将会显示识别出的摩斯电码的点划"))
     self.decoded_text_display.setText(self.tr("这里将会显示摩斯电码解密结果"))
     self.hint_label.setText(self.tr("如果需要手动听写摩斯电码，可以利用下面的输入框自动翻译摩斯电码"))

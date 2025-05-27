@@ -55,122 +55,117 @@ After finishing, if the lights turn red and you hear a sound effect, the task is
     <name>AudioMorseDecoder</name>
     <message>
         <location filename="../src/components.py" line="234"/>
-        <location filename="../src/components.py" line="344"/>
-        <location filename="../src/components.py" line="347"/>
+        <location filename="../src/components.py" line="348"/>
+        <location filename="../src/components.py" line="351"/>
         <source>开始录制</source>
         <translation>Start Recording</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="240"/>
-        <location filename="../src/components.py" line="529"/>
+        <location filename="../src/components.py" line="532"/>
         <source>停止录制时，音频会保存到这个目录下</source>
         <translation>When recording stops, audio will be saved to this directory</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="244"/>
-        <location filename="../src/components.py" line="530"/>
+        <location filename="../src/components.py" line="533"/>
         <source>选择保存目录</source>
         <translation>Choose Save Directory</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="255"/>
-        <location filename="../src/components.py" line="355"/>
-        <location filename="../src/components.py" line="358"/>
+        <location filename="../src/components.py" line="359"/>
+        <location filename="../src/components.py" line="362"/>
         <source>开始识别</source>
         <translation>Start Recognition</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="262"/>
-        <location filename="../src/components.py" line="533"/>
+        <location filename="../src/components.py" line="536"/>
         <source>这里是将要用于自动识别的音频文件路径</source>
         <translation>This is the path to the audio file to be used for auto recognition</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="266"/>
-        <location filename="../src/components.py" line="534"/>
+        <location filename="../src/components.py" line="537"/>
         <source>选择用于识别的音频文件</source>
         <translation>Select audio file for recognition</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="279"/>
-        <source>使用这个滑块来调整摩斯电码幅值阈值    当前: 0.00</source>
-        <translation>Use this slider to adjust the Morse code amplitude threshold    Current: 0.00</translation>
-    </message>
-    <message>
-        <location filename="../src/components.py" line="294"/>
-        <location filename="../src/components.py" line="411"/>
-        <location filename="../src/components.py" line="539"/>
+        <location filename="../src/components.py" line="298"/>
+        <location filename="../src/components.py" line="415"/>
+        <location filename="../src/components.py" line="542"/>
         <source>这里将会显示识别出的摩斯电码的点划</source>
         <translation>Detected Morse code dots and dashes will be displayed here</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="296"/>
-        <location filename="../src/components.py" line="412"/>
-        <location filename="../src/components.py" line="540"/>
+        <location filename="../src/components.py" line="300"/>
+        <location filename="../src/components.py" line="416"/>
+        <location filename="../src/components.py" line="543"/>
         <source>这里将会显示摩斯电码解密结果</source>
         <translation>Morse code decryption result will be displayed here</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="299"/>
-        <location filename="../src/components.py" line="541"/>
+        <location filename="../src/components.py" line="303"/>
+        <location filename="../src/components.py" line="544"/>
         <source>如果需要手动听写摩斯电码，可以利用下面的输入框自动翻译摩斯电码</source>
         <translation>If you need to manually transcribe Morse code, you can use the input box below to translate it automatically</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="304"/>
-        <location filename="../src/components.py" line="366"/>
-        <location filename="../src/components.py" line="369"/>
+        <location filename="../src/components.py" line="308"/>
+        <location filename="../src/components.py" line="370"/>
+        <location filename="../src/components.py" line="373"/>
         <source>显示图像</source>
         <translation>Show Image</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="350"/>
+        <location filename="../src/components.py" line="354"/>
         <source>停止录制</source>
         <translation>Stop Recording</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="361"/>
+        <location filename="../src/components.py" line="365"/>
         <source>识别中...</source>
         <translation>Recognizing...</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="372"/>
+        <location filename="../src/components.py" line="376"/>
         <source>尝试显示中...</source>
         <translation>Attempting to display...</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="392"/>
+        <location filename="../src/components.py" line="396"/>
         <source>WAV文件 (*.wav);;所有文件 (*)</source>
         <translation>WAV Files (*.wav);;All Files (*)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="393"/>
+        <location filename="../src/components.py" line="397"/>
         <source>选择音频文件</source>
         <translation>Select Audio File</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="399"/>
+        <location filename="../src/components.py" line="403"/>
         <source>选择保存音频文件的目录</source>
         <translation>Select Folder to Save Audio File</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="462"/>
+        <location filename="../src/components.py" line="466"/>
         <source>错误</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="470"/>
-        <location filename="../src/components.py" line="537"/>
+        <location filename="../src/components.py" line="279"/>
+        <location filename="../src/components.py" line="539"/>
         <source>使用这个滑块来调整摩斯电码幅值阈值    当前: </source>
-        <translation>Use this slider to adjust the Morse code amplitude threshold    Current: </translation>
+        <translation>Slide to adjust Morse code amplitude threshold    Current: </translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="522"/>
+        <location filename="../src/components.py" line="525"/>
         <source>识别音频时出错，请检查音频文件路径和格式(.wav)是否正确</source>
         <translation>Error recognizing audio. Please check the audio file path and format (.wav)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="524"/>
+        <location filename="../src/components.py" line="527"/>
         <source>显示图像时出错，请检查音频文件路径和格式(.wav)是否正确</source>
         <translation>Error displaying image. Please check the audio file path and format (.wav)</translation>
     </message>
@@ -302,100 +297,100 @@ After finishing, if the lights turn red and you hear a sound effect, the task is
 <context>
     <name>CipherDecryptor</name>
     <message>
-        <location filename="../src/components.py" line="557"/>
-        <location filename="../src/components.py" line="662"/>
+        <location filename="../src/components.py" line="560"/>
+        <location filename="../src/components.py" line="665"/>
         <source>密文解密器</source>
         <translation>Cipher Decryptor</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="561"/>
-        <location filename="../src/components.py" line="650"/>
-        <location filename="../src/components.py" line="665"/>
+        <location filename="../src/components.py" line="564"/>
+        <location filename="../src/components.py" line="653"/>
+        <location filename="../src/components.py" line="668"/>
         <source>解密栅栏密码前会自动倒置</source>
         <translation>Auto reverse cipher before decrypting Rail Fence Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="569"/>
-        <location filename="../src/components.py" line="672"/>
+        <location filename="../src/components.py" line="572"/>
+        <location filename="../src/components.py" line="675"/>
         <source>任务1:原文</source>
         <translation>Task 1: Original Text</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="570"/>
-        <location filename="../src/components.py" line="673"/>
+        <location filename="../src/components.py" line="573"/>
+        <location filename="../src/components.py" line="676"/>
         <source>任务2:倒置(Reverse)</source>
         <translation>Task 2: Reverse</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="571"/>
-        <location filename="../src/components.py" line="674"/>
+        <location filename="../src/components.py" line="574"/>
+        <location filename="../src/components.py" line="677"/>
         <source>任务3:替换密码(Atbash)</source>
         <translation>Task 3: Atbash Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="572"/>
-        <location filename="../src/components.py" line="675"/>
+        <location filename="../src/components.py" line="575"/>
+        <location filename="../src/components.py" line="678"/>
         <source>任务4:凯撒密码(Rot)</source>
         <translation>Task 4: Caesar Cipher (Rot)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="573"/>
-        <location filename="../src/components.py" line="676"/>
+        <location filename="../src/components.py" line="576"/>
+        <location filename="../src/components.py" line="679"/>
         <source>任务5:栅栏密码(Rail Fence)</source>
         <translation>Task 5: Rail Fence Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="574"/>
-        <location filename="../src/components.py" line="677"/>
+        <location filename="../src/components.py" line="577"/>
+        <location filename="../src/components.py" line="680"/>
         <source>任务6:培根密码(Baconian)</source>
         <translation>Task 6: Baconian Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="575"/>
-        <location filename="../src/components.py" line="678"/>
+        <location filename="../src/components.py" line="578"/>
+        <location filename="../src/components.py" line="681"/>
         <source>任务7:维吉尼亚密码(Vigenere)</source>
         <translation>Task 7: Vigenère Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="576"/>
-        <location filename="../src/components.py" line="679"/>
+        <location filename="../src/components.py" line="579"/>
+        <location filename="../src/components.py" line="682"/>
         <source>任务8:自动密钥密码(Autokey)</source>
         <translation>Task 8: Autokey Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="584"/>
-        <location filename="../src/components.py" line="682"/>
+        <location filename="../src/components.py" line="587"/>
+        <location filename="../src/components.py" line="685"/>
         <source>请输入摩斯电码解密结果(相关参数帮你填好了)</source>
         <translation>Please enter the Morse code decryption result (related parameters have been pre-filled for you)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="589"/>
-        <location filename="../src/components.py" line="621"/>
-        <location filename="../src/components.py" line="685"/>
+        <location filename="../src/components.py" line="592"/>
+        <location filename="../src/components.py" line="624"/>
+        <location filename="../src/components.py" line="688"/>
         <source>这里会显示解密结果</source>
         <translation>The decryption result will be displayed here</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="592"/>
-        <location filename="../src/components.py" line="644"/>
-        <location filename="../src/components.py" line="686"/>
+        <location filename="../src/components.py" line="595"/>
+        <location filename="../src/components.py" line="647"/>
+        <location filename="../src/components.py" line="689"/>
         <source>这里会显示最匹配的地点</source>
         <translation>The most matching location will be shown here</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="638"/>
-        <location filename="../src/components.py" line="639"/>
+        <location filename="../src/components.py" line="641"/>
+        <location filename="../src/components.py" line="642"/>
         <source>无结果</source>
         <translation>No result</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="641"/>
+        <location filename="../src/components.py" line="644"/>
         <source>目标地点可能为: </source>
         <translation>Possible target location: </translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="652"/>
-        <location filename="../src/components.py" line="667"/>
+        <location filename="../src/components.py" line="655"/>
+        <location filename="../src/components.py" line="670"/>
         <source>解密培根密码后会自动用替换密码解密</source>
         <translation>Auto decrypt Atbash Cipher after decrypting Baconian Cipher</translation>
     </message>
@@ -639,7 +634,7 @@ If you have any issues, leave a comment or DM on the Bilibili video, or open an 
     <name>MainWindow</name>
     <message>
         <location filename="../src/main.py" line="15"/>
-        <location filename="../src/main.py" line="142"/>
+        <location filename="../src/main.py" line="144"/>
         <source>维和者工具</source>
         <translation>Peacekeeper Tool</translation>
     </message>
@@ -690,28 +685,29 @@ If you have any issues, leave a comment or DM on the Bilibili video, or open an 
     </message>
     <message>
         <location filename="../src/main.py" line="73"/>
+        <location filename="../src/main.py" line="202"/>
         <source>正在预热摩斯电码分析模块...</source>
         <translation>Warming up Morse code analysis module...</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="99"/>
-        <location filename="../src/main.py" line="149"/>
+        <location filename="../src/main.py" line="101"/>
+        <location filename="../src/main.py" line="153"/>
         <source>浅色模式</source>
         <translation>Light Mode</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="100"/>
-        <location filename="../src/main.py" line="150"/>
+        <location filename="../src/main.py" line="102"/>
+        <location filename="../src/main.py" line="154"/>
         <source>深色模式</source>
         <translation>Dark Mode</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="187"/>
+        <location filename="../src/main.py" line="204"/>
         <source>摩斯电码分析模块已预热完成</source>
         <translation>Warming up finished</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="189"/>
+        <location filename="../src/main.py" line="206"/>
         <source>预热失败，但不会影响使用</source>
         <translation>Warming up failed, but won’t affect usage</translation>
     </message>

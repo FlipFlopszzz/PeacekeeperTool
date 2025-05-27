@@ -55,122 +55,117 @@
     <name>AudioMorseDecoder</name>
     <message>
         <location filename="../src/components.py" line="234"/>
-        <location filename="../src/components.py" line="344"/>
-        <location filename="../src/components.py" line="347"/>
+        <location filename="../src/components.py" line="348"/>
+        <location filename="../src/components.py" line="351"/>
         <source>开始录制</source>
         <translation>開始錄製</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="240"/>
-        <location filename="../src/components.py" line="529"/>
+        <location filename="../src/components.py" line="532"/>
         <source>停止录制时，音频会保存到这个目录下</source>
         <translation>停止錄製時，音訊會保存到這個目錄下</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="244"/>
-        <location filename="../src/components.py" line="530"/>
+        <location filename="../src/components.py" line="533"/>
         <source>选择保存目录</source>
         <translation>選擇保存目錄</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="255"/>
-        <location filename="../src/components.py" line="355"/>
-        <location filename="../src/components.py" line="358"/>
+        <location filename="../src/components.py" line="359"/>
+        <location filename="../src/components.py" line="362"/>
         <source>开始识别</source>
         <translation>開始識別</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="262"/>
-        <location filename="../src/components.py" line="533"/>
+        <location filename="../src/components.py" line="536"/>
         <source>这里是将要用于自动识别的音频文件路径</source>
         <translation>這裡是將要用於自動識別的音訊檔案路徑</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="266"/>
-        <location filename="../src/components.py" line="534"/>
+        <location filename="../src/components.py" line="537"/>
         <source>选择用于识别的音频文件</source>
         <translation>選擇用於識別的音訊檔案</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="279"/>
-        <source>使用这个滑块来调整摩斯电码幅值阈值    当前: 0.00</source>
-        <translation>使用這個滑塊來調整摩斯電碼幅值閾值    當前: 0.00</translation>
-    </message>
-    <message>
-        <location filename="../src/components.py" line="294"/>
-        <location filename="../src/components.py" line="411"/>
-        <location filename="../src/components.py" line="539"/>
+        <location filename="../src/components.py" line="298"/>
+        <location filename="../src/components.py" line="415"/>
+        <location filename="../src/components.py" line="542"/>
         <source>这里将会显示识别出的摩斯电码的点划</source>
         <translation>這裡將會顯示識別出的摩斯電碼的點劃</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="296"/>
-        <location filename="../src/components.py" line="412"/>
-        <location filename="../src/components.py" line="540"/>
+        <location filename="../src/components.py" line="300"/>
+        <location filename="../src/components.py" line="416"/>
+        <location filename="../src/components.py" line="543"/>
         <source>这里将会显示摩斯电码解密结果</source>
         <translation>這裡將會顯示摩斯電碼解密結果</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="299"/>
-        <location filename="../src/components.py" line="541"/>
+        <location filename="../src/components.py" line="303"/>
+        <location filename="../src/components.py" line="544"/>
         <source>如果需要手动听写摩斯电码，可以利用下面的输入框自动翻译摩斯电码</source>
         <translation>如果需要手動聽寫摩斯電碼，可以利用下面的輸入框自動翻譯摩斯電碼</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="304"/>
-        <location filename="../src/components.py" line="366"/>
-        <location filename="../src/components.py" line="369"/>
+        <location filename="../src/components.py" line="308"/>
+        <location filename="../src/components.py" line="370"/>
+        <location filename="../src/components.py" line="373"/>
         <source>显示图像</source>
         <translation>顯示圖像</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="350"/>
+        <location filename="../src/components.py" line="354"/>
         <source>停止录制</source>
         <translation>停止錄製</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="361"/>
+        <location filename="../src/components.py" line="365"/>
         <source>识别中...</source>
         <translation>識別中...</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="372"/>
+        <location filename="../src/components.py" line="376"/>
         <source>尝试显示中...</source>
         <translation>嘗試顯示中...</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="392"/>
+        <location filename="../src/components.py" line="396"/>
         <source>WAV文件 (*.wav);;所有文件 (*)</source>
         <translation>WAV檔案 (*.wav);;所有檔案 (*)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="393"/>
+        <location filename="../src/components.py" line="397"/>
         <source>选择音频文件</source>
         <translation>選擇音訊檔案</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="399"/>
+        <location filename="../src/components.py" line="403"/>
         <source>选择保存音频文件的目录</source>
         <translation>選擇儲存音訊檔案的目錄</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="462"/>
+        <location filename="../src/components.py" line="466"/>
         <source>错误</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="470"/>
-        <location filename="../src/components.py" line="537"/>
+        <location filename="../src/components.py" line="279"/>
+        <location filename="../src/components.py" line="539"/>
         <source>使用这个滑块来调整摩斯电码幅值阈值    当前: </source>
         <translation>使用這個滑塊來調整摩斯電碼幅值閾值    當前: </translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="522"/>
+        <location filename="../src/components.py" line="525"/>
         <source>识别音频时出错，请检查音频文件路径和格式(.wav)是否正确</source>
         <translation>識別音訊時出錯，請檢查音訊檔案路徑和格式(.wav)是否正確</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="524"/>
+        <location filename="../src/components.py" line="527"/>
         <source>显示图像时出错，请检查音频文件路径和格式(.wav)是否正确</source>
         <translation>顯示圖像時出錯，請檢查音訊檔案路徑和格式(.wav)是否正確</translation>
     </message>
@@ -302,100 +297,100 @@
 <context>
     <name>CipherDecryptor</name>
     <message>
-        <location filename="../src/components.py" line="557"/>
-        <location filename="../src/components.py" line="662"/>
+        <location filename="../src/components.py" line="560"/>
+        <location filename="../src/components.py" line="665"/>
         <source>密文解密器</source>
         <translation>密文解密器</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="561"/>
-        <location filename="../src/components.py" line="650"/>
-        <location filename="../src/components.py" line="665"/>
+        <location filename="../src/components.py" line="564"/>
+        <location filename="../src/components.py" line="653"/>
+        <location filename="../src/components.py" line="668"/>
         <source>解密栅栏密码前会自动倒置</source>
         <translation>解密柵欄密碼前會自動倒置</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="569"/>
-        <location filename="../src/components.py" line="672"/>
+        <location filename="../src/components.py" line="572"/>
+        <location filename="../src/components.py" line="675"/>
         <source>任务1:原文</source>
         <translation>任務1:原文</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="570"/>
-        <location filename="../src/components.py" line="673"/>
+        <location filename="../src/components.py" line="573"/>
+        <location filename="../src/components.py" line="676"/>
         <source>任务2:倒置(Reverse)</source>
         <translation>任務2:倒置(Reverse)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="571"/>
-        <location filename="../src/components.py" line="674"/>
+        <location filename="../src/components.py" line="574"/>
+        <location filename="../src/components.py" line="677"/>
         <source>任务3:替换密码(Atbash)</source>
         <translation>任務3:替換密碼(Atbash)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="572"/>
-        <location filename="../src/components.py" line="675"/>
+        <location filename="../src/components.py" line="575"/>
+        <location filename="../src/components.py" line="678"/>
         <source>任务4:凯撒密码(Rot)</source>
         <translation>任務4:凱撒密碼(Rot)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="573"/>
-        <location filename="../src/components.py" line="676"/>
+        <location filename="../src/components.py" line="576"/>
+        <location filename="../src/components.py" line="679"/>
         <source>任务5:栅栏密码(Rail Fence)</source>
         <translation>任務5:柵欄密碼(Rail Fence)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="574"/>
-        <location filename="../src/components.py" line="677"/>
+        <location filename="../src/components.py" line="577"/>
+        <location filename="../src/components.py" line="680"/>
         <source>任务6:培根密码(Baconian)</source>
         <translation>任務6:培根密碼(Baconian)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="575"/>
-        <location filename="../src/components.py" line="678"/>
+        <location filename="../src/components.py" line="578"/>
+        <location filename="../src/components.py" line="681"/>
         <source>任务7:维吉尼亚密码(Vigenere)</source>
         <translation>任務7:維吉尼亞密碼(Vigenere)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="576"/>
-        <location filename="../src/components.py" line="679"/>
+        <location filename="../src/components.py" line="579"/>
+        <location filename="../src/components.py" line="682"/>
         <source>任务8:自动密钥密码(Autokey)</source>
         <translation>任務8:自動密鑰密碼(Autokey)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="584"/>
-        <location filename="../src/components.py" line="682"/>
+        <location filename="../src/components.py" line="587"/>
+        <location filename="../src/components.py" line="685"/>
         <source>请输入摩斯电码解密结果(相关参数帮你填好了)</source>
         <translation>請輸入摩斯電碼解密結果(相關參數幫你填好了)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="589"/>
-        <location filename="../src/components.py" line="621"/>
-        <location filename="../src/components.py" line="685"/>
+        <location filename="../src/components.py" line="592"/>
+        <location filename="../src/components.py" line="624"/>
+        <location filename="../src/components.py" line="688"/>
         <source>这里会显示解密结果</source>
         <translation>這裡會顯示解密結果</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="592"/>
-        <location filename="../src/components.py" line="644"/>
-        <location filename="../src/components.py" line="686"/>
+        <location filename="../src/components.py" line="595"/>
+        <location filename="../src/components.py" line="647"/>
+        <location filename="../src/components.py" line="689"/>
         <source>这里会显示最匹配的地点</source>
         <translation>這裡會顯示最匹配的地點</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="638"/>
-        <location filename="../src/components.py" line="639"/>
+        <location filename="../src/components.py" line="641"/>
+        <location filename="../src/components.py" line="642"/>
         <source>无结果</source>
         <translation>無結果</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="641"/>
+        <location filename="../src/components.py" line="644"/>
         <source>目标地点可能为: </source>
         <translation>目標地點可能為: </translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="652"/>
-        <location filename="../src/components.py" line="667"/>
+        <location filename="../src/components.py" line="655"/>
+        <location filename="../src/components.py" line="670"/>
         <source>解密培根密码后会自动用替换密码解密</source>
         <translation>解密培根密碼後會自動用替換密碼解密</translation>
     </message>
@@ -639,7 +634,7 @@
     <name>MainWindow</name>
     <message>
         <location filename="../src/main.py" line="15"/>
-        <location filename="../src/main.py" line="142"/>
+        <location filename="../src/main.py" line="144"/>
         <source>维和者工具</source>
         <translation>維和者工具</translation>
     </message>
@@ -690,28 +685,29 @@
     </message>
     <message>
         <location filename="../src/main.py" line="73"/>
+        <location filename="../src/main.py" line="202"/>
         <source>正在预热摩斯电码分析模块...</source>
         <translation>正在預熱摩斯密碼分析模組...</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="99"/>
-        <location filename="../src/main.py" line="149"/>
+        <location filename="../src/main.py" line="101"/>
+        <location filename="../src/main.py" line="153"/>
         <source>浅色模式</source>
         <translation>淺色模式</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="100"/>
-        <location filename="../src/main.py" line="150"/>
+        <location filename="../src/main.py" line="102"/>
+        <location filename="../src/main.py" line="154"/>
         <source>深色模式</source>
         <translation>深色模式</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="187"/>
+        <location filename="../src/main.py" line="204"/>
         <source>摩斯电码分析模块已预热完成</source>
         <translation>摩斯電碼分析模組已預熱完成</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="189"/>
+        <location filename="../src/main.py" line="206"/>
         <source>预热失败，但不会影响使用</source>
         <translation>預熱失敗，但不會影響使用</translation>
     </message>
