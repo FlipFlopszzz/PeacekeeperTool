@@ -1,11 +1,9 @@
-from PySide6.QtCore import QObject, Signal
+from PySide6.QtCore import QObject, Qt
 from PySide6.QtGui import QPalette, QColor
 from PySide6.QtWidgets import QApplication
 
 
 class ThemeManager(QObject):
-  theme_changed = Signal(str)  # 主题变更信号
-
   LIGHT_THEME = {
       "name": "light",
       "window_bg": "#F3F3F3",
@@ -30,7 +28,8 @@ class ThemeManager(QObject):
           "checked":  {"bg": "#DDDDDD", "fg": "#070707"},
       },
       "input_display": {"bg": "#FFFFFF", "fg": "#070707", "placeholder": "#AB95A0", "focus_border_color": "#0066B4"},
-      "slider": {"active": "#0066B4", "inactive": "#8A8A8A", "disabled": "#8A8A8A"},
+      "slider": {"handle": "#FFFFFF", "sub-page": "#0066B4", "add-page": "#8A8A8A", "disabled": "#8A8A8A"},
+      "scrollbar": {"handle": "#8A8A8A", "bg": "#FFFFFF", "handle_border": "#C4C4C4"},
   }
 
   DARK_THEME = {
@@ -57,15 +56,17 @@ class ThemeManager(QObject):
           "checked":  {"bg": "#363636", "fg": "#F8F8F8"},
       },
       "input_display": {"bg": "#3E3E3E", "fg": "#F8F8F8", "placeholder": "#959595", "focus_border_color": "#4CA0E0"},
-      "slider": {"active": "#4CA0E0", "inactive": "#A2A2A2", "disabled": "#A2A2A2"},
+      "slider": {"handle": "#454545", "sub-page": "#4CA0E0", "add-page": "#A2A2A2", "disabled": "#A2A2A2"},
+      "scrollbar": {"handle": "#9F9F9F", "bg": "#2C2C2C", "handle_border": "#656565"},
   }
 
   def __init__(self):
     super().__init__()
     self.current_theme = self.LIGHT_THEME
+    self.sync_system_theme()
     self._init_styles()
     self.style_sheet = ""
-    self._apply_theme()  # 初始化时立即应用主题
+    self.apply_theme()
 
   def _init_styles(self):
     """预处理样式结构，避免重复字符串拼接"""
@@ -95,30 +96,40 @@ class ThemeManager(QObject):
         "input_display": "background-color: {bg}; color: {fg};",
     }
 
-  def apply_light_theme(self):
-    self.current_theme = self.LIGHT_THEME
-    self._apply_theme()
-    self.theme_changed.emit("light")
-
-  def apply_dark_theme(self):
-    self.current_theme = self.DARK_THEME
-    self._apply_theme()
-    self.theme_changed.emit("dark")
-
-  def toggle_theme(self):
-    self.current_theme = self.DARK_THEME if self.current_theme[
-        "name"] == "light" else self.LIGHT_THEME
-    self._apply_theme()
-    self.theme_changed.emit(self.current_theme["name"])
-
-  def _apply_theme(self):
+  def set_theme(self, target_theme):
     app = QApplication.instance()
     if not app:
       return
+    if target_theme == 'light':
+      self.current_theme = self.LIGHT_THEME
+      app.styleHints().setColorScheme(Qt.ColorScheme.Light)
+    elif target_theme == 'dark':
+      self.current_theme = self.DARK_THEME
+      app.styleHints().setColorScheme(Qt.ColorScheme.Dark)
 
+    self.apply_theme()
+
+  def apply_theme(self):
+    app = QApplication.instance()
+    if not app:
+      return
+    # 应用调色板和样式表
     self._update_palette(app)
-    self.style_sheet = self._build_style_sheet()  # 生成并保存样式表
+    self.style_sheet = self._build_style_sheet()
     app.setStyleSheet(self.style_sheet)
+
+  def get_current_sys_theme(self, app):
+    return app.styleHints().colorScheme()
+
+  def sync_system_theme(self):
+    app = QApplication.instance()
+    if not app:
+      return
+    theme = self.get_current_sys_theme(app)
+    if theme == Qt.ColorScheme.Light:
+      self.current_theme = self.LIGHT_THEME
+    elif theme == Qt.ColorScheme.Dark:
+      self.current_theme = self.DARK_THEME
 
   def _update_palette(self, app):
     """更新基础窗口和文本颜色"""
@@ -138,6 +149,7 @@ class ThemeManager(QObject):
     input_display = self.current_theme["input_display"]
     sidebar_border = self.current_theme["sidebar_border"]
     btn_silver = self.current_theme["button_silver"]
+    scrollbar = self.current_theme["scrollbar"]
 
     return f"""
             /* 全局基础样式 */
@@ -317,4 +329,72 @@ class ThemeManager(QObject):
                 background-color: {self.current_theme["button_silver"]["normal"]["checked"]};
                 color: white;
             }}
+
+
+
+            QScrollBar:vertical {{
+                background-color: {scrollbar["bg"]};
+                width: 6px;
+            }}
+
+            QScrollBar::handle:vertical {{
+                background-color: {scrollbar["handle"]};
+                width: 5px;
+                border-radius: 3px;
+                border: 1px solid {scrollbar["handle_border"]};
+            }}
+
+            QScrollBar::handle:vertical:hover {{
+                background-color: {scrollbar["handle"]};
+            }}
+
+            QScrollBar::sub-page:vertical, QScrollBar::add-page:vertical {{
+                background-color: {scrollbar["bg"]};
+            }}
+
+            
+
+            QSlider::groove:horizontal {{
+                border: 0px solid #bbb;
+                height: 5px; 
+                border-radius: 2px;
+            }}
+            QSlider::sub-page:horizontal {{
+                background: {slider["sub-page"]};
+                border-radius: 2px;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }}
+            QSlider::add-page:horizontal {{
+                background: {slider["add-page"]};
+                border: 0px solid #777; 
+                border-radius: 2px; 
+                margin-top: 0px; 
+                margin-bottom: 0px;   
+            }}
+            QSlider::handle:horizontal {{
+                background: {slider["handle"]}; 
+                border: 1px solid rgba(102,102,102,102); 
+                width: 11px; 
+                height: 11px;
+                border-radius: 6px; 
+                margin-top: -4px;   
+                margin-bottom: -4px;
+            }}
+            QSlider::handle:horizontal:hover {{
+                background: {slider["sub-page"]}; 
+                border: 1px solid rgba(102,102,102,102); 
+            }}
+            QSlider::sub-page:horizontal:disabled {{
+                background: {slider["disabled"]}; 
+                border-color: #999; 
+            }}
+            QSlider::add-page:horizontal:disabled {{
+                background: {slider["disabled"]}; 
+                border-color: #999; 
+            }}
+            QSlider::handle:horizontal:disabled {{
+                background: #eee; 
+            }}
+                        
         """

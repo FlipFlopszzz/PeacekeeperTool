@@ -11,6 +11,7 @@ import wave
 import os
 import threading
 from datetime import datetime
+from methods import get_time
 
 
 class AudioRecorder:
@@ -128,6 +129,7 @@ class AudioAnalyzer:
 
     self._plot_window = None  # 添加这个属性来保持窗口引用
 
+  # @get_time
   def analyze(self, file_path, low_freq=770, high_freq=810, amplitude_threshold_coef=0.25, dot_threshold=0.03,
               dash_threshold=0.14, char_gap_threshold=0.08, word_gap_threshold=0.30):
     self.low_freq = low_freq
@@ -148,9 +150,12 @@ class AudioAnalyzer:
     self.init_amplitude_threshold = round(
         float(self.mean_max_amplitude*amplitude_threshold_coef), 2)
 
-  def load_audio(self):
+  # @get_time
+  def load_audio(self, file_path=None):
     """加载音频文件"""
-    return librosa.load(self.file_path)
+    if file_path is None:
+      file_path = self.file_path
+    return librosa.load(file_path)
 
   def spectral_noise_reduction(self, y, sr):
     """

@@ -1,0 +1,1 @@
+pyinstaller -D -n PeacekeeperTool --add-data "translations/*.qm:translations" --add-data "resources/warmup.wav:assets" src/main.py

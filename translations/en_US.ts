@@ -4,7 +4,7 @@
 <context>
     <name>AngelPage</name>
     <message>
-        <location filename="../src/pages.py" line="133"/>
+        <location filename="../src/pages.py" line="137"/>
         <source>
 # 看见天使
 1. 进入索姆河，选择英国，支援兵，带弹药箱和磁吸地雷，部署后向前走到A点也就是最近的房区，会刷新一辆鬼火，然后开车到指定地点（E点），能看到两个水罐。尽量把鬼火停在比较靠近的地方，不然会消失。往前走能看到一个井口，用慈溪丢到这个井的正中间，炸开后能看到一个装置，有五个灯以及上边的一个确认按钮。把灯从左到右依次命名为1-5号灯，接下来我会给出灯的序号，你需要根据灯的序号进行互动，然后按确认按钮，比如我说1-4，就是需要把1，2，3，4号灯都各自互动一下，然后按下确认按钮，随后灯会自动全部亮起来。
@@ -54,65 +54,65 @@ After finishing, if the lights turn red and you hear a sound effect, the task is
 <context>
     <name>AudioMorseDecoder</name>
     <message>
-        <location filename="../src/components.py" line="235"/>
+        <location filename="../src/components.py" line="234"/>
         <location filename="../src/components.py" line="344"/>
         <location filename="../src/components.py" line="347"/>
         <source>开始录制</source>
         <translation>Start Recording</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="241"/>
-        <location filename="../src/components.py" line="528"/>
+        <location filename="../src/components.py" line="240"/>
+        <location filename="../src/components.py" line="529"/>
         <source>停止录制时，音频会保存到这个目录下</source>
         <translation>When recording stops, audio will be saved to this directory</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="245"/>
-        <location filename="../src/components.py" line="529"/>
+        <location filename="../src/components.py" line="244"/>
+        <location filename="../src/components.py" line="530"/>
         <source>选择保存目录</source>
         <translation>Choose Save Directory</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="256"/>
+        <location filename="../src/components.py" line="255"/>
         <location filename="../src/components.py" line="355"/>
         <location filename="../src/components.py" line="358"/>
         <source>开始识别</source>
         <translation>Start Recognition</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="263"/>
-        <location filename="../src/components.py" line="532"/>
+        <location filename="../src/components.py" line="262"/>
+        <location filename="../src/components.py" line="533"/>
         <source>这里是将要用于自动识别的音频文件路径</source>
         <translation>This is the path to the audio file to be used for auto recognition</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="267"/>
-        <location filename="../src/components.py" line="533"/>
+        <location filename="../src/components.py" line="266"/>
+        <location filename="../src/components.py" line="534"/>
         <source>选择用于识别的音频文件</source>
         <translation>Select audio file for recognition</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="280"/>
-        <source>使用这个滑块来调整摩斯电码幅值阈值    当前: 0.0</source>
-        <translation>Use this slider to adjust the Morse code amplitude threshold    Current: 0.0</translation>
+        <location filename="../src/components.py" line="279"/>
+        <source>使用这个滑块来调整摩斯电码幅值阈值    当前: 0.00</source>
+        <translation>Use this slider to adjust the Morse code amplitude threshold    Current: 0.00</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="294"/>
-        <location filename="../src/components.py" line="410"/>
-        <location filename="../src/components.py" line="538"/>
+        <location filename="../src/components.py" line="411"/>
+        <location filename="../src/components.py" line="539"/>
         <source>这里将会显示识别出的摩斯电码的点划</source>
         <translation>Detected Morse code dots and dashes will be displayed here</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="296"/>
-        <location filename="../src/components.py" line="411"/>
-        <location filename="../src/components.py" line="539"/>
+        <location filename="../src/components.py" line="412"/>
+        <location filename="../src/components.py" line="540"/>
         <source>这里将会显示摩斯电码解密结果</source>
         <translation>Morse code decryption result will be displayed here</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="299"/>
-        <location filename="../src/components.py" line="540"/>
+        <location filename="../src/components.py" line="541"/>
         <source>如果需要手动听写摩斯电码，可以利用下面的输入框自动翻译摩斯电码</source>
         <translation>If you need to manually transcribe Morse code, you can use the input box below to translate it automatically</translation>
     </message>
@@ -140,37 +140,37 @@ After finishing, if the lights turn red and you hear a sound effect, the task is
     </message>
     <message>
         <location filename="../src/components.py" line="392"/>
-        <source>WAV Files (*.wav);;All Files (*)</source>
+        <source>WAV文件 (*.wav);;所有文件 (*)</source>
         <translation>WAV Files (*.wav);;All Files (*)</translation>
     </message>
     <message>
         <location filename="../src/components.py" line="393"/>
-        <source>选择文件</source>
-        <translation>Select File</translation>
+        <source>选择音频文件</source>
+        <translation>Select Audio File</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="398"/>
-        <source>选择文件夹</source>
-        <translation>Select Folder</translation>
+        <location filename="../src/components.py" line="399"/>
+        <source>选择保存音频文件的目录</source>
+        <translation>Select Folder to Save Audio File</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="461"/>
+        <location filename="../src/components.py" line="462"/>
         <source>错误</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="469"/>
-        <location filename="../src/components.py" line="536"/>
+        <location filename="../src/components.py" line="470"/>
+        <location filename="../src/components.py" line="537"/>
         <source>使用这个滑块来调整摩斯电码幅值阈值    当前: </source>
         <translation>Use this slider to adjust the Morse code amplitude threshold    Current: </translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="521"/>
+        <location filename="../src/components.py" line="522"/>
         <source>识别音频时出错，请检查音频文件路径和格式(.wav)是否正确</source>
         <translation>Error recognizing audio. Please check the audio file path and format (.wav)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="523"/>
+        <location filename="../src/components.py" line="524"/>
         <source>显示图像时出错，请检查音频文件路径和格式(.wav)是否正确</source>
         <translation>Error displaying image. Please check the audio file path and format (.wav)</translation>
     </message>
@@ -178,7 +178,7 @@ After finishing, if the lights turn red and you hear a sound effect, the task is
 <context>
     <name>BeastPage</name>
     <message>
-        <location filename="../src/pages.py" line="98"/>
+        <location filename="../src/pages.py" line="102"/>
         <source>
 # 野兽之源
 1. 按照前面讲的选择服务器的方法，进入卡波雷托，选择奥匈帝国，可以开飞机或者骑马，到达指定地点后，面对三个天使雕像，依次用枪打掉相应的身体部分，不能多也不能少，然后向后面走，能看到一个单独的天使雕像，使用G键对着雕像底座丢出手雷。上述步骤完成后能听到一声尖啸。
@@ -194,7 +194,7 @@ After finishing, if the lights turn red and you hear a sound effect, the task is
 <context>
     <name>BronzePage</name>
     <message>
-        <location filename="../src/pages.py" line="377"/>
+        <location filename="../src/pages.py" line="381"/>
         <source>
 # 初显身手（铜牌）
 - 来到最坐牢的铜牌，听电报的地图选择流血宴厅，下不下雨无所谓，美军，骑兵，依次寻找五个耳机刷新点，找到后返回美军出生点的右边战壕那里，提前下马，走到离收音机很近的拐角，切屏打开软件，录制，走到电报机前，面对电报机（注意查看电报机上的灯的颜色，可以用来确定自己现在处于第几步），视角不要动，不要发出任何噪音。可以用手机计时约30-40秒，停止录音，把音频文件交给软件分析摩斯电码。录完之后暂时别离开电报站，防止录音出现问题还得重新进游戏找耳机。后续的录音和分析流程都是这样。
@@ -276,25 +276,25 @@ After finishing, if the lights turn red and you hear a sound effect, the task is
 <context>
     <name>CandleDecryptor</name>
     <message>
-        <location filename="../src/components.py" line="133"/>
-        <location filename="../src/components.py" line="209"/>
+        <location filename="../src/components.py" line="132"/>
+        <location filename="../src/components.py" line="208"/>
         <source>示例:2,3,4,5</source>
         <translation>Example: 2,3,4,5</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="135"/>
-        <location filename="../src/components.py" line="210"/>
+        <location filename="../src/components.py" line="134"/>
+        <location filename="../src/components.py" line="209"/>
         <source>灯的序号之间用中/英文逗号隔开</source>
         <translation>Separate lamp numbers with Chinese/English commas</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="157"/>
-        <location filename="../src/components.py" line="214"/>
+        <location filename="../src/components.py" line="156"/>
+        <location filename="../src/components.py" line="213"/>
         <source>解密</source>
         <translation>Decrypt</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="205"/>
+        <location filename="../src/components.py" line="204"/>
         <source>无结果</source>
         <translation>No result</translation>
     </message>
@@ -302,108 +302,108 @@ After finishing, if the lights turn red and you hear a sound effect, the task is
 <context>
     <name>CipherDecryptor</name>
     <message>
-        <location filename="../src/components.py" line="556"/>
-        <location filename="../src/components.py" line="673"/>
-        <source>解密器</source>
-        <translation>Decryptor</translation>
+        <location filename="../src/components.py" line="557"/>
+        <location filename="../src/components.py" line="662"/>
+        <source>密文解密器</source>
+        <translation>Cipher Decryptor</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="560"/>
-        <location filename="../src/components.py" line="661"/>
-        <location filename="../src/components.py" line="676"/>
-        <source>解密栅栏密码前是否自动倒置</source>
-        <translation>Automatically reverse text before decrypting Rail Fence Cipher</translation>
+        <location filename="../src/components.py" line="561"/>
+        <location filename="../src/components.py" line="650"/>
+        <location filename="../src/components.py" line="665"/>
+        <source>解密栅栏密码前会自动倒置</source>
+        <translation>Auto reverse cipher before decrypting Rail Fence Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="571"/>
-        <location filename="../src/components.py" line="683"/>
+        <location filename="../src/components.py" line="569"/>
+        <location filename="../src/components.py" line="672"/>
         <source>任务1:原文</source>
         <translation>Task 1: Original Text</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="572"/>
-        <location filename="../src/components.py" line="684"/>
+        <location filename="../src/components.py" line="570"/>
+        <location filename="../src/components.py" line="673"/>
         <source>任务2:倒置(Reverse)</source>
         <translation>Task 2: Reverse</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="573"/>
-        <location filename="../src/components.py" line="685"/>
+        <location filename="../src/components.py" line="571"/>
+        <location filename="../src/components.py" line="674"/>
         <source>任务3:替换密码(Atbash)</source>
         <translation>Task 3: Atbash Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="574"/>
-        <location filename="../src/components.py" line="686"/>
+        <location filename="../src/components.py" line="572"/>
+        <location filename="../src/components.py" line="675"/>
         <source>任务4:凯撒密码(Rot)</source>
         <translation>Task 4: Caesar Cipher (Rot)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="575"/>
-        <location filename="../src/components.py" line="687"/>
+        <location filename="../src/components.py" line="573"/>
+        <location filename="../src/components.py" line="676"/>
         <source>任务5:栅栏密码(Rail Fence)</source>
         <translation>Task 5: Rail Fence Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="576"/>
-        <location filename="../src/components.py" line="688"/>
+        <location filename="../src/components.py" line="574"/>
+        <location filename="../src/components.py" line="677"/>
         <source>任务6:培根密码(Baconian)</source>
         <translation>Task 6: Baconian Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="577"/>
-        <location filename="../src/components.py" line="689"/>
+        <location filename="../src/components.py" line="575"/>
+        <location filename="../src/components.py" line="678"/>
         <source>任务7:维吉尼亚密码(Vigenere)</source>
         <translation>Task 7: Vigenère Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="578"/>
-        <location filename="../src/components.py" line="690"/>
+        <location filename="../src/components.py" line="576"/>
+        <location filename="../src/components.py" line="679"/>
         <source>任务8:自动密钥密码(Autokey)</source>
         <translation>Task 8: Autokey Cipher</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="586"/>
-        <location filename="../src/components.py" line="693"/>
+        <location filename="../src/components.py" line="584"/>
+        <location filename="../src/components.py" line="682"/>
         <source>请输入摩斯电码解密结果(相关参数帮你填好了)</source>
         <translation>Please enter the Morse code decryption result (related parameters have been pre-filled for you)</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="591"/>
-        <location filename="../src/components.py" line="627"/>
-        <location filename="../src/components.py" line="696"/>
+        <location filename="../src/components.py" line="589"/>
+        <location filename="../src/components.py" line="621"/>
+        <location filename="../src/components.py" line="685"/>
         <source>这里会显示解密结果</source>
         <translation>The decryption result will be displayed here</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="594"/>
-        <location filename="../src/components.py" line="650"/>
-        <location filename="../src/components.py" line="697"/>
+        <location filename="../src/components.py" line="592"/>
+        <location filename="../src/components.py" line="644"/>
+        <location filename="../src/components.py" line="686"/>
         <source>这里会显示最匹配的地点</source>
         <translation>The most matching location will be shown here</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="644"/>
-        <location filename="../src/components.py" line="645"/>
+        <location filename="../src/components.py" line="638"/>
+        <location filename="../src/components.py" line="639"/>
         <source>无结果</source>
         <translation>No result</translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="647"/>
+        <location filename="../src/components.py" line="641"/>
         <source>目标地点可能为: </source>
         <translation>Possible target location: </translation>
     </message>
     <message>
-        <location filename="../src/components.py" line="663"/>
-        <location filename="../src/components.py" line="678"/>
-        <source>解密培根密码后是否自动用替换密码解密</source>
-        <translation>Automatically use Atbash Cipher after decrypting Baconian Cipher</translation>
+        <location filename="../src/components.py" line="652"/>
+        <location filename="../src/components.py" line="667"/>
+        <source>解密培根密码后会自动用替换密码解密</source>
+        <translation>Auto decrypt Atbash Cipher after decrypting Baconian Cipher</translation>
     </message>
 </context>
 <context>
     <name>GoldPage</name>
     <message>
-        <location filename="../src/pages.py" line="279"/>
+        <location filename="../src/pages.py" line="283"/>
         <source>
 # 不祥之兆（金牌）
 1.选择泽布吕赫地图，注意服务器必须允许精英兵。尽可能选择不下雨的天气，这样杂音会比较小。选择德国，到达E点拿到入侵者，然后坐船到A点，上岸之后找到一个很高的水塔，爬完第一段梯子之后，切屏打开软件，开始录制，然后爬完第二段梯子，趴下。过一会能听到一个音效，然后开始播放摩斯电码。录制40-50秒那样，停止录制。然后开始解密，总共是22个字母（遇到相同的部分说明是进入下一个循环了）。它们是以下30个字母中的一部分，按顺序找出缺少的8个字母。这里可能解密出多种可能的结果，这种情况需要几种可能性都进行测试，这个彩蛋没有什么试错成本，只需要回去调整灯亮灭顺序即可。
@@ -470,33 +470,33 @@ These 8 numbers correspond to 8 light sequences. For example, number 0 means all
 </translation>
     </message>
     <message>
-        <location filename="../src/pages.py" line="209"/>
-        <location filename="../src/pages.py" line="283"/>
+        <location filename="../src/pages.py" line="213"/>
+        <location filename="../src/pages.py" line="287"/>
         <source>请输入解密摩斯电码得到的22个字母</source>
         <translation>Please enter the 22 letters decoded from Morse code</translation>
     </message>
     <message>
-        <location filename="../src/pages.py" line="222"/>
-        <location filename="../src/pages.py" line="228"/>
-        <location filename="../src/pages.py" line="284"/>
+        <location filename="../src/pages.py" line="226"/>
+        <location filename="../src/pages.py" line="232"/>
+        <location filename="../src/pages.py" line="288"/>
         <source>这里将会根据8个字母得到8个数字，对应的灯 状态以及开关序列</source>
         <translation>This will derive 8 numbers and their corresponding light states and switch sequences from the 8 letters</translation>
     </message>
     <message>
-        <location filename="../src/pages.py" line="239"/>
+        <location filename="../src/pages.py" line="243"/>
         <source>可能存在以下</source>
-        <translation type="finished">There may be the following </translation>
+        <translation>There may be the following </translation>
     </message>
     <message>
-        <location filename="../src/pages.py" line="240"/>
+        <location filename="../src/pages.py" line="244"/>
         <source>种情况:</source>
-        <translation type="finished"> possibilities:</translation>
+        <translation> possibilities:</translation>
     </message>
 </context>
 <context>
     <name>HomePage</name>
     <message>
-        <location filename="../src/pages.py" line="51"/>
+        <location filename="../src/pages.py" line="55"/>
         <source>
 # 简介
 这是一个战地一维和者菜单解密工具，用于简化维和者获取的过程。本工具不包含关于彩蛋背后故事的内容。
@@ -522,27 +522,33 @@ These 8 numbers correspond to 8 light sequences. For example, number 0 means all
 # 相关问题
 - 本项目开源免费，Github地址：[https://github.com/FlipFlopszzz/PeacekeeperTool](https://github.com/FlipFlopszzz/PeacekeeperTool)。
 - 开发环境: python 3.13.0,win11 23H2,GUI使用pyside6编写，打包使用pyinstaller，安装包编译使用Inno Setup。
-- 这个软件不读取也不修改战地一的内存，是独立运行的一个外部程序，不会触发反作弊，测试时多次和游戏同时运行也没有被EAAC上市。
+- 本项目只面向也只测试过windows(11)上steam绑定ea平台的战地一。
+- 这个软件不读取也不修改战地一的内存，是独立运行的一个外部程序，不会触发反作弊，测试时多次和游戏同时运行也没有被EAAC上市。但不保证EA在后续(2025-4-17以后)不会禁止本工具。
 - 这个软件的字比较小看不清的话，就Ctrl+滚轮上下滑动调整。
 - 本人以前做过两次维和者彩蛋，有点经验，这次全程大约花费3个小时。初次上手的话大概4-5小时就能结束。这个软件主要简化的是金银铜牌和逐步升级的获取，具体体现在摩斯电码的自动识别，解密器的集成，金牌的灯开关序列的遍历，银牌点灯解密器以及坐标系的显示。而且考虑到过去的视频教程中提到的彩蛋网站，有的年久失修，有的使用麻烦，有的在大陆不方便访问，从这个意义上讲，这个软件顺便把目前(2025-4-17)能用的资源和网站汇总了，并把一部分功能简化并搬到软件上。
 - 就测试的几十段素材(包括逐步升级、铜牌和金牌)而言，摩斯电码的自动识别准确度在90%以上。有一些片段由于识别错误或把关键片段之外的摩斯电码合并进来等原因，导致转换得到的英文字符中有错误的部分，在解密器解密之后更加难以解读。但是如果通过自己模糊判断或使用“查看图像”功能来排除错误,多余部分，是能够知悉正确的答案的。目前测试样本量还是太小了，而且不知道录音功能在其他电脑上能否正常工作。
+# 免责声明
+使用本项目的风险完全由使用者承担。作者及贡献者对因使用本项目导致的任何直接或间接损失（如数据丢失、系统故障、法律纠纷等）不承担责任。
 # 更新
 - v1.3版本对很多人反馈的识别不出来，识别出乱码还有只能识别出E,I,T等字母等情况进行了修复。原因目前认为是幅值阈值高于幅值导致的，而本人测试得到的固定阈值并不适合很多用户，因此增加了根据具体波形得到对应阈值的逻辑，并且允许用户自己修改阈值。
 - v1.4版本，将耗时的音频分析逻辑放到了单独的线程中，避免阻塞主线程及其导致的窗口无响应现象。此外增加了开始识别和显示图像两个按钮在加载时的样式，以匹配前面的更改。
-- v1.5版本，新增银牌页面的坐标系4层颜色，方便理解和标记，精简了软件大小，增加深浅色模式，增加多语言支持(目前支持简中，繁中，英语)，另外改善了一些控件的交互逻辑。
+- v1.5版本，新增银牌页面的坐标系4层的边框颜色，方便理解和标记，精简了软件大小，多语言(简中，繁中，英语)，深浅色主题化。
+- v1.6版本，软件打开时会预热读取音频，减少识别时的卡顿。修改了一些组件。完善深浅色主题化，以及新增读取系统主题。
 </source>
         <translation>
 # Introduction
-This is a Battlefield 1 Peacekeeper menu decryption tool, designed to simplify the Peacekeeper acquisition process. This tool does not include any story background.
+This is a Battlefield 1 Peacekeeper menu decryption tool designed to simplify the Peacekeeper acquisition process. This tool does not include background stories about the easter eggs.
+
 # Features
-- Easter egg step-by-step guide
+- Easter egg process guide
 - Audio recording
 - Automatic Morse code decryption from audio
-- Multiple ciphers and puzzle decryptors
+- Decryptors for multiple ciphers and puzzles
+
 # Related Videos and Websites
 - [Full tool tutorial](https://www.bilibili.com/video/BV1MdLRztEEf) and [Slider function supplement](https://www.bilibili.com/video/BV15HGvzuEG2)
 - [Peacekeeper easter egg guide - up: 鸽子王歌姬poi](https://www.bilibili.com/video/BV1FK411M7GN)
-- [Bronze location guide (26 points) - up: 博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6); this video is missing one location, which can be found on the [easter egg wiki](https://wiki.gamedetectives.net/index.php?title=Battlefield_1), or see the last part of the [full tutorial](https://www.bilibili.com/video/BV1MdLRztEEf?p=9)
+- [Bronze location guide (26 points) - up: 博丽-雾希明](https://www.bilibili.com/video/BV1fu4y1o7a6); this video is missing one location, which can be found on the [easter egg wiki](https://wiki.gamedetectives.net/index.php?title=Battlefield_1) or the last part of the [full tool tutorial](https://www.bilibili.com/video/BV1MdLRztEEf?p=9)
 - [Easter egg wiki](https://wiki.gamedetectives.net/index.php?title=Battlefield_1)
 - [Morse code translation site](https://morsecode.world/international/translator.html)
 - [Another easter egg wiki](https://wiki.bfee.co/index.php?title=Battlefield_1/A_Conflict)
@@ -550,27 +556,35 @@ This is a Battlefield 1 Peacekeeper menu decryption tool, designed to simplify t
 - [Cipher tool](https://rumkin.com/tools/cipher)
 - [Bandicam recording software](https://www.bandicam.cn)
 - [Audacity audio software](https://www.audacityteam.org/download/windows)
+
 # References
 - Silver light puzzle decryption referenced [this site](https://tools.bfee.co/conflict)
 - Silver decryption images are from [another wiki](https://wiki.bfee.co/index.php?title=Battlefield_1/A_Conflict)
+
 # FAQ
-- This project is open source and free. Github: [https://github.com/FlipFlopszzz/PeacekeeperTool](https://github.com/FlipFlopszzz/PeacekeeperTool)
-- Development environment: python 3.13.0, win11 23H2, GUI with pyside6, packaged with pyinstaller, installer built with Inno Setup
-- This tool does not read or modify Battlefield 1 memory, runs independently, and does not trigger anti-cheat. During testing, running simultaneously with the game did not cause EAAC bans.
+- This project is open-source and free. Github: [https://github.com/FlipFlopszzz/PeacekeeperTool](https://github.com/FlipFlopszzz/PeacekeeperTool)
+- Development environment: Python 3.13.0, Windows 11 23H2, GUI built with PySide6, packaged with PyInstaller, installer compiled with Inno Setup
+- This project is only tested for Battlefield 1 on Windows 11 via Steam-bound EA platform
+- The software does not read or modify Battlefield 1 memory, runs independently, and does not trigger anti-cheat. No EAAC bans occurred during testing while running alongside the game. However, it is not guaranteed that EA will not prohibit this tool in the future (after April 17, 2025).
 - If the font is too small, use Ctrl+scroll to adjust.
-- I have completed the Peacekeeper easter egg twice before, so I have some experience; it took me about 3 hours this time. First time users can finish in 4–5 hours. This tool mainly simplifies the gold, silver, bronze, and An Escalation unlocks, specifically: automatic Morse code recognition, integrated decryptors, gold light sequence enumeration, silver light puzzle, and coordinate display. Also, since some old video guides reference websites that are now broken, inconvenient, or blocked in China, this tool summarizes all usable resources as of (2025-4-17), and moves some features directly into the tool.
-- For dozens of test samples (including An Escalation, bronze, and gold), Morse code auto recognition was over 90% accurate. Some clips may have errors due to misrecognition or extraneous Morse merged in, making the final English result harder to read. But with judgment or using the &quot;Show Image&quot; feature to exclude errors, you can still find the correct answer. The sample size is still too small, and recording may not work on every computer.
+- With previous experience completing the Peacekeeper easter egg twice, this run took approximately 3 hours. First-time users can finish in 4-5 hours. The tool mainly simplifies the acquisition of gold/silver/bronze medals and *An Escalation* by integrating automatic Morse code recognition, decryptors, gold medal light sequence traversal, silver light puzzle decryption, and coordinate system display. Considering many old easter egg websites mentioned in tutorials are outdated, cumbersome, or inaccessible in mainland China, the tool aggregates all usable resources as of (2025-4-17) and streamlines some functions directly into the software.
+- For dozens of test samples (including *An Escalation*, bronze, and gold), Morse code auto-recognition accuracy exceeds 90%. Some clips may contain errors due to misrecognition or merged extraneous Morse code, making decrypted English harder to read. However, correct answers can still be identified by using judgment or the &quot;View Image&quot; function to filter errors and extraneous content. The sample size remains small, and recording functionality may not work on all computers.
+
+# Disclaimer of Liability
+All risks associated with the use of this project are assumed entirely by the user. The author(s) and contributors shall not be held liable for any direct or indirect damages arising from the use of this project, including but not limited to data loss, system failures, legal disputes, or any other losses.
+
 # Updates
-- v1.3: Fixed issues with recognition failure, garbled output, or only recognizing E/I/T. The cause was amplitude threshold being higher than signal. Now the tool auto-detects threshold and allows manual adjustment.
-- v1.4: Moved audio analysis to a separate thread to avoid blocking UI. &quot;Start Recognition&quot; and &quot;Show Image&quot; buttons now also show loading styles.
-- v1.5: Added 4-color coordinate map to the silver page for clarity, reduced software size, added light/dark mode, added multi-language support (currently Simplified Chinese, Traditional Chinese, English), and improved some UI interactions.
+- v1.3: Fixed issues with failed recognition, garbled text, or only recognizing letters like E/I/T. The root cause was an amplitude threshold higher than the signal level. The tool now auto-detects thresholds based on waveform and allows manual adjustment.
+- v1.4: Moved time-consuming audio analysis to a separate thread to prevent UI blocking. Added loading styles for &quot;Start Recognition&quot; and &quot;Show Image&quot; buttons to match changes.
+- v1.5: Added 4-layer border colors to the silver page coordinate system for better readability, reduced software size, added multi-language support (Simplified Chinese, Traditional Chinese, English), and implemented light/dark themes.
+- v1.6: Preheats audio on startup to reduce lag during recognition. Modified some components. Improved light/dark theme consistency and added system theme detection.
 </translation>
     </message>
 </context>
 <context>
     <name>LastPage</name>
     <message>
-        <location filename="../src/pages.py" line="416"/>
+        <location filename="../src/pages.py" line="420"/>
         <source>
 # 最终任务
 1. 恭喜你坚持到了最后一个任务！首先打开士兵-狗牌，在正面-进度那里选择金银铜中任意一个进行装备，背面-进度，选择野兽支援和看见天使中任意一个装备。然后退回上一级彩蛋，点击自订士兵-支援兵，主武器选择M1917机枪，皮肤装备逐步升级。确保你已经完成了前置的所有6个任务，不然在地道的某一层会被毒气直接秒杀。
@@ -624,118 +638,133 @@ If you have any issues, leave a comment or DM on the Bilibili video, or open an 
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/main.py" line="13"/>
-        <location filename="../src/main.py" line="136"/>
+        <location filename="../src/main.py" line="15"/>
+        <location filename="../src/main.py" line="142"/>
         <source>维和者工具</source>
         <translation>Peacekeeper Tool</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="44"/>
+        <location filename="../src/main.py" line="47"/>
         <source>首页</source>
         <translation>Home</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="45"/>
+        <location filename="../src/main.py" line="48"/>
         <source>使用说明</source>
         <translation>Instructions</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="46"/>
+        <location filename="../src/main.py" line="49"/>
         <source>野兽之源</source>
         <translation>Belly of the Beast</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="47"/>
+        <location filename="../src/main.py" line="50"/>
         <source>看见天使</source>
         <translation>Angel Sighting</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="48"/>
-        <source>逐步升级</source>
+        <location filename="../src/main.py" line="51"/>
+        <source>逐步升级（皮肤）</source>
         <translation>An Escalation (Skin)</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="49"/>
+        <location filename="../src/main.py" line="52"/>
         <source>不祥之兆（金牌）</source>
         <translation>An Omen (Gold)</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="50"/>
+        <location filename="../src/main.py" line="53"/>
         <source>冲突（银牌）</source>
         <translation>A Conflict (Silver)</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="51"/>
+        <location filename="../src/main.py" line="54"/>
         <source>初显身手（铜牌）</source>
         <translation>A Beginning (Bronze)</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="52"/>
+        <location filename="../src/main.py" line="55"/>
         <source>维和者</source>
         <translation>Peacekeeper</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="89"/>
-        <location filename="../src/main.py" line="143"/>
+        <location filename="../src/main.py" line="73"/>
+        <source>正在预热摩斯电码分析模块...</source>
+        <translation>Warming up Morse code analysis module...</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="99"/>
+        <location filename="../src/main.py" line="149"/>
         <source>浅色模式</source>
         <translation>Light Mode</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="90"/>
-        <location filename="../src/main.py" line="144"/>
+        <location filename="../src/main.py" line="100"/>
+        <location filename="../src/main.py" line="150"/>
         <source>深色模式</source>
         <translation>Dark Mode</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="187"/>
+        <source>摩斯电码分析模块已预热完成</source>
+        <translation>Warming up finished</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="189"/>
+        <source>预热失败，但不会影响使用</source>
+        <translation>Warming up failed, but won’t affect usage</translation>
     </message>
 </context>
 <context>
     <name>PlotWindow</name>
     <message>
-        <location filename="../src/audio.py" line="337"/>
+        <location filename="../src/audio.py" line="342"/>
         <source>音频信号幅值-时间图</source>
         <translation>Audio Signal Amplitude-Time Chart</translation>
     </message>
     <message>
-        <location filename="../src/audio.py" line="370"/>
+        <location filename="../src/audio.py" line="375"/>
         <source>信号</source>
         <translation>Signal</translation>
     </message>
     <message>
-        <location filename="../src/audio.py" line="373"/>
+        <location filename="../src/audio.py" line="378"/>
         <source>幅值阈值 ({0})</source>
         <translation>Amplitude Threshold ({0})</translation>
     </message>
     <message>
-        <location filename="../src/audio.py" line="381"/>
+        <location filename="../src/audio.py" line="386"/>
         <source>单词间隔(&quot;   &quot;)</source>
         <translation>Word Gap (&quot;   &quot;)</translation>
     </message>
     <message>
-        <location filename="../src/audio.py" line="389"/>
+        <location filename="../src/audio.py" line="394"/>
         <source>字符间隔(&quot; &quot;)</source>
         <translation>Character Gap (&quot; &quot;)</translation>
     </message>
     <message>
-        <location filename="../src/audio.py" line="397"/>
+        <location filename="../src/audio.py" line="402"/>
         <source>点(&quot;.&quot;)</source>
         <translation>Dot (&quot;.&quot;)</translation>
     </message>
     <message>
-        <location filename="../src/audio.py" line="398"/>
+        <location filename="../src/audio.py" line="403"/>
         <source>划(&quot;_&quot;)</source>
         <translation>Dash (&quot;_&quot;)</translation>
     </message>
     <message>
-        <location filename="../src/audio.py" line="416"/>
+        <location filename="../src/audio.py" line="421"/>
         <source>{0}-{1}Hz 信号分析</source>
         <translation>{0}-{1}Hz Signal Analysis</translation>
     </message>
     <message>
-        <location filename="../src/audio.py" line="418"/>
+        <location filename="../src/audio.py" line="423"/>
         <source>时间</source>
         <translation>Time</translation>
     </message>
     <message>
-        <location filename="../src/audio.py" line="419"/>
+        <location filename="../src/audio.py" line="424"/>
         <source>幅值</source>
         <translation>Amplitude</translation>
     </message>
@@ -743,7 +772,7 @@ If you have any issues, leave a comment or DM on the Bilibili video, or open an 
 <context>
     <name>SilverPage</name>
     <message>
-        <location filename="../src/pages.py" line="315"/>
+        <location filename="../src/pages.py" line="319"/>
         <source>
 # 冲突（银牌）
 1. 地图选择苏瓦松（蘇瓦鬆），尽可能选择雾天，方便后续看地板的灯亮灭，没有也没关系。德国，骑兵，到E点的大房子，进门后，找到所有天花板和位于墙上的灯用枪打掉，落地灯使用医疗包和弹药包扑灭，其中有一个落地灯的底座被很多木箱子挡住了，直接丢手雷给它炸开，后面可能需要和这个灯互动。所有灯被灭掉之后会听到一个很阴间的音效，这一步完成。
@@ -767,7 +796,7 @@ If you have any issues, leave a comment or DM on the Bilibili video, or open an 
 <context>
     <name>SkinPage</name>
     <message>
-        <location filename="../src/pages.py" line="177"/>
+        <location filename="../src/pages.py" line="181"/>
         <source>
 # 逐步升级（皮肤）
 1. 在做这个任务之前确保你已经解锁了M1917机枪也就是担架的任意型号，不然拿了皮肤也没用。选择地图阿尔比恩，**绝对不能是下雪天气，因为自动识别无法工作**，德国，飞机，朝前飞找到D点的一个铁塔，地上有很多铁箱子和木箱子，用枪(别用手雷，后边要用)给木箱子打了，总共9个铁箱子，各自互动1次，这次和下次都不需要特定顺序。不能多也不能少，错了直接重开。
@@ -794,15 +823,15 @@ If you have any issues, leave a comment or DM on the Bilibili video, or open an 
 </translation>
     </message>
     <message>
-        <location filename="../src/pages.py" line="148"/>
-        <location filename="../src/pages.py" line="181"/>
+        <location filename="../src/pages.py" line="152"/>
+        <location filename="../src/pages.py" line="185"/>
         <source>输入解密出的5个字母</source>
         <translation>Enter the 5 letters decoded</translation>
     </message>
     <message>
-        <location filename="../src/pages.py" line="149"/>
-        <location filename="../src/pages.py" line="182"/>
-        <location filename="../src/pages.py" line="189"/>
+        <location filename="../src/pages.py" line="153"/>
+        <location filename="../src/pages.py" line="186"/>
+        <location filename="../src/pages.py" line="193"/>
         <source>这里将会显示最终的那串字母</source>
         <translation>The final letter string will be displayed here</translation>
     </message>
@@ -810,7 +839,7 @@ If you have any issues, leave a comment or DM on the Bilibili video, or open an 
 <context>
     <name>UsagePage</name>
     <message>
-        <location filename="../src/pages.py" line="80"/>
+        <location filename="../src/pages.py" line="84"/>
         <source>
 # 使用说明
 ## 彩蛋流程简介
@@ -848,12 +877,12 @@ On the Soldiers page, under Customize Soldier, select Support, then M1917 MG (an
 <context>
     <name>compute_candles</name>
     <message>
-        <location filename="../src/methods.py" line="12"/>
+        <location filename="../src/methods.py" line="14"/>
         <source>无结果</source>
         <translation>No result</translation>
     </message>
     <message>
-        <location filename="../src/methods.py" line="74"/>
+        <location filename="../src/methods.py" line="76"/>
         <source>结果为：</source>
         <translation>Result:</translation>
     </message>
@@ -861,7 +890,7 @@ On the Soldiers page, under Customize Soldier, select Support, then M1917 MG (an
 <context>
     <name>find_closest_string</name>
     <message>
-        <location filename="../src/methods.py" line="428"/>
+        <location filename="../src/methods.py" line="432"/>
         <source>无结果</source>
         <translation>No result</translation>
     </message>
@@ -869,12 +898,12 @@ On the Soldiers page, under Customize Soldier, select Support, then M1917 MG (an
 <context>
     <name>find_missing_letters</name>
     <message>
-        <location filename="../src/methods.py" line="98"/>
+        <location filename="../src/methods.py" line="100"/>
         <source>error:输入字符数不是22个</source>
         <translation>error: Number of entered characters is not 22</translation>
     </message>
     <message>
-        <location filename="../src/methods.py" line="101"/>
+        <location filename="../src/methods.py" line="103"/>
         <source>error:输入的字符中含有不是字母的字符</source>
         <translation>error: The entered characters contain non-letter characters</translation>
     </message>
@@ -882,20 +911,20 @@ On the Soldiers page, under Customize Soldier, select Support, then M1917 MG (an
 <context>
     <name>get_last_gold_text</name>
     <message>
-        <location filename="../src/methods.py" line="192"/>
+        <location filename="../src/methods.py" line="194"/>
         <source>缺少的字母为:</source>
         <translation>Missing letters are:</translation>
     </message>
     <message>
-        <location filename="../src/methods.py" line="193"/>
+        <location filename="../src/methods.py" line="195"/>
         <source>对应数字为:</source>
         <translation>Corresponding numbers are:</translation>
     </message>
     <message>
-        <location filename="../src/methods.py" line="195"/>
+        <location filename="../src/methods.py" line="197"/>
         <source>1-8号灯的开关序列(1:亮,0:灭):
 </source>
-        <translation type="finished">1-8 Light switch sequence(1:On,0:Off):
+        <translation>1-8 Light switch sequence(1:On,0:Off):
 </translation>
     </message>
 </context>

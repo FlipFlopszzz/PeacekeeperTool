@@ -1,6 +1,8 @@
 # 银牌点灯
 import difflib
 from PySide6.QtCore import QCoreApplication
+import os
+import sys
 
 
 def compute_candles(iterations):
@@ -425,3 +427,25 @@ def find_closest_string(target, candidates=candidate_strings, threshold=0.6):
   best_match = difflib.get_close_matches(
       target, candidates, n=1, cutoff=threshold)
   return best_match[0] if best_match else QCoreApplication.translate("find_closest_string", "无结果")
+
+
+def get_resource_path(filename, resource_dir="translations", dev_relative="../translations"):
+  if hasattr(sys, '_MEIPASS'):
+    # 打包后环境：资源在 _MEIPASS/resource_dir 目录
+    return os.path.join(sys._MEIPASS, resource_dir, filename)
+  else:
+    # 开发环境：资源在相对于当前文件的 dev_relative 目录
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.abspath(os.path.join(base_path, dev_relative, filename))
+
+
+def get_time(func):
+  import time
+
+  def wrapper(*args, **kwargs):
+    start_time = time.time()
+    result = func(*args, **kwargs)
+    end_time = time.time()
+    print(f"{func.__name__} 函数执行耗时: {end_time - start_time:.4f}秒")
+    return result
+  return wrapper

@@ -1,0 +1,1 @@
+lupdate .\src\audio.py .\src\basic_components.py .\src\components.py .\src\main.py .\src\methods.py .\src\pages.py -ts translations/zh_CN.ts translations/en_US.ts translations/zh_TW.ts

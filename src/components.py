@@ -1,5 +1,5 @@
 from threading import Thread
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, QLabel, QApplication, QFileDialog, QCheckBox, QMessageBox, QGridLayout, QSizePolicy, QComboBox, QSlider
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, QLabel, QApplication, QFileDialog, QMessageBox, QGridLayout, QSizePolicy, QComboBox, QSlider
 from PySide6.QtGui import QFont
 from PySide6.QtCore import Qt, Signal
 from audio import AudioRecorder, AudioAnalyzer
@@ -19,7 +19,6 @@ class CoordinateSystem(QWidget):
     self.grid_layout = QGridLayout(self)
     self.grid_layout.setSpacing(2)  # 设置按钮间距为2px
     self.grid_layout.setContentsMargins(2, 2, 2, 2)
-
     # 存储组件引用
     self.buttons = []
     self.bottom_inputs = []
@@ -277,7 +276,8 @@ class AudioMorseDecoder(QWidget):
     # 幅值阈值
     amplitude_threshold_layout = QHBoxLayout()
     self.amplitude_threshold_label_left = QLabel(
-        self.tr("使用这个滑块来调整摩斯电码幅值阈值    当前: 0.0"))
+        self.tr("使用这个滑块来调整摩斯电码幅值阈值    当前: 0.00"))
+    self.amplitude_threshold_label_left.setFixedWidth(275)
     amplitude_threshold_layout.addWidget(
         self.amplitude_threshold_label_left)
     self.amplitude_threshold_silder = QSlider(Qt.Horizontal)
@@ -388,14 +388,15 @@ class AudioMorseDecoder(QWidget):
 
   def decode_path_btn_handler(self):
     file_dialog = QFileDialog()
-    filter_str = self.tr("WAV Files (*.wav);;All Files (*)")
+    filter_str = self.tr("WAV文件 (*.wav);;所有文件 (*)")
     file_path, _ = file_dialog.getOpenFileName(
-        self, self.tr('选择文件'), filter=filter_str)
+        self, self.tr('选择音频文件'), filter=filter_str)
     if file_path:
       self.decode_path_inputbox.setText(file_path)
 
   def save_path_btn_handler(self):
-    folder_path = QFileDialog.getExistingDirectory(self, self.tr('选择文件夹'))
+    folder_path = QFileDialog.getExistingDirectory(
+        self, self.tr('选择保存音频文件的目录'))
     if folder_path:
       self.save_path_inputbox.setText(folder_path)
 
@@ -544,7 +545,7 @@ class AudioMorseDecoder(QWidget):
 class CipherDecryptor(QWidget):
   def __init__(self):
     super().__init__()
-    self.checkbox = None
+    self.hint_label = None
     self.mode = 0
     self.initUI()
 
@@ -553,16 +554,13 @@ class CipherDecryptor(QWidget):
     top_layout = QHBoxLayout()
 
     # 创建标签
-    self.label = QLabel(self.tr("解密器"))
+    self.label = QLabel(self.tr("密文解密器"))
     top_layout.addWidget(self.label)
 
-    # 创建复选框
-    self.checkbox = QCheckBox(self.tr("解密栅栏密码前是否自动倒置"))
-    self.checkbox.setChecked(True)
-    self.checkbox.setVisible(False)
-    self.checkbox.stateChanged.connect(
-        self.update_text_display_on_checkbox_change)
-    top_layout.addWidget(self.checkbox)
+    # 创建提示标签
+    self.hint_label = QLabel(self.tr("解密栅栏密码前会自动倒置"))
+    self.hint_label.setVisible(False)
+    top_layout.addWidget(self.hint_label)
 
     # 创建 QComboBox 组件
     self.combobox = QComboBox()
@@ -609,16 +607,12 @@ class CipherDecryptor(QWidget):
     elif mode == 3:
       result = decrypt_rot(text)
     elif mode == 4:
-      if self.checkbox and self.checkbox.isChecked():
-        result = decrypt_reverse(text)
-        result = decrypt_rail_fence(result)
-      else:
-        result = decrypt_rail_fence(text)
+      result = decrypt_reverse(text)
+      result = decrypt_rail_fence(result)
     elif mode == 5:
       result = self.replace_e_t(text)
       result = decrypt_baconian(result)
-      if self.checkbox and self.checkbox.isChecked():
-        result = decrypt_atbash(result)
+      result = decrypt_atbash(result)
     elif mode == 6:
       result = decrypt_vigenere(text)
     elif mode == 7:
@@ -649,18 +643,13 @@ class CipherDecryptor(QWidget):
     if not self.input_box.text():
       self.text_display_match.setText(self.tr("这里会显示最匹配的地点"))
 
-  def update_text_display_on_checkbox_change(self):
-    self.update_text_display(
-        self.input_box.text()
-    )
-
   def update_mode_on_combobox_change(self, mode):
     self.mode = mode
-    self.checkbox.setVisible(self.mode == 4 or self.mode == 5)
+    self.hint_label.setVisible(self.mode == 4 or self.mode == 5)
     if mode == 4:
-      self.checkbox.setText(self.tr("解密栅栏密码前是否自动倒置"))
+      self.hint_label.setText(self.tr("解密栅栏密码前会自动倒置"))
     elif mode == 5:
-      self.checkbox.setText(self.tr("解密培根密码后是否自动用替换密码解密"))
+      self.hint_label.setText(self.tr("解密培根密码后会自动用替换密码解密"))
     self.update_text_display(self.input_box.text())
 
   def replace_e_t(self, s):
@@ -670,14 +659,14 @@ class CipherDecryptor(QWidget):
 
   def retranslate_ui(self):
     # 标签
-    self.label.setText(self.tr("解密器"))
+    self.label.setText(self.tr("密文解密器"))
     # 复选框文本，取决于当前模式
     if self.mode == 4:
-      self.checkbox.setText(self.tr("解密栅栏密码前是否自动倒置"))
+      self.hint_label.setText(self.tr("解密栅栏密码前会自动倒置"))
     elif self.mode == 5:
-      self.checkbox.setText(self.tr("解密培根密码后是否自动用替换密码解密"))
+      self.hint_label.setText(self.tr("解密培根密码后会自动用替换密码解密"))
     else:
-      self.checkbox.setText("")
+      self.hint_label.setText("")
 
     # combobox 各项文本重设
     self.combobox.setItemText(0, self.tr("任务1:原文"))
