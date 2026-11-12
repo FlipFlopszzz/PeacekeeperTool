@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout,  QLineEdit, QLabel, QTextBrowser
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QLabel, QTextBrowser, QSplitter, QScrollArea, QFrame
 from PySide6.QtGui import QPalette, QPixmap
 from PySide6.QtCore import Qt
 
@@ -71,6 +71,36 @@ class MarkdownTextBrowser(QWidget):
 
     # 设置组件的布局
     self.setLayout(self.layout)
+
+
+class DescriptionSplitter(QSplitter):
+  """通过垂直分隔条调整说明区高度，工具区空间不足时可滚动。"""
+
+  def __init__(self, browser, parent=None):
+    super().__init__(Qt.Vertical, parent)
+    self.setObjectName("descriptionSplitter")
+    self.setHandleWidth(8)
+    # 保留两个区域的最小高度，避免拖动后无法找回说明或工具。
+    self.setChildrenCollapsible(False)
+    browser.setMinimumHeight(80)
+    self.addWidget(browser)
+
+    content = QWidget()
+    self.content_layout = QVBoxLayout(content)
+    self.content_layout.setContentsMargins(0, 0, 0, 0)
+
+    # 工具包含固定高度的控件，使用滚动区才能给说明区让出空间。
+    self.content_area = QScrollArea()
+    self.content_area.setFrameShape(QFrame.NoFrame)
+    self.content_area.setWidgetResizable(True)
+    self.content_area.setMinimumHeight(340)
+    self.content_area.setWidget(content)
+    content.setAutoFillBackground(False)
+    self.content_area.viewport().setAutoFillBackground(False)
+    self.addWidget(self.content_area)
+    self.setStretchFactor(0, 1)
+    self.setStretchFactor(1, 0)
+    self.setSizes([200, 600])
 
 
 class ImageDisplayer(QLabel):

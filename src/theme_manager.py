@@ -164,6 +164,19 @@ class ThemeManager(QObject):
                 border-right: 1px solid {self.current_theme["sidebar_border"]};
             }}
 
+            /* 坐标旋转视口与页面使用相同的主题背景 */
+            QGraphicsView#coordinateView {{
+                background-color: {self.current_theme["window_bg"]};
+                border: none;
+            }}
+
+            /* 坐标图标按钮始终透明，深浅色主题下均使用页面背景 */
+            QPushButton#coordinateControl {{
+                background-color: transparent;
+                border: none;
+                padding: 0;
+            }}
+
             /* 普通按钮样式 */
             QPushButton#morseDecoder {{
                 border: 1px solid {sidebar_border};
@@ -246,8 +259,8 @@ class ThemeManager(QObject):
                 border-radius: 4px;
             }}
 
-            /* 输入框样式 */
-            QLineEdit {{
+            /* 输入框及带视频链接的地点结果样式 */
+            QLineEdit, QLabel#locationMatchDisplay {{
                 {self.styles["input_display"].format(**input_display)}
                 border: 1px solid {self.current_theme["sidebar_border"]};
                 border-radius: 4px;
@@ -262,6 +275,16 @@ class ThemeManager(QObject):
                 background-color: {self.current_theme["window_bg"]};
                 color:{self.current_theme["text"]};
                 border: none;
+            }}
+
+            /* 说明区下方的拖动分隔条，随深浅色主题切换 */
+            QSplitter#descriptionSplitter::handle:vertical {{
+                background-color: {sidebar_border};
+                border-radius: 2px;
+                margin: 2px 0;
+            }}
+            QSplitter#descriptionSplitter::handle:vertical:hover {{
+                background-color: {input_display["focus_border_color"]};
             }}
 
             /* 仅对 text_display 组件生效的只读文本区域样式 */

@@ -423,10 +423,73 @@ candidate_strings = [
 ]
 
 
+# 铜牌点位视频的分 P 目录，按 2026-11-12 的实际标题核对。
+# https://www.bilibili.com/video/BV1fu4y1o7a6/
+# P1 的标题将 AMIENS 误拼为 AMINS，这里保留程序中的标准地点名。
+LOCATION_VIDEO_PAGES = {
+    "AMIENS NEUF FURNITURE": 1,
+    "BALLROOM MAP VARENNES": 2,
+    "BUCKET MARSHLANDS FAW": 3,
+    "CANAL KANTARA VASES": 4,
+    "CASTELLO ISLE ADRIATIC": 5,
+    "CHURCH RUINS AMIENS": 6,
+    "COASTAL FORTRESS ADRIATIC": 7,
+    "CRATE JABAL JIFAR": 8,
+    "CRATE TRENCH CANAL": 9,
+    "CRATE SEREN VENETIAN": 10,
+    "FERRO FIRE VENETIAN": 11,
+    "HILL BARN ADRIATIC": 12,
+    "HILL TOWER CANAL": 13,
+    "HOTEL CHECK PERONNE": 14,
+    "LONGUEVILLE STATUE AMIENS": 15,
+    "LUGGAGE BASEMENT APREMONT": 16,
+    "OUTPOST BARREL FAW": 17,
+    "PANEL WATER APREMONT": 18,
+    "PILLAR OUTSKIRTS JIFAR": 19,
+    "PILLOW MAZAR JIFAR": 20,
+    "RUIN VENTURE PERONNE": 21,
+    "STATUES GARDEN VARENNES": 22,
+    "STOVE TURRET VENETIAN": 23,
+    "TRAVECY ATTIC PERONNE": 24,
+    "TREE FORTRESS FAW": 25,
+    "TREE TRAIN APREMONT": 26,
+    "VARENNES SERVANT BED": 27,
+}
+
+
+def get_location_video(location):
+  """返回匹配地点的分 P 链接和序号，未知地点不提供链接。"""
+  page = LOCATION_VIDEO_PAGES.get(location)
+  if page is None:
+    return None
+  return f"https://www.bilibili.com/video/BV1fu4y1o7a6/?p={page}", page
+
+
 def find_closest_string(target, candidates=candidate_strings, threshold=0.6):
   best_match = difflib.get_close_matches(
       target, candidates, n=1, cutoff=threshold)
   return best_match[0] if best_match else QCoreApplication.translate("find_closest_string", "无结果")
+
+
+def get_location_map(location):
+  """根据匹配地点中的地图代号，返回当前界面语言的地图名。"""
+  map_names = {
+      "AMIENS": QCoreApplication.translate("get_location_map", "亚眠"),
+      "VARENNES": QCoreApplication.translate("get_location_map", "流血宴厅"),
+      "FAW": QCoreApplication.translate("get_location_map", "法欧堡"),
+      "CANAL": QCoreApplication.translate("get_location_map", "苏伊士"),
+      "ADRIATIC": QCoreApplication.translate("get_location_map", "帝国边境"),
+      "JIFAR": QCoreApplication.translate("get_location_map", "西奈沙漠"),
+      "VENETIAN": QCoreApplication.translate("get_location_map", "格拉巴山"),
+      "PERONNE": QCoreApplication.translate("get_location_map", "圣康坦的伤痕"),
+      "APREMONT": QCoreApplication.translate("get_location_map", "阿尔贡森林"),
+  }
+  # 地图代号可能出现在地点开头或结尾，按完整单词查找。
+  location_words = location.upper().split()
+  for code, map_name in map_names.items():
+    if code in location_words:
+      return map_name
+  return ""
 
 
 def get_resource_path(filename, resource_dir="translations", dev_relative="../translations"):

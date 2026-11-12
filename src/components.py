@@ -1,10 +1,11 @@
+from html import escape
 from threading import Thread
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, QLabel, QApplication, QFileDialog, QMessageBox, QGridLayout, QSizePolicy, QComboBox, QSlider
-from PySide6.QtGui import QFont
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, QLabel, QApplication, QFileDialog, QMessageBox, QGridLayout, QSizePolicy, QComboBox, QSlider, QGraphicsScene, QGraphicsView
+from PySide6.QtGui import QColor, QFont, QIcon, QPainter, QPainterPath, QPen, QPixmap
+from PySide6.QtCore import Qt, Signal, QAbstractAnimation, QEasingCurve, QPropertyAnimation, QRectF, QSize
 from audio import AudioRecorder, AudioAnalyzer
 import sys
-from methods import compute_candles, decode_morse, decrypt_atbash, decrypt_autokey, decrypt_baconian, decrypt_rail_fence, decrypt_reverse, decrypt_rot, decrypt_vigenere, find_closest_string
+from methods import compute_candles, decode_morse, decrypt_atbash, decrypt_autokey, decrypt_baconian, decrypt_rail_fence, decrypt_reverse, decrypt_rot, decrypt_vigenere, find_closest_string, get_location_map, get_location_video
 from basic_components import SingleLineInput, SingleLineTextDisplay
 
 audioRecorder = AudioRecorder()
@@ -15,8 +16,11 @@ class CoordinateSystem(QWidget):
   def __init__(self, parent=None):
     super().__init__(parent)
 
-    # 创建网格布局
-    self.grid_layout = QGridLayout(self)
+    # 网格作为独立部件嵌入图形场景，旋转时保留原有按钮和输入内容。
+    main_layout = QVBoxLayout(self)
+    main_layout.setContentsMargins(0, 0, 0, 0)
+    self.grid_widget = QWidget()
+    self.grid_layout = QGridLayout(self.grid_widget)
     self.grid_layout.setSpacing(2)  # 设置按钮间距为2px
     self.grid_layout.setContentsMargins(2, 2, 2, 2)
     # 存储组件引用
@@ -89,8 +93,127 @@ class CoordinateSystem(QWidget):
         QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.grid_layout.addWidget(spacer_widget, 10, 9)
 
+    self.grid_widget.adjustSize()
+    self.grid_scene = QGraphicsScene(self)
+    self.grid_proxy = self.grid_scene.addWidget(self.grid_widget)
+    self.grid_proxy.setTransformOriginPoint(self.grid_proxy.boundingRect().center())
+    self.grid_view = QGraphicsView(self.grid_scene)
+    self.grid_view.setObjectName("coordinateView")
+    self.grid_view.setFrameShape(QGraphicsView.NoFrame)
+    self.grid_view.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+    self.grid_view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+    self.grid_view.setRenderHint(QPainter.SmoothPixmapTransform)
+    self.grid_view.setFixedSize(self.grid_widget.sizeHint())
+    main_layout.addWidget(self.grid_view)
+
+    controls_layout = QHBoxLayout()
+    controls_layout.setSpacing(12)
+    controls_layout.setContentsMargins(24, 0, 24, 0)
+    self.rotate_left_button = QPushButton()
+    self.rotate_right_button = QPushButton()
+    self.reset_rotation_button = QPushButton()
+    self.rotation_buttons = (
+        self.rotate_left_button, self.rotate_right_button, self.reset_rotation_button)
+    for button, action in zip(self.rotation_buttons, ("left", "right", "reset")):
+      button.setObjectName("coordinateControl")
+      button.setFixedSize(32, 32)
+      button.setFlat(True)
+      button.setIcon(self._create_control_icon(action))
+      button.setIconSize(QSize(24, 24))
+      button.setCursor(Qt.PointingHandCursor)
+    # 左右旋转分置两侧，复位保持居中。
+    controls_layout.addWidget(self.rotate_left_button)
+    controls_layout.addStretch()
+    controls_layout.addWidget(self.reset_rotation_button)
+    controls_layout.addStretch()
+    controls_layout.addWidget(self.rotate_right_button)
+    main_layout.addLayout(controls_layout)
+    self.rotate_left_button.clicked.connect(lambda: self.rotate_grid(-90))
+    self.rotate_right_button.clicked.connect(lambda: self.rotate_grid(90))
+    self.reset_rotation_button.clicked.connect(self.reset_rotation)
+
+    self.rotation_animation = QPropertyAnimation(self.grid_proxy, b"rotation", self)
+    self.rotation_animation.setDuration(300)
+    self.rotation_animation.setEasingCurve(QEasingCurve.InOutCubic)
+    self.rotation_animation.valueChanged.connect(self._fit_rotated_grid)
+    self.rotation_animation.finished.connect(self._finish_rotation)
+    self._fit_rotated_grid()
+    self.retranslate_ui()
+
     # 设置组件本身的大小策略
     self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+
+  @staticmethod
+  def _create_control_icon(action):
+    """绘制透明底灰色图标，提供多种像素密度以适配系统缩放。"""
+    icon = QIcon()
+    for ratio in (1, 2, 3):
+      pixmap = QPixmap(24 * ratio, 24 * ratio)
+      pixmap.setDevicePixelRatio(ratio)
+      pixmap.fill(Qt.transparent)
+      painter = QPainter(pixmap)
+      painter.setRenderHint(QPainter.Antialiasing)
+      pen = QPen(QColor("#888888"))
+      pen.setWidthF(1.8)
+      pen.setCapStyle(Qt.RoundCap)
+      pen.setJoinStyle(Qt.RoundJoin)
+      painter.setPen(pen)
+      if action == "reset":
+        painter.drawEllipse(QRectF(5, 5, 14, 14))
+      else:
+        # 左右箭头互为镜像，保证线宽和弧度一致。
+        if action == "right":
+          painter.translate(24, 0)
+          painter.scale(-1, 1)
+        painter.drawArc(QRectF(5, 5, 14, 14), 45 * 16, 270 * 16)
+        arrowhead = QPainterPath()
+        arrowhead.moveTo(13.2, 18)
+        arrowhead.lineTo(16.95, 16.95)
+        arrowhead.lineTo(16, 20.7)
+        painter.drawPath(arrowhead)
+      painter.end()
+      icon.addPixmap(pixmap)
+    return icon
+
+  def rotate_grid(self, degrees):
+    """围绕整个坐标组件的中心，平滑旋转指定角度。"""
+    self._animate_rotation(self.grid_proxy.rotation() + degrees)
+
+  def reset_rotation(self):
+    # 从较短的方向回到初始朝向，填写内容和格子标记保持不变。
+    angle = self.grid_proxy.rotation()
+    self._animate_rotation(0 if angle <= 180 else 360)
+
+  def _animate_rotation(self, target_angle):
+    if self.rotation_animation.state() == QAbstractAnimation.Running:
+      return
+    angle = self.grid_proxy.rotation()
+    if angle == target_angle:
+      return
+    for button in self.rotation_buttons:
+      button.setEnabled(False)
+    self.rotation_animation.setStartValue(angle)
+    self.rotation_animation.setEndValue(float(target_angle))
+    self.rotation_animation.start()
+
+  def _fit_rotated_grid(self, value=None):
+    # 每帧适配视口，避免斜转过程中四角被裁切或挤动相邻组件。
+    bounds = self.grid_proxy.sceneBoundingRect()
+    self.grid_view.setSceneRect(bounds)
+    self.grid_view.fitInView(bounds, Qt.KeepAspectRatio)
+
+  def _finish_rotation(self):
+    self.grid_proxy.setRotation(self.grid_proxy.rotation() % 360)
+    self._fit_rotated_grid()
+    for button in self.rotation_buttons:
+      button.setEnabled(True)
+
+  def retranslate_ui(self):
+    # 图标不显示文字，悬停提示和无障碍名称仍跟随界面语言切换。
+    labels = (self.tr("左转90°"), self.tr("右转90°"), self.tr("复位"))
+    for button, label in zip(self.rotation_buttons, labels):
+      button.setToolTip(label)
+      button.setAccessibleName(label)
 
   def get_button(self, row: int, col: int) -> QPushButton:
     """获取指定位置的按钮"""
@@ -134,7 +257,8 @@ class CandleDecryptor(QWidget):
         input_box = SingleLineInput(self.tr("灯的序号之间用中/英文逗号隔开"))
       else:
         input_box = SingleLineInput()
-      input_box.input_box.setFixedWidth(240)
+      # 缩短数字输入框，为右侧坐标图留出空间。
+      input_box.input_box.setFixedWidth(200)
       input_box.input_box.setSizePolicy(
           QSizePolicy.Fixed, QSizePolicy.Fixed)
 
@@ -592,7 +716,14 @@ class CipherDecryptor(QWidget):
     self.text_display = SingleLineTextDisplay(self.tr("这里会显示解密结果"))
     layout.addWidget(self.text_display)
 
-    self.text_display_match = SingleLineTextDisplay(self.tr("这里会显示最匹配的地点"))
+    # 富文本结果支持直接打开对应分 P，并保留文字选择和复制。
+    self.text_display_match = QLabel(self.tr("这里会显示最匹配的地点"))
+    self.text_display_match.setObjectName("locationMatchDisplay")
+    self.text_display_match.setTextFormat(Qt.RichText)
+    self.text_display_match.setTextInteractionFlags(Qt.TextBrowserInteraction)
+    self.text_display_match.setOpenExternalLinks(True)
+    self.text_display_match.setFixedHeight(35)
+    self.text_display_match.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Fixed)
     layout.addWidget(self.text_display_match)
 
     self.setLayout(layout)
@@ -641,7 +772,18 @@ class CipherDecryptor(QWidget):
     if (result == self.tr("无结果")):
       self.text_display_match.setText(self.tr("无结果"))
     else:
-      self.text_display_match.setText(self.tr("目标地点可能为: ")+result)
+      matched_text = self.tr("目标地点可能为: ") + result
+      # 根据最佳匹配地点查地图，避免原始密文含有识别错误时显示错误地图。
+      map_name = get_location_map(result)
+      if map_name:
+        matched_text += self.tr("（地图：{map_name}）").format(map_name=map_name)
+      matched_html = escape(matched_text)
+      video = get_location_video(result)
+      if video:
+        video_url, page = video
+        video_text = self.tr("查看视频（P{page}）").format(page=page)
+        matched_html += f' <a href="{escape(video_url)}">{escape(video_text)}</a>'
+      self.text_display_match.setText(matched_html)
 
     if not self.input_box.text():
       self.text_display_match.setText(self.tr("这里会显示最匹配的地点"))
