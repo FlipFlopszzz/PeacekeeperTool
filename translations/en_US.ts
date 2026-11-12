@@ -389,6 +389,14 @@ After finishing, if the lights turn red and you hear a sound effect, the task is
         <translation>Possible target location: </translation>
     </message>
     <message>
+        <source>（地图：{map_name}）</source>
+        <translation> (Map: {map_name})</translation>
+    </message>
+    <message>
+        <source>查看视频（P{page}）</source>
+        <translation>Watch video (P{page})</translation>
+    </message>
+    <message>
         <location filename="../src/components.py" line="655"/>
         <location filename="../src/components.py" line="670"/>
         <source>解密培根密码后会自动用替换密码解密</source>
@@ -922,6 +930,60 @@ On the Soldiers page, under Customize Soldier, select Support, then M1917 MG (an
 </source>
         <translation>1-8 Light switch sequence(1:On,0:Off):
 </translation>
+    </message>
+</context>
+<context>
+    <name>get_location_map</name>
+    <message>
+        <source>亚眠</source>
+        <translation>Amiens</translation>
+    </message>
+    <message>
+        <source>流血宴厅</source>
+        <translation>Ballroom Blitz</translation>
+    </message>
+    <message>
+        <source>法欧堡</source>
+        <translation>Fao Fortress</translation>
+    </message>
+    <message>
+        <source>苏伊士</source>
+        <translation>Suez</translation>
+    </message>
+    <message>
+        <source>帝国边境</source>
+        <translation>Empire’s Edge</translation>
+    </message>
+    <message>
+        <source>西奈沙漠</source>
+        <translation>Sinai Desert</translation>
+    </message>
+    <message>
+        <source>格拉巴山</source>
+        <translation>Monte Grappa</translation>
+    </message>
+    <message>
+        <source>圣康坦的伤痕</source>
+        <translation>Saint-Quentin Scar</translation>
+    </message>
+    <message>
+        <source>阿尔贡森林</source>
+        <translation>Argonne Forest</translation>
+    </message>
+</context>
+<context>
+    <name>CoordinateSystem</name>
+    <message>
+        <source>左转90°</source>
+        <translation>Left 90°</translation>
+    </message>
+    <message>
+        <source>右转90°</source>
+        <translation>Right 90°</translation>
+    </message>
+    <message>
+        <source>复位</source>
+        <translation>Reset</translation>
     </message>
 </context>
 </TS>

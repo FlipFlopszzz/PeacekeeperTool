@@ -389,6 +389,14 @@
         <translation>目標地點可能為: </translation>
     </message>
     <message>
+        <source>（地图：{map_name}）</source>
+        <translation>（地圖：{map_name}）</translation>
+    </message>
+    <message>
+        <source>查看视频（P{page}）</source>
+        <translation>查看影片（P{page}）</translation>
+    </message>
+    <message>
         <location filename="../src/components.py" line="655"/>
         <location filename="../src/components.py" line="670"/>
         <source>解密培根密码后会自动用替换密码解密</source>
@@ -922,6 +930,60 @@
 </source>
         <translation>1-8號燈的開關序列(1:亮,0:滅):
 </translation>
+    </message>
+</context>
+<context>
+    <name>get_location_map</name>
+    <message>
+        <source>亚眠</source>
+        <translation>亚眠</translation>
+    </message>
+    <message>
+        <source>流血宴厅</source>
+        <translation>流血宴廳</translation>
+    </message>
+    <message>
+        <source>法欧堡</source>
+        <translation>法歐堡</translation>
+    </message>
+    <message>
+        <source>苏伊士</source>
+        <translation>蘇伊士</translation>
+    </message>
+    <message>
+        <source>帝国边境</source>
+        <translation>帝國邊境</translation>
+    </message>
+    <message>
+        <source>西奈沙漠</source>
+        <translation>西奈沙漠</translation>
+    </message>
+    <message>
+        <source>格拉巴山</source>
+        <translation>格拉巴山</translation>
+    </message>
+    <message>
+        <source>圣康坦的伤痕</source>
+        <translation>聖康坦的傷痕</translation>
+    </message>
+    <message>
+        <source>阿尔贡森林</source>
+        <translation>阿爾貢森林</translation>
+    </message>
+</context>
+<context>
+    <name>CoordinateSystem</name>
+    <message>
+        <source>左转90°</source>
+        <translation>左轉90°</translation>
+    </message>
+    <message>
+        <source>右转90°</source>
+        <translation>右轉90°</translation>
+    </message>
+    <message>
+        <source>复位</source>
+        <translation>復位</translation>
     </message>
 </context>
 </TS>

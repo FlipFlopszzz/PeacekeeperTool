@@ -1,5 +1,5 @@
 from components import CandleDecryptor, CoordinateSystem, AudioMorseDecoder, CipherDecryptor, SingleLineInput, SingleLineTextDisplay
-from basic_components import ImageDisplayer, MarkdownTextBrowser
+from basic_components import ImageDisplayer, MarkdownTextBrowser, DescriptionSplitter
 from methods import find_missing_letters,  get_last_gold_text
 from PySide6.QtWidgets import QVBoxLayout, QWidget, QTextEdit, QHBoxLayout
 import resources_rc
@@ -143,11 +143,13 @@ class SkinPage(QWidget):
     super().__init__()
 
     # 创建主布局
-    layout = QVBoxLayout(self)
+    page_layout = QVBoxLayout(self)
 
     # Markdown文本浏览器
     self.browser = MarkdownTextBrowser(self.get_md_text())
-    layout.addWidget(self.browser)
+    self.description_splitter = DescriptionSplitter(self.browser)
+    page_layout.addWidget(self.description_splitter)
+    layout = self.description_splitter.content_layout
 
     self.input_box = SingleLineInput(self.tr("输入解密出的5个字母"))
     self.text_display = SingleLineTextDisplay(self.tr("这里将会显示最终的那串字母"))
@@ -198,12 +200,14 @@ class GoldPage(QWidget):
     super().__init__()
 
     # 创建主布局
-    layout = QVBoxLayout(self)
-    layout.setSpacing(10)  # 设置组件之间的垂直间距
+    page_layout = QVBoxLayout(self)
 
     # Markdown文本浏览器
     self.browser = MarkdownTextBrowser(self.get_md_text())
-    layout.addWidget(self.browser)
+    self.description_splitter = DescriptionSplitter(self.browser)
+    page_layout.addWidget(self.description_splitter)
+    layout = self.description_splitter.content_layout
+    layout.setSpacing(10)  # 设置组件之间的垂直间距
 
     self.audioMorseDecoder = AudioMorseDecoder(1)
     layout.addWidget(self.audioMorseDecoder)
@@ -291,9 +295,11 @@ class GoldPage(QWidget):
 class SilverPage(QWidget):
   def __init__(self):
     super().__init__()
-    layout = QVBoxLayout(self)
+    page_layout = QVBoxLayout(self)
     self.browser = MarkdownTextBrowser(self.get_md_text())
-    layout.addWidget(self.browser)
+    self.description_splitter = DescriptionSplitter(self.browser)
+    page_layout.addWidget(self.description_splitter)
+    layout = self.description_splitter.content_layout
     layout_tool = QHBoxLayout()
     self.candleDecryptor = CandleDecryptor()
     layout_tool.addWidget(self.candleDecryptor)
@@ -319,14 +325,17 @@ class SilverPage(QWidget):
   def retranslate_ui(self):
     self.browser.text_browser.setMarkdown(self.get_md_text())
     self.candleDecryptor.retranslate_ui()
+    self.coordinateSystem.retranslate_ui()
 
 
 class BronzePage(QWidget):
   def __init__(self):
     super().__init__()
-    layout = QVBoxLayout(self)
+    page_layout = QVBoxLayout(self)
     self.browser = MarkdownTextBrowser(self.get_md_text())
-    layout.addWidget(self.browser)
+    self.description_splitter = DescriptionSplitter(self.browser)
+    page_layout.addWidget(self.description_splitter)
+    layout = self.description_splitter.content_layout
 
     self.audioMorseDecoder = AudioMorseDecoder(2)
     layout.addWidget(self.audioMorseDecoder)
